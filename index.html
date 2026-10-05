@@ -20,15 +20,15 @@
 
     .container {
       max-width: 700px;
-      margin: 40px auto;
-      padding: 20px;
+      margin: 25px auto;
+      padding: 14px;
     }
 
     .card {
       background: white;
-      border-radius: 20px;
-      padding: 28px;
-      box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+      border-radius: 22px;
+      padding: 24px;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
     }
 
     h1 {
@@ -47,16 +47,18 @@
     label {
       display: block;
       font-weight: bold;
-      margin-bottom: 8px;
+      margin: 17px 0 8px;
+      font-size: 17px;
     }
 
     input {
       width: 100%;
-      padding: 15px;
+      padding: 16px;
       border: 1px solid #ddd;
-      border-radius: 12px;
-      font-size: 18px;
+      border-radius: 13px;
+      font-size: 17px;
       outline: none;
+      background: white;
     }
 
     input:focus {
@@ -65,10 +67,10 @@
 
     button {
       width: 100%;
-      margin-top: 15px;
-      padding: 15px;
+      margin-top: 20px;
+      padding: 16px;
       border: none;
-      border-radius: 12px;
+      border-radius: 13px;
       background: #111;
       color: white;
       font-size: 18px;
@@ -76,32 +78,66 @@
       cursor: pointer;
     }
 
-    button:active {
-      transform: scale(0.98);
+    button:disabled {
+      opacity: 0.6;
+      cursor: wait;
     }
 
     .result {
-      margin-top: 22px;
+      margin-top: 24px;
       text-align: center;
       background: #f1f3f5;
-      border-radius: 15px;
-      padding: 20px;
+      border-radius: 16px;
+      padding: 22px;
     }
 
     .result-title {
       color: #666;
       margin-bottom: 8px;
+      font-size: 17px;
     }
 
     .price {
-      font-size: 40px;
+      font-size: 42px;
       font-weight: 800;
+    }
+
+    .distance {
+      margin-top: 9px;
+      color: #555;
+      font-size: 16px;
+    }
+
+    .status {
+      margin-top: 15px;
+      text-align: center;
+      color: #555;
+      font-size: 15px;
+    }
+
+    .error {
+      margin-top: 15px;
+      text-align: center;
+      color: #c00000;
+      font-weight: bold;
+      line-height: 1.5;
+    }
+
+    .info {
+      margin-top: 20px;
+      padding: 14px;
+      border-radius: 12px;
+      background: #f8f8f8;
+      color: #555;
+      font-size: 14px;
+      line-height: 1.5;
+      text-align: center;
     }
 
     table {
       width: 100%;
       border-collapse: collapse;
-      margin-top: 25px;
+      margin-top: 26px;
     }
 
     th,
@@ -119,13 +155,13 @@
       font-size: 13px;
       color: #777;
       text-align: center;
-      margin-top: 20px;
+      margin-top: 22px;
     }
 
     @media (max-width: 600px) {
       .container {
-        margin: 15px auto;
-        padding: 12px;
+        margin: 10px auto;
+        padding: 10px;
       }
 
       .card {
@@ -137,7 +173,7 @@
       }
 
       .price {
-        font-size: 34px;
+        font-size: 36px;
       }
     }
   </style>
@@ -155,21 +191,46 @@
         Calculateur de prix de livraison
       </div>
 
-      <label for="distance">
-        Distance de livraison (km)
+
+      <!-- POINT DE DÉPART -->
+
+      <label for="from">
+        📍 Point de départ
       </label>
 
       <input
-        id="distance"
-        type="number"
-        min="0"
-        step="0.1"
-        placeholder="Exemple : 5.5"
+        id="from"
+        type="text"
+        placeholder="Ex : Centre-ville de Médéa"
+        autocomplete="off"
       >
 
-      <button onclick="calculatePrice()">
-        Calculer le prix
+
+      <!-- POINT D'ARRIVÉE -->
+
+      <label for="to">
+        📍 Point d'arrivée
+      </label>
+
+      <input
+        id="to"
+        type="text"
+        placeholder="Ex : Tizi Mahdi, Médéa"
+        autocomplete="off"
+      >
+
+
+      <!-- BOUTON -->
+
+      <button
+        id="calculateBtn"
+        onclick="calculateRoute()"
+      >
+        Calculer la distance et le prix
       </button>
+
+
+      <!-- RÉSULTAT -->
 
       <div class="result">
 
@@ -177,11 +238,49 @@
           Prix de livraison
         </div>
 
-        <div class="price" id="price">
+        <div
+          class="price"
+          id="price"
+        >
           — DA
         </div>
 
+        <div
+          class="distance"
+          id="distance"
+        >
+          Distance : —
+        </div>
+
       </div>
+
+
+      <!-- STATUS -->
+
+      <div
+        class="status"
+        id="status"
+      ></div>
+
+
+      <!-- ERREUR -->
+
+      <div
+        class="error"
+        id="error"
+      ></div>
+
+
+      <div class="info">
+        💡 اكتب المكانين بوضوح، مثال:
+        <br>
+        <b>Centre-ville de Médéa</b>
+        →
+        <b>Université de Médéa</b>
+      </div>
+
+
+      <!-- TABLE DES PRIX -->
 
       <table>
 
@@ -242,6 +341,7 @@
 
       </table>
 
+
       <div class="small">
         Nwasslek — خدمة التوصيل 🚚
       </div>
@@ -253,75 +353,396 @@
 
   <script>
 
-    function calculatePrice() {
+    /*
+      ==========================================
+      TARIFICATION NWASSLEK
+      ==========================================
+    */
 
-      const distanceInput = document.getElementById("distance");
-
-      const priceOutput = document.getElementById("price");
-
-      const distance = parseFloat(distanceInput.value);
-
-
-      // Vérification
-      if (isNaN(distance) || distance < 0) {
-
-        priceOutput.textContent = "— DA";
-
-        return;
-      }
-
-
-      let price;
-
-
-      // Tarification Nwasslek
+    function calculatePrice(distance) {
 
       if (distance <= 1) {
+        return 150;
+      }
 
-        price = 150;
+      if (distance <= 2) {
+        return 200;
+      }
 
-      } else if (distance <= 2) {
+      if (distance <= 4) {
+        return 250;
+      }
 
-        price = 200;
+      if (distance <= 6) {
+        return 300;
+      }
 
-      } else if (distance <= 4) {
+      if (distance <= 8) {
+        return 350;
+      }
 
-        price = 250;
+      if (distance <= 10) {
+        return 400;
+      }
 
-      } else if (distance <= 6) {
+      if (distance <= 12) {
+        return 450;
+      }
 
-        price = 300;
+      if (distance <= 14) {
+        return 500;
+      }
 
-      } else if (distance <= 8) {
+      if (distance <= 15) {
+        return 550;
+      }
 
-        price = 350;
+      /*
+        Plus de 15 km :
+        +50 DA par km commencé
+      */
 
-      } else if (distance <= 10) {
+      return 550 + Math.ceil(distance - 15) * 50;
+    }
 
-        price = 400;
 
-      } else if (distance <= 12) {
+    /*
+      ==========================================
+      RECHERCHE D'UNE ADRESSE
+      OpenStreetMap / Nominatim
+      ==========================================
+    */
 
-        price = 450;
+    async function geocode(address) {
 
-      } else if (distance <= 14) {
+      const query =
+        address +
+        ", Médéa, Algérie";
 
-        price = 500;
+      const url =
+        "https://nominatim.openstreetmap.org/search" +
+        "?format=jsonv2" +
+        "&limit=1" +
+        "&countrycodes=dz" +
+        "&q=" +
+        encodeURIComponent(query);
 
-      } else if (distance <= 15) {
 
-        price = 550;
+      const response = await fetch(url, {
+        headers: {
+          "Accept": "application/json"
+        }
+      });
 
-      } else {
 
-        price = 550 + Math.ceil(distance - 15) * 50;
+      if (!response.ok) {
+        throw new Error(
+          "Erreur lors de la recherche de l'adresse."
+        );
+      }
+
+
+      const data = await response.json();
+
+
+      if (!data || data.length === 0) {
+
+        throw new Error(
+          "Adresse introuvable : " + address
+        );
 
       }
 
 
-      priceOutput.textContent = price + " DA";
+      return {
+
+        lat: parseFloat(data[0].lat),
+
+        lon: parseFloat(data[0].lon),
+
+        name: data[0].display_name
+
+      };
 
     }
+
+
+    /*
+      ==========================================
+      CALCUL DE LA DISTANCE ROUTIÈRE
+      OSRM
+      ==========================================
+    */
+
+    async function getRoadDistance(start, destination) {
+
+      const url =
+        "https://router.project-osrm.org/route/v1/driving/" +
+
+        start.lon +
+        "," +
+        start.lat +
+
+        ";" +
+
+        destination.lon +
+        "," +
+        destination.lat +
+
+        "?overview=false";
+
+
+      const response = await fetch(url);
+
+
+      if (!response.ok) {
+
+        throw new Error(
+          "Impossible de calculer l'itinéraire."
+        );
+
+      }
+
+
+      const data = await response.json();
+
+
+      if (
+        data.code !== "Ok" ||
+        !data.routes ||
+        data.routes.length === 0
+      ) {
+
+        throw new Error(
+          "Aucun itinéraire trouvé."
+        );
+
+      }
+
+
+      /*
+        OSRM donne la distance en mètres.
+        On transforme en kilomètres.
+      */
+
+      return data.routes[0].distance / 1000;
+
+    }
+
+
+    /*
+      ==========================================
+      CALCUL COMPLET
+      ==========================================
+    */
+
+    async function calculateRoute() {
+
+      const from =
+        document
+          .getElementById("from")
+          .value
+          .trim();
+
+
+      const to =
+        document
+          .getElementById("to")
+          .value
+          .trim();
+
+
+      const button =
+        document.getElementById(
+          "calculateBtn"
+        );
+
+
+      const price =
+        document.getElementById(
+          "price"
+        );
+
+
+      const distanceElement =
+        document.getElementById(
+          "distance"
+        );
+
+
+      const status =
+        document.getElementById(
+          "status"
+        );
+
+
+      const error =
+        document.getElementById(
+          "error"
+        );
+
+
+      /*
+        Nettoyage
+      */
+
+      error.textContent = "";
+
+      status.textContent = "";
+
+      price.textContent = "— DA";
+
+      distanceElement.textContent =
+        "Distance : —";
+
+
+      /*
+        Vérification
+      */
+
+      if (!from || !to) {
+
+        error.textContent =
+          "⚠️ اكتب نقطة الانطلاق ونقطة الوصول.";
+
+        return;
+
+      }
+
+
+      /*
+        Désactiver le bouton
+      */
+
+      button.disabled = true;
+
+      button.textContent =
+        "⏳ Calcul en cours...";
+
+
+      status.textContent =
+        "Recherche des adresses...";
+
+
+      try {
+
+        /*
+          Recherche des deux adresses
+        */
+
+        const start =
+          await geocode(from);
+
+
+        const destination =
+          await geocode(to);
+
+
+        /*
+          Calcul de la distance
+        */
+
+        status.textContent =
+          "Calcul de la distance routière...";
+
+
+        const distance =
+          await getRoadDistance(
+            start,
+            destination
+          );
+
+
+        /*
+          Arrondir à 1 chiffre
+        */
+
+        const roundedDistance =
+          Math.round(
+            distance * 10
+          ) / 10;
+
+
+        /*
+          Calcul du prix
+        */
+
+        const deliveryPrice =
+          calculatePrice(distance);
+
+
+        /*
+          Affichage
+        */
+
+        distanceElement.textContent =
+          "Distance routière : " +
+          roundedDistance +
+          " km";
+
+
+        price.textContent =
+          deliveryPrice +
+          " DA";
+
+
+        status.textContent =
+          "✅ Tarif calculé avec succès";
+
+
+      }
+
+      catch (e) {
+
+        console.error(e);
+
+
+        distanceElement.textContent =
+          "Distance : —";
+
+
+        error.textContent =
+          "❌ " +
+          (
+            e.message ||
+            "Une erreur est survenue."
+          );
+
+
+      }
+
+      finally {
+
+        button.disabled = false;
+
+        button.textContent =
+          "Calculer la distance et le prix";
+
+      }
+
+    }
+
+
+    /*
+      ==========================================
+      ENTER = CALCULER
+      ==========================================
+    */
+
+    document
+      .getElementById("to")
+      .addEventListener(
+        "keydown",
+        function(event) {
+
+          if (event.key === "Enter") {
+
+            calculateRoute();
+
+          }
+
+        }
+      );
 
   </script>
 
