@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Nwasslek - Calculateur de livraison</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f5f7fa;
+      color: #111;
+    }
+
+    .container {
+      max-width: 700px;
+      margin: 40px auto;
+      padding: 20px;
+    }
+
+    .card {
+      background: white;
+      border-radius: 20px;
+      padding: 28px;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+    }
+
+    h1 {
+      text-align: center;
+      margin: 0 0 8px;
+      font-size: 34px;
+    }
+
+    .subtitle {
+      text-align: center;
+      color: #666;
+      margin-bottom: 28px;
+      font-size: 17px;
+    }
+
+    label {
+      display: block;
+      font-weight: bold;
+      margin-bottom: 8px;
+    }
+
+    input {
+      width: 100%;
+      padding: 15px;
+      border: 1px solid #ddd;
+      border-radius: 12px;
+      font-size: 18px;
+      outline: none;
+    }
+
+    input:focus {
+      border-color: #111;
+    }
+
+    button {
+      width: 100%;
+      margin-top: 15px;
+      padding: 15px;
+      border: none;
+      border-radius: 12px;
+      background: #111;
+      color: white;
+      font-size: 18px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    button:active {
+      transform: scale(0.98);
+    }
+
+    .result {
+      margin-top: 22px;
+      text-align: center;
+      background: #f1f3f5;
+      border-radius: 15px;
+      padding: 20px;
+    }
+
+    .result-title {
+      color: #666;
+      margin-bottom: 8px;
+    }
+
+    .price {
+      font-size: 40px;
+      font-weight: 800;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 25px;
+    }
+
+    th,
+    td {
+      padding: 11px 8px;
+      border-bottom: 1px solid #eee;
+      text-align: center;
+    }
+
+    th {
+      background: #f5f5f5;
+    }
+
+    .small {
+      font-size: 13px;
+      color: #777;
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    @media (max-width: 600px) {
+      .container {
+        margin: 15px auto;
+        padding: 12px;
+      }
+
+      .card {
+        padding: 20px;
+      }
+
+      h1 {
+        font-size: 30px;
+      }
+
+      .price {
+        font-size: 34px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="container">
+
+    <div class="card">
+
+      <h1>🚚 Nwasslek</h1>
+
+      <div class="subtitle">
+        Calculateur de prix de livraison
+      </div>
+
+      <label for="distance">
+        Distance de livraison (km)
+      </label>
+
+      <input
+        id="distance"
+        type="number"
+        min="0"
+        step="0.1"
+        placeholder="Exemple : 5.5"
+      >
+
+      <button onclick="calculatePrice()">
+        Calculer le prix
+      </button>
+
+      <div class="result">
+
+        <div class="result-title">
+          Prix de livraison
+        </div>
+
+        <div class="price" id="price">
+          — DA
+        </div>
+
+      </div>
+
+      <table>
+
+        <tr>
+          <th>Distance</th>
+          <th>Prix</th>
+        </tr>
+
+        <tr>
+          <td>0 – 1 km</td>
+          <td>150 DA</td>
+        </tr>
+
+        <tr>
+          <td>1 – 2 km</td>
+          <td>200 DA</td>
+        </tr>
+
+        <tr>
+          <td>2 – 4 km</td>
+          <td>250 DA</td>
+        </tr>
+
+        <tr>
+          <td>4 – 6 km</td>
+          <td>300 DA</td>
+        </tr>
+
+        <tr>
+          <td>6 – 8 km</td>
+          <td>350 DA</td>
+        </tr>
+
+        <tr>
+          <td>8 – 10 km</td>
+          <td>400 DA</td>
+        </tr>
+
+        <tr>
+          <td>10 – 12 km</td>
+          <td>450 DA</td>
+        </tr>
+
+        <tr>
+          <td>12 – 14 km</td>
+          <td>500 DA</td>
+        </tr>
+
+        <tr>
+          <td>14 – 15 km</td>
+          <td>550 DA</td>
+        </tr>
+
+        <tr>
+          <td>Plus de 15 km</td>
+          <td>550 DA + 50 DA / km commencé</td>
+        </tr>
+
+      </table>
+
+      <div class="small">
+        Nwasslek — خدمة التوصيل 🚚
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <script>
+
+    function calculatePrice() {
+
+      const distanceInput = document.getElementById("distance");
+
+      const priceOutput = document.getElementById("price");
+
+      const distance = parseFloat(distanceInput.value);
+
+
+      // Vérification
+      if (isNaN(distance) || distance < 0) {
+
+        priceOutput.textContent = "— DA";
+
+        return;
+      }
+
+
+      let price;
+
+
+      // Tarification Nwasslek
+
+      if (distance <= 1) {
+
+        price = 150;
+
+      } else if (distance <= 2) {
+
+        price = 200;
+
+      } else if (distance <= 4) {
+
+        price = 250;
+
+      } else if (distance <= 6) {
+
+        price = 300;
+
+      } else if (distance <= 8) {
+
+        price = 350;
+
+      } else if (distance <= 10) {
+
+        price = 400;
+
+      } else if (distance <= 12) {
+
+        price = 450;
+
+      } else if (distance <= 14) {
+
+        price = 500;
+
+      } else if (distance <= 15) {
+
+        price = 550;
+
+      } else {
+
+        price = 550 + Math.ceil(distance - 15) * 50;
+
+      }
+
+
+      priceOutput.textContent = price + " DA";
+
+    }
+
+  </script>
+
+</body>
+</html>
