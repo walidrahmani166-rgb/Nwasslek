@@ -28,7 +28,7 @@
       background: white;
       border-radius: 22px;
       padding: 24px;
-      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+      box-shadow: 0 8px 30px rgba(0,0,0,0.08);
     }
 
     h1 {
@@ -67,7 +67,7 @@
 
     button {
       width: 100%;
-      margin-top: 20px;
+      margin-top: 12px;
       padding: 16px;
       border: none;
       border-radius: 13px;
@@ -76,6 +76,10 @@
       font-size: 18px;
       font-weight: bold;
       cursor: pointer;
+    }
+
+    button.location {
+      background: #1677ff;
     }
 
     button:disabled {
@@ -121,6 +125,13 @@
       color: #c00000;
       font-weight: bold;
       line-height: 1.5;
+    }
+
+    .success {
+      margin-top: 15px;
+      text-align: center;
+      color: #16823b;
+      font-weight: bold;
     }
 
     .info {
@@ -181,570 +192,789 @@
 
 <body>
 
-  <div class="container">
+<div class="container">
 
-    <div class="card">
+  <div class="card">
 
-      <h1>🚚 Nwasslek</h1>
+    <h1>🚚 Nwasslek</h1>
 
-      <div class="subtitle">
-        Calculateur de prix de livraison
+    <div class="subtitle">
+      Calculateur de prix de livraison
+    </div>
+
+
+    <!-- POINT DE DEPART -->
+
+    <label for="from">
+      📍 Point de départ
+    </label>
+
+    <input
+      id="from"
+      type="text"
+      placeholder="Ex : Centre-ville de Médéa"
+      autocomplete="off"
+    >
+
+    <button
+      id="locationBtn"
+      class="location"
+      onclick="useMyLocation()"
+    >
+      📍 Utiliser ma position actuelle
+    </button>
+
+
+    <!-- POINT D'ARRIVEE -->
+
+    <label for="to">
+      📍 Point d'arrivée
+    </label>
+
+    <input
+      id="to"
+      type="text"
+      placeholder="Ex : Université de Médéa"
+      autocomplete="off"
+    >
+
+
+    <!-- CALCUL -->
+
+    <button
+      id="calculateBtn"
+      onclick="calculateRoute()"
+    >
+      Calculer la distance et le prix
+    </button>
+
+
+    <!-- RESULTAT -->
+
+    <div class="result">
+
+      <div class="result-title">
+        Prix de livraison
       </div>
-
-
-      <!-- POINT DE DÉPART -->
-
-      <label for="from">
-        📍 Point de départ
-      </label>
-
-      <input
-        id="from"
-        type="text"
-        placeholder="Ex : Centre-ville de Médéa"
-        autocomplete="off"
-      >
-
-
-      <!-- POINT D'ARRIVÉE -->
-
-      <label for="to">
-        📍 Point d'arrivée
-      </label>
-
-      <input
-        id="to"
-        type="text"
-        placeholder="Ex : Tizi Mahdi, Médéa"
-        autocomplete="off"
-      >
-
-
-      <!-- BOUTON -->
-
-      <button
-        id="calculateBtn"
-        onclick="calculateRoute()"
-      >
-        Calculer la distance et le prix
-      </button>
-
-
-      <!-- RÉSULTAT -->
-
-      <div class="result">
-
-        <div class="result-title">
-          Prix de livraison
-        </div>
-
-        <div
-          class="price"
-          id="price"
-        >
-          — DA
-        </div>
-
-        <div
-          class="distance"
-          id="distance"
-        >
-          Distance : —
-        </div>
-
-      </div>
-
-
-      <!-- STATUS -->
 
       <div
-        class="status"
-        id="status"
-      ></div>
-
-
-      <!-- ERREUR -->
-
-      <div
-        class="error"
-        id="error"
-      ></div>
-
-
-      <div class="info">
-        💡 اكتب المكانين بوضوح، مثال:
-        <br>
-        <b>Centre-ville de Médéa</b>
-        →
-        <b>Université de Médéa</b>
+        class="price"
+        id="price"
+      >
+        — DA
       </div>
 
-
-      <!-- TABLE DES PRIX -->
-
-      <table>
-
-        <tr>
-          <th>Distance</th>
-          <th>Prix</th>
-        </tr>
-
-        <tr>
-          <td>0 – 1 km</td>
-          <td>150 DA</td>
-        </tr>
-
-        <tr>
-          <td>1 – 2 km</td>
-          <td>200 DA</td>
-        </tr>
-
-        <tr>
-          <td>2 – 4 km</td>
-          <td>250 DA</td>
-        </tr>
-
-        <tr>
-          <td>4 – 6 km</td>
-          <td>300 DA</td>
-        </tr>
-
-        <tr>
-          <td>6 – 8 km</td>
-          <td>350 DA</td>
-        </tr>
-
-        <tr>
-          <td>8 – 10 km</td>
-          <td>400 DA</td>
-        </tr>
-
-        <tr>
-          <td>10 – 12 km</td>
-          <td>450 DA</td>
-        </tr>
-
-        <tr>
-          <td>12 – 14 km</td>
-          <td>500 DA</td>
-        </tr>
-
-        <tr>
-          <td>14 – 15 km</td>
-          <td>550 DA</td>
-        </tr>
-
-        <tr>
-          <td>Plus de 15 km</td>
-          <td>550 DA + 50 DA / km commencé</td>
-        </tr>
-
-      </table>
-
-
-      <div class="small">
-        Nwasslek — خدمة التوصيل 🚚
+      <div
+        class="distance"
+        id="distance"
+      >
+        Distance : —
       </div>
 
     </div>
 
+
+    <div
+      class="status"
+      id="status"
+    ></div>
+
+    <div
+      class="success"
+      id="success"
+    ></div>
+
+    <div
+      class="error"
+      id="error"
+    ></div>
+
+
+    <div class="info">
+      💡 تقدر تضغط على
+      <b>📍 Utiliser ma position actuelle</b>
+      باش الموقع يجيب بلاصتك وحدو.
+      <br><br>
+      ثم اكتب نقطة الوصول واضغط على حساب السعر.
+    </div>
+
+
+    <!-- TARIFS -->
+
+    <table>
+
+      <tr>
+        <th>Distance</th>
+        <th>Prix</th>
+      </tr>
+
+      <tr>
+        <td>0 – 1 km</td>
+        <td>150 DA</td>
+      </tr>
+
+      <tr>
+        <td>1 – 2 km</td>
+        <td>200 DA</td>
+      </tr>
+
+      <tr>
+        <td>2 – 4 km</td>
+        <td>250 DA</td>
+      </tr>
+
+      <tr>
+        <td>4 – 6 km</td>
+        <td>300 DA</td>
+      </tr>
+
+      <tr>
+        <td>6 – 8 km</td>
+        <td>350 DA</td>
+      </tr>
+
+      <tr>
+        <td>8 – 10 km</td>
+        <td>400 DA</td>
+      </tr>
+
+      <tr>
+        <td>10 – 12 km</td>
+        <td>450 DA</td>
+      </tr>
+
+      <tr>
+        <td>12 – 14 km</td>
+        <td>500 DA</td>
+      </tr>
+
+      <tr>
+        <td>14 – 15 km</td>
+        <td>550 DA</td>
+      </tr>
+
+      <tr>
+        <td>Plus de 15 km</td>
+        <td>550 DA + 50 DA / km commencé</td>
+      </tr>
+
+    </table>
+
+
+    <div class="small">
+      Nwasslek — خدمة التوصيل 🚚
+    </div>
+
   </div>
 
+</div>
 
-  <script>
 
-    /*
-      ==========================================
-      TARIFICATION NWASSLEK
-      ==========================================
-    */
+<script>
 
-    function calculatePrice(distance) {
+/*
+========================================
+TARIFICATION NWASSLEK
+========================================
+*/
 
-      if (distance <= 1) {
-        return 150;
-      }
+function calculatePrice(distance) {
 
-      if (distance <= 2) {
-        return 200;
-      }
+  if (distance <= 1) {
+    return 150;
+  }
 
-      if (distance <= 4) {
-        return 250;
-      }
+  if (distance <= 2) {
+    return 200;
+  }
 
-      if (distance <= 6) {
-        return 300;
-      }
+  if (distance <= 4) {
+    return 250;
+  }
 
-      if (distance <= 8) {
-        return 350;
-      }
+  if (distance <= 6) {
+    return 300;
+  }
 
-      if (distance <= 10) {
-        return 400;
-      }
+  if (distance <= 8) {
+    return 350;
+  }
 
-      if (distance <= 12) {
-        return 450;
-      }
+  if (distance <= 10) {
+    return 400;
+  }
 
-      if (distance <= 14) {
-        return 500;
-      }
+  if (distance <= 12) {
+    return 450;
+  }
 
-      if (distance <= 15) {
-        return 550;
-      }
+  if (distance <= 14) {
+    return 500;
+  }
 
-      /*
-        Plus de 15 km :
-        +50 DA par km commencé
-      */
+  if (distance <= 15) {
+    return 550;
+  }
 
-      return 550 + Math.ceil(distance - 15) * 50;
-    }
+  return 550 + Math.ceil(distance - 15) * 50;
+}
 
 
-    /*
-      ==========================================
-      RECHERCHE D'UNE ADRESSE
-      OpenStreetMap / Nominatim
-      ==========================================
-    */
+/*
+========================================
+UTILISER LA POSITION ACTUELLE
+========================================
+*/
 
-    async function geocode(address) {
+function useMyLocation() {
 
-      const query =
-        address +
-        ", Médéa, Algérie";
+  const button =
+    document.getElementById("locationBtn");
 
-      const url =
-        "https://nominatim.openstreetmap.org/search" +
-        "?format=jsonv2" +
-        "&limit=1" +
-        "&countrycodes=dz" +
-        "&q=" +
-        encodeURIComponent(query);
+  const from =
+    document.getElementById("from");
 
+  const status =
+    document.getElementById("status");
 
-      const response = await fetch(url, {
-        headers: {
-          "Accept": "application/json"
-        }
-      });
+  const error =
+    document.getElementById("error");
 
+  const success =
+    document.getElementById("success");
 
-      if (!response.ok) {
-        throw new Error(
-          "Erreur lors de la recherche de l'adresse."
-        );
-      }
 
+  error.textContent = "";
+  success.textContent = "";
 
-      const data = await response.json();
+  if (!navigator.geolocation) {
 
+    error.textContent =
+      "❌ Votre téléphone ne supporte pas la localisation.";
 
-      if (!data || data.length === 0) {
+    return;
+  }
 
-        throw new Error(
-          "Adresse introuvable : " + address
-        );
 
-      }
+  button.disabled = true;
 
+  button.textContent =
+    "⏳ Recherche de votre position...";
 
-      return {
+  status.textContent =
+    "📍 Autorisez l'accès à votre position...";
 
-        lat: parseFloat(data[0].lat),
 
-        lon: parseFloat(data[0].lon),
+  navigator.geolocation.getCurrentPosition(
 
-        name: data[0].display_name
+    async function(position) {
 
-      };
+      const latitude =
+        position.coords.latitude;
 
-    }
-
-
-    /*
-      ==========================================
-      CALCUL DE LA DISTANCE ROUTIÈRE
-      OSRM
-      ==========================================
-    */
-
-    async function getRoadDistance(start, destination) {
-
-      const url =
-        "https://router.project-osrm.org/route/v1/driving/" +
-
-        start.lon +
-        "," +
-        start.lat +
-
-        ";" +
-
-        destination.lon +
-        "," +
-        destination.lat +
-
-        "?overview=false";
-
-
-      const response = await fetch(url);
-
-
-      if (!response.ok) {
-
-        throw new Error(
-          "Impossible de calculer l'itinéraire."
-        );
-
-      }
-
-
-      const data = await response.json();
-
-
-      if (
-        data.code !== "Ok" ||
-        !data.routes ||
-        data.routes.length === 0
-      ) {
-
-        throw new Error(
-          "Aucun itinéraire trouvé."
-        );
-
-      }
-
-
-      /*
-        OSRM donne la distance en mètres.
-        On transforme en kilomètres.
-      */
-
-      return data.routes[0].distance / 1000;
-
-    }
-
-
-    /*
-      ==========================================
-      CALCUL COMPLET
-      ==========================================
-    */
-
-    async function calculateRoute() {
-
-      const from =
-        document
-          .getElementById("from")
-          .value
-          .trim();
-
-
-      const to =
-        document
-          .getElementById("to")
-          .value
-          .trim();
-
-
-      const button =
-        document.getElementById(
-          "calculateBtn"
-        );
-
-
-      const price =
-        document.getElementById(
-          "price"
-        );
-
-
-      const distanceElement =
-        document.getElementById(
-          "distance"
-        );
-
-
-      const status =
-        document.getElementById(
-          "status"
-        );
-
-
-      const error =
-        document.getElementById(
-          "error"
-        );
-
-
-      /*
-        Nettoyage
-      */
-
-      error.textContent = "";
-
-      status.textContent = "";
-
-      price.textContent = "— DA";
-
-      distanceElement.textContent =
-        "Distance : —";
-
-
-      /*
-        Vérification
-      */
-
-      if (!from || !to) {
-
-        error.textContent =
-          "⚠️ اكتب نقطة الانطلاق ونقطة الوصول.";
-
-        return;
-
-      }
-
-
-      /*
-        Désactiver le bouton
-      */
-
-      button.disabled = true;
-
-      button.textContent =
-        "⏳ Calcul en cours...";
+      const longitude =
+        position.coords.longitude;
 
 
       status.textContent =
-        "Recherche des adresses...";
+        "📍 Position trouvée. Recherche de l'adresse...";
 
 
       try {
 
-        /*
-          Recherche des deux adresses
-        */
-
-        const start =
-          await geocode(from);
-
-
-        const destination =
-          await geocode(to);
-
-
-        /*
-          Calcul de la distance
-        */
-
-        status.textContent =
-          "Calcul de la distance routière...";
-
-
-        const distance =
-          await getRoadDistance(
-            start,
-            destination
+        const address =
+          await reverseGeocode(
+            latitude,
+            longitude
           );
 
 
-        /*
-          Arrondir à 1 chiffre
-        */
-
-        const roundedDistance =
-          Math.round(
-            distance * 10
-          ) / 10;
+        from.value =
+          address;
 
 
-        /*
-          Calcul du prix
-        */
-
-        const deliveryPrice =
-          calculatePrice(distance);
+        success.textContent =
+          "✅ Votre position actuelle a été ajoutée.";
 
 
-        /*
-          Affichage
-        */
-
-        distanceElement.textContent =
-          "Distance routière : " +
-          roundedDistance +
-          " km";
-
-
-        price.textContent =
-          deliveryPrice +
-          " DA";
-
-
-        status.textContent =
-          "✅ Tarif calculé avec succès";
-
+        status.textContent = "";
 
       }
 
       catch (e) {
 
-        console.error(e);
+        /*
+          Si l'adresse n'est pas trouvée,
+          on garde quand même les coordonnées
+          dans le champ.
+        */
+
+        from.value =
+          latitude.toFixed(6) +
+          ", " +
+          longitude.toFixed(6);
 
 
-        distanceElement.textContent =
-          "Distance : —";
+        success.textContent =
+          "✅ Position GPS trouvée.";
 
-
-        error.textContent =
-          "❌ " +
-          (
-            e.message ||
-            "Une erreur est survenue."
-          );
-
+        status.textContent =
+          "Vous pouvez maintenant entrer le point d'arrivée.";
 
       }
 
-      finally {
 
-        button.disabled = false;
+      button.disabled = false;
 
-        button.textContent =
-          "Calculer la distance et le prix";
+      button.textContent =
+        "📍 Utiliser ma position actuelle";
+
+    },
+
+
+    function(errorPosition) {
+
+      button.disabled = false;
+
+      button.textContent =
+        "📍 Utiliser ma position actuelle";
+
+
+      status.textContent = "";
+
+
+      if (errorPosition.code === 1) {
+
+        error.textContent =
+          "❌ Autorisation de localisation refusée. Activez la localisation pour Safari dans les réglages du téléphone.";
+
+      }
+
+      else if (errorPosition.code === 2) {
+
+        error.textContent =
+          "❌ Position impossible à déterminer. Vérifiez votre GPS.";
+
+      }
+
+      else if (errorPosition.code === 3) {
+
+        error.textContent =
+          "❌ La recherche de position a pris trop de temps. Réessayez.";
+
+      }
+
+      else {
+
+        error.textContent =
+          "❌ Impossible d'obtenir votre position.";
+
+      }
+
+    },
+
+    {
+      enableHighAccuracy: true,
+      timeout: 15000,
+      maximumAge: 0
+    }
+
+  );
+
+}
+
+
+/*
+========================================
+TRANSFORMER GPS EN ADRESSE
+OpenStreetMap Nominatim
+========================================
+*/
+
+async function reverseGeocode(
+  latitude,
+  longitude
+) {
+
+  const url =
+    "https://nominatim.openstreetmap.org/reverse" +
+    "?format=jsonv2" +
+    "&lat=" +
+    latitude +
+    "&lon=" +
+    longitude +
+    "&zoom=18" +
+    "&addressdetails=1";
+
+
+  const response =
+    await fetch(url, {
+      headers: {
+        "Accept":
+          "application/json"
+      }
+    });
+
+
+  if (!response.ok) {
+
+    throw new Error(
+      "Erreur de géocodage."
+    );
+
+  }
+
+
+  const data =
+    await response.json();
+
+
+  if (
+    !data ||
+    !data.display_name
+  ) {
+
+    throw new Error(
+      "Adresse introuvable."
+    );
+
+  }
+
+
+  return data.display_name;
+
+}
+
+
+/*
+========================================
+RECHERCHER UNE ADRESSE
+========================================
+*/
+
+async function geocode(address) {
+
+  const query =
+    address +
+    ", Médéa, Algérie";
+
+
+  const url =
+    "https://nominatim.openstreetmap.org/search" +
+    "?format=jsonv2" +
+    "&limit=1" +
+    "&countrycodes=dz" +
+    "&q=" +
+    encodeURIComponent(query);
+
+
+  const response =
+    await fetch(url, {
+      headers: {
+        "Accept":
+          "application/json"
+      }
+    });
+
+
+  if (!response.ok) {
+
+    throw new Error(
+      "Erreur lors de la recherche de l'adresse."
+    );
+
+  }
+
+
+  const data =
+    await response.json();
+
+
+  if (
+    !data ||
+    data.length === 0
+  ) {
+
+    throw new Error(
+      "Adresse introuvable : " +
+      address
+    );
+
+  }
+
+
+  return {
+
+    lat:
+      parseFloat(data[0].lat),
+
+    lon:
+      parseFloat(data[0].lon),
+
+    name:
+      data[0].display_name
+
+  };
+
+}
+
+
+/*
+========================================
+CALCULER DISTANCE ROUTIERE
+OSRM
+========================================
+*/
+
+async function getRoadDistance(
+  start,
+  destination
+) {
+
+  const url =
+    "https://router.project-osrm.org/route/v1/driving/" +
+
+    start.lon +
+    "," +
+    start.lat +
+
+    ";" +
+
+    destination.lon +
+    "," +
+    destination.lat +
+
+    "?overview=false";
+
+
+  const response =
+    await fetch(url);
+
+
+  if (!response.ok) {
+
+    throw new Error(
+      "Impossible de calculer l'itinéraire."
+    );
+
+  }
+
+
+  const data =
+    await response.json();
+
+
+  if (
+    data.code !== "Ok" ||
+    !data.routes ||
+    data.routes.length === 0
+  ) {
+
+    throw new Error(
+      "Aucun itinéraire trouvé."
+    );
+
+  }
+
+
+  return (
+    data.routes[0].distance /
+    1000
+  );
+
+}
+
+
+/*
+========================================
+CALCUL COMPLET
+========================================
+*/
+
+async function calculateRoute() {
+
+  const from =
+    document
+      .getElementById("from")
+      .value
+      .trim();
+
+
+  const to =
+    document
+      .getElementById("to")
+      .value
+      .trim();
+
+
+  const button =
+    document.getElementById(
+      "calculateBtn"
+    );
+
+
+  const price =
+    document.getElementById(
+      "price"
+    );
+
+
+  const distanceElement =
+    document.getElementById(
+      "distance"
+    );
+
+
+  const status =
+    document.getElementById(
+      "status"
+    );
+
+
+  const error =
+    document.getElementById(
+      "error"
+    );
+
+
+  const success =
+    document.getElementById(
+      "success"
+    );
+
+
+  error.textContent = "";
+
+  success.textContent = "";
+
+  status.textContent = "";
+
+  price.textContent = "— DA";
+
+  distanceElement.textContent =
+    "Distance : —";
+
+
+  if (!from || !to) {
+
+    error.textContent =
+      "⚠️ اكتب نقطة الانطلاق ونقطة الوصول.";
+
+    return;
+
+  }
+
+
+  button.disabled = true;
+
+  button.textContent =
+    "⏳ Calcul en cours...";
+
+
+  status.textContent =
+    "🔎 Recherche des adresses...";
+
+
+  try {
+
+    const start =
+      await geocode(from);
+
+
+    const destination =
+      await geocode(to);
+
+
+    status.textContent =
+      "🚗 Calcul de la distance routière...";
+
+
+    const distance =
+      await getRoadDistance(
+        start,
+        destination
+      );
+
+
+    const roundedDistance =
+      Math.round(
+        distance * 10
+      ) / 10;
+
+
+    const deliveryPrice =
+      calculatePrice(distance);
+
+
+    distanceElement.textContent =
+      "Distance routière : " +
+      roundedDistance +
+      " km";
+
+
+    price.textContent =
+      deliveryPrice +
+      " DA";
+
+
+    success.textContent =
+      "✅ Tarif calculé avec succès";
+
+
+    status.textContent = "";
+
+  }
+
+
+  catch (e) {
+
+    console.error(e);
+
+
+    error.textContent =
+      "❌ " +
+      (
+        e.message ||
+        "Une erreur est survenue."
+      );
+
+  }
+
+
+  finally {
+
+    button.disabled = false;
+
+    button.textContent =
+      "Calculer la distance et le prix";
+
+  }
+
+}
+
+
+/*
+========================================
+ENTER = CALCULER
+========================================
+*/
+
+document
+  .getElementById("to")
+  .addEventListener(
+    "keydown",
+    function(event) {
+
+      if (event.key === "Enter") {
+
+        calculateRoute();
 
       }
 
     }
+  );
 
-
-    /*
-      ==========================================
-      ENTER = CALCULER
-      ==========================================
-    */
-
-    document
-      .getElementById("to")
-      .addEventListener(
-        "keydown",
-        function(event) {
-
-          if (event.key === "Enter") {
-
-            calculateRoute();
-
-          }
-
-        }
-      );
-
-  </script>
+</script>
 
 </body>
 </html>
