@@ -1,83 +1,77 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
-
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-
 <title>NWASSLEK - نوصلك</title>
 
 <style>
-
 :root{
   --yellow:#ffd21c;
   --yellow2:#ffbd00;
   --black:#080a0c;
-  --dark:#15181b;
+  --dark:#111416;
   --white:#fff;
-  --muted:#777;
-  --line:#e7e9eb;
-  --soft:#f4f5f6;
+  --muted:#747a7f;
+  --line:#e3e5e7;
+  --soft:#f5f6f7;
   --blue:#1683ff;
-  --blueSoft:#eef7ff;
   --red:#e53935;
-  --redSoft:#fff0f0;
 }
 
 *{box-sizing:border-box}
 
+html{scroll-behavior:smooth}
+
 body{
   margin:0;
   font-family:Arial,"Tahoma",sans-serif;
-  color:#111;
-  background:#f1f2f3;
+  color:#101214;
+  background:
+    radial-gradient(circle at 0% 0%,rgba(255,210,28,.13),transparent 25%),
+    linear-gradient(180deg,#f8f8f6 0%,#eef0f2 100%);
 }
 
 .container{
-  width:min(1040px,94%);
-  margin:18px auto 34px;
+  width:min(1060px,94%);
+  margin:18px auto 30px;
 }
 
-/* ================= HERO ================= */
+/* HEADER */
 
 .header{
   position:relative;
   overflow:hidden;
-  min-height:320px;
-  padding:32px 24px;
-  margin-bottom:14px;
+  min-height:330px;
+  padding:34px 25px 30px;
   text-align:center;
   color:#fff;
   background:#090b0d;
-  border:1px solid #24282c;
-  border-radius:28px;
-  box-shadow:0 20px 45px rgba(0,0,0,.18);
+  border:1px solid #272c30;
+  border-radius:30px;
+  box-shadow:0 24px 60px rgba(0,0,0,.20);
 }
 
 .header:before{
   content:"";
   position:absolute;
-  width:430px;
-  height:430px;
-  right:-240px;
-  top:-290px;
-  border:65px solid rgba(255,210,28,.05);
+  width:520px;
+  height:520px;
+  right:-300px;
+  top:-350px;
+  border:70px solid rgba(255,210,28,.055);
   border-radius:50%;
 }
 
 .header:after{
   content:"";
   position:absolute;
-  width:80%;
+  width:620px;
   height:1px;
-  left:10%;
-  bottom:42px;
-  background:linear-gradient(
-    90deg,
-    transparent,
-    rgba(255,210,28,.35),
-    transparent
-  );
+  left:-150px;
+  bottom:45px;
+  background:linear-gradient(90deg,transparent,rgba(255,210,28,.3),transparent);
+  transform:rotate(-8deg);
 }
 
 .brand{
@@ -86,36 +80,36 @@ body{
   display:flex;
   justify-content:center;
   align-items:center;
-  gap:14px;
+  gap:15px;
 }
 
 .logo-mark{
-  width:76px;
-  height:76px;
+  width:72px;
+  height:72px;
   flex-shrink:0;
   display:grid;
   place-items:center;
   border:5px solid var(--yellow);
   border-radius:50% 50% 50% 12px;
   transform:rotate(-45deg);
+  box-shadow:0 0 0 10px rgba(255,210,28,.04);
 }
 
 .logo-mark span{
   transform:rotate(45deg);
-  font-size:32px;
+  font-size:30px;
 }
 
 .logo{
-  font-size:clamp(42px,7vw,68px);
+  font-size:clamp(42px,7vw,70px);
   font-weight:1000;
   letter-spacing:2px;
-  color:#fff;
 }
 
 .logo:after{
   content:"";
   display:block;
-  width:52%;
+  width:48%;
   height:4px;
   margin:5px auto 0;
   border-radius:20px;
@@ -125,9 +119,9 @@ body{
 .slogan{
   position:relative;
   z-index:2;
-  margin-top:24px;
+  margin-top:21px;
   color:var(--yellow);
-  font-size:clamp(25px,4vw,38px);
+  font-size:clamp(25px,4vw,39px);
   font-weight:1000;
 }
 
@@ -144,138 +138,146 @@ body{
   z-index:2;
   display:inline-flex;
   align-items:center;
-  gap:10px;
+  gap:9px;
   margin-top:22px;
-  padding:8px 15px;
-  color:#d9dddf;
+  padding:9px 16px;
+  color:#dfe2e4;
   font-size:11px;
   font-weight:900;
-  border:1px solid #2b3034;
+  border:1px solid rgba(255,210,28,.22);
   border-radius:999px;
-  background:#111417;
+  background:rgba(255,255,255,.045);
 }
 
-.header-side br{
-  display:none;
-}
+.header-side br{display:none}
+.header-side span{color:var(--yellow)}
 
-.header-side span{
-  color:var(--yellow);
-}
-
-/* ================= SOCIAL ================= */
+/* SOCIAL */
 
 .social-card{
-  margin-bottom:14px;
-  padding:18px;
-  text-align:right;
-  background:#111315;
-  border:1px solid #292d31;
+  margin:14px 0;
+  padding:19px;
+  text-align:center;
+  background:#0d1012;
+  border:1px solid #272c30;
   border-bottom:4px solid var(--yellow);
-  border-radius:22px;
-  box-shadow:0 12px 30px rgba(0,0,0,.12);
+  border-radius:23px;
+  box-shadow:0 13px 34px rgba(0,0,0,.13);
 }
 
 .social-title{
   color:#fff;
-  font-size:19px;
+  font-size:20px;
   font-weight:1000;
 }
 
 .social-subtitle{
-  margin-top:4px;
-  color:#858b90;
+  margin-top:5px;
+  color:#858c91;
   font-size:11px;
 }
 
 .social-grid{
   display:grid;
   grid-template-columns:repeat(5,1fr);
-  gap:8px;
-  margin-top:14px;
+  gap:9px;
+  margin-top:15px;
   direction:ltr;
 }
 
 .social-btn{
-  min-height:58px;
+  min-height:62px;
   display:flex;
   flex-direction:column;
   align-items:center;
   justify-content:center;
-  gap:3px;
-  padding:7px 4px;
+  gap:5px;
+  padding:8px 4px;
   color:#fff;
   text-decoration:none;
-  background:#191c1f;
-  border:1px solid #2b3034;
-  border-radius:14px;
-  transition:.18s;
+  background:#171a1d;
+  border:1px solid #2c3135;
+  border-radius:15px;
+  transition:.18s ease;
 }
 
 .social-btn:hover{
-  transform:translateY(-2px);
+  transform:translateY(-3px);
+  background:#20252a;
   border-color:var(--yellow);
-  background:#22262a;
+  box-shadow:0 8px 20px rgba(0,0,0,.18);
 }
 
 .social-icon{
-  font-size:20px;
+  width:25px;
+  height:25px;
+  display:grid;
+  place-items:center;
+}
+
+.social-icon svg{
+  width:23px;
+  height:23px;
+  fill:none;
+  stroke:currentColor;
+  stroke-width:2;
+  stroke-linecap:round;
+  stroke-linejoin:round;
 }
 
 .social-name{
   color:#ddd;
   font-size:10px;
+  font-weight:900;
 }
 
-/* ================= MAIN ================= */
+/* CARD */
 
 .card{
   margin-bottom:14px;
-  padding:20px;
+  padding:21px;
   background:#fff;
-  border:1px solid #dfe2e4;
-  border-radius:22px;
-  box-shadow:0 12px 32px rgba(0,0,0,.07);
+  border:1px solid var(--line);
+  border-radius:23px;
+  box-shadow:0 13px 35px rgba(0,0,0,.065);
 }
 
 .search-grid{
   display:grid;
   grid-template-columns:1fr 1fr;
-  gap:12px;
+  gap:13px;
   direction:ltr;
 }
 
 .search-column{
   direction:rtl;
-  padding:14px;
+  padding:15px;
   background:#f7f8f9;
-  border:1px solid #e3e5e7;
-  border-radius:17px;
+  border:1px solid #e4e6e8;
+  border-radius:18px;
 }
 
 .field-head{
   display:flex;
   align-items:center;
   gap:8px;
-  margin-bottom:8px;
+  margin-bottom:9px;
   font-size:15px;
   font-weight:1000;
 }
 
 .field-icon{
-  width:32px;
-  height:32px;
+  width:34px;
+  height:34px;
   display:grid;
   place-items:center;
   flex-shrink:0;
   color:var(--yellow);
   background:#101214;
-  border-radius:9px;
+  border-radius:10px;
 }
 
-.input-wrap{
-  position:relative;
-}
+.input-wrap{position:relative}
 
 input{
   width:100%;
@@ -295,9 +297,7 @@ input:focus{
   box-shadow:0 0 0 4px rgba(255,210,28,.12);
 }
 
-input::placeholder{
-  color:#999;
-}
+input::placeholder{color:#999}
 
 .suggestions{
   position:absolute;
@@ -323,8 +323,7 @@ input::placeholder{
   border-bottom:1px solid #f0f0f0;
 }
 
-.suggestion:hover,
-.suggestion:active{
+.suggestion:hover{
   background:#fff9dc;
 }
 
@@ -337,6 +336,7 @@ input::placeholder{
   color:#111;
   background:var(--yellow);
   border-radius:9px;
+  font-weight:1000;
 }
 
 .suggestion.confirmed .suggestion-icon{
@@ -376,7 +376,7 @@ input::placeholder{
   font-weight:900;
 }
 
-/* ================= BUTTON ================= */
+/* BUTTON */
 
 .calc-wrap{
   margin-top:15px;
@@ -384,31 +384,22 @@ input::placeholder{
 }
 
 .calc-btn{
-  position:relative;
-  overflow:hidden;
   width:100%;
-  padding:16px 45px;
+  padding:16px 30px;
   color:#080a0c;
   background:var(--yellow);
   border:0;
-  border-radius:15px;
+  border-radius:14px;
   font-size:18px;
   font-weight:1000;
   cursor:pointer;
-  box-shadow:
-    0 5px 0 #c99f00,
-    0 12px 24px rgba(0,0,0,.12);
+  box-shadow:0 5px 0 #c99f00,0 13px 25px rgba(0,0,0,.12);
   transition:.15s;
 }
 
-.calc-btn:before{
-  right:auto;
-  left:28px;
-  color:#080a0c;
-}
-
-.calc-btn:after{
-  color:#080a0c;
+.calc-btn:hover{
+  background:#ffda31;
+  transform:translateY(-1px);
 }
 
 .calc-btn:active{
@@ -435,87 +426,206 @@ input::placeholder{
   border-radius:12px;
 }
 
-/* ================= RESULT ================= */
+/* RESULT */
 
 .result{
+  display:block;
   color:#fff;
-  background:#0d0f11;
-  border:1px solid #292e32;
+  background:#0b0d0f;
+  border:1px solid rgba(255,210,28,.18);
 }
 
 .result-head{
+  display:flex;
+  align-items:center;
+  gap:9px;
+  margin-bottom:16px;
   color:#fff;
+  font-size:17px;
+  font-weight:1000;
 }
 
 .result-head .dot{
+  width:10px;
+  height:10px;
+  display:block;
+  border-radius:50%;
   background:var(--yellow);
   box-shadow:0 0 0 5px rgba(255,210,28,.12);
 }
 
 .route{
+  display:grid;
   grid-template-columns:1fr 70px 1fr;
   gap:10px;
+  align-items:center;
 }
 
 .place{
   min-height:58px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
   padding:12px;
   color:#fff;
-  background:#181b1e;
+  text-align:center;
+  background:#171a1d;
+  border:1px solid #2b3035;
   border-radius:15px;
   font-size:16px;
+  font-weight:900;
 }
 
 .place.confirmed{
-  border:1px solid rgba(22,131,255,.45);
+  border-color:rgba(22,131,255,.45)!important;
 }
 
 .place.uncertain{
-  border:1px solid rgba(229,57,53,.45);
+  border-color:rgba(229,57,53,.45)!important;
 }
 
 .arrow{
   width:70px;
+  height:54px;
+  position:relative;
+  display:grid;
+  place-items:center;
+  border-radius:15px;
+  background:#15181b;
+}
+
+.arrow:before{
+  content:"←";
+  color:var(--yellow);
+  font-size:30px;
+  font-weight:1000;
 }
 
 .stats{
-  background:#15181b;
-  border-radius:15px;
+  display:grid;
+  grid-template-columns:1fr 1px 1fr;
+  align-items:center;
+  gap:20px;
+  margin-top:15px;
+  padding:18px;
+  text-align:center;
+  background:#121518;
+  border-radius:16px;
 }
 
 .divider{
+  width:1px;
+  height:65px;
   background:#30353a;
 }
 
-.distance,
-.price-box{
-  font-size:42px;
+.distance,.price-box{
+  font-size:40px;
+  font-weight:1000;
 }
 
 .distance{
   color:#fff;
 }
 
-.stat-label{
+.distance small{
+  font-size:15px;
   color:#8e959b;
 }
 
-.note{
-  color:#dfe2e5;
-  background:#181b1e;
+.price-box{
+  position:relative;
+  color:var(--yellow);
 }
 
-.warning{
-  border-radius:13px;
+.currency{
+  display:inline-block;
+  margin-right:4px;
+  font-size:14px;
+  color:#bfc4c8;
+}
+
+.stat-label{
+  margin-top:3px;
+  color:#8e959b;
+  font-size:11px;
+}
+
+.price-status{
+  margin-top:5px;
+  font-size:10px;
+  line-height:1.5;
+}
+
+.price-status.blue{
+  color:#48a2ff;
+}
+
+.price-status.red{
+  color:#ff6864;
 }
 
 .confirmation{
+  margin-top:13px;
+  padding:11px 13px;
+  font-size:11px;
+  line-height:1.7;
+}
+
+.confirmation.blue{
+  color:#9fd0ff;
+  background:rgba(22,131,255,.10);
+  border:1px solid rgba(22,131,255,.25);
+}
+
+.confirmation.red{
+  color:#ffaaa7;
+  background:rgba(229,57,53,.10);
+  border:1px solid rgba(229,57,53,.25);
+}
+
+.note{
+  margin-top:11px;
+  padding:12px 13px;
+  color:#dfe2e5;
+  font-size:11px;
+  line-height:1.8;
+  background:#171a1d;
   border-radius:13px;
 }
 
-/* ================= FOOTER ================= */
+.warning{
+  margin-top:11px;
+  padding:12px 13px;
+  color:#ffbbb8;
+  font-size:11px;
+  line-height:1.7;
+  background:rgba(229,57,53,.10);
+  border:1px solid rgba(229,57,53,.25);
+  border-radius:13px;
+}
+
+.tagline{
+  margin-top:15px;
+  padding-top:13px;
+  color:#858c91;
+  text-align:center;
+  font-size:12px;
+  border-top:1px solid #282d31;
+}
+
+.tagline span{
+  color:var(--yellow);
+  font-weight:1000;
+}
+
+/* FOOTER */
 
 .footer{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
   padding:15px 18px;
   color:#fff;
   background:#090b0d;
@@ -523,7 +633,16 @@ input::placeholder{
   border-radius:20px;
 }
 
-/* ================= MOBILE ================= */
+.footer strong{
+  color:var(--yellow);
+}
+
+.footer small{
+  color:#9ca2a7;
+  font-size:10px;
+}
+
+/* MOBILE */
 
 @media(max-width:700px){
 
@@ -534,12 +653,12 @@ input::placeholder{
 
   .header{
     min-height:285px;
-    padding:25px 15px;
-    border-radius:24px;
+    padding:25px 14px;
+    border-radius:25px;
   }
 
   .brand{
-    gap:9px;
+    gap:10px;
   }
 
   .logo-mark{
@@ -553,12 +672,12 @@ input::placeholder{
   }
 
   .logo{
-    font-size:32px;
+    font-size:34px;
   }
 
   .slogan{
-    margin-top:20px;
-    font-size:25px;
+    font-size:26px;
+    margin-top:18px;
   }
 
   .subtitle{
@@ -572,7 +691,7 @@ input::placeholder{
 
   .social-card{
     padding:15px;
-    border-radius:20px;
+    border-radius:21px;
   }
 
   .social-grid{
@@ -584,562 +703,67 @@ input::placeholder{
   }
 
   .card{
-    padding:13px;
-    border-radius:20px;
-  }
-
-  .search-grid{
-    grid-template-columns:1fr;
-    gap:10px;
-  }
-
-  .search-column{
-    padding:12px;
-    border-radius:15px;
-  }
-
-  .calc-btn{
-    padding:15px 40px;
-    font-size:16px;
-  }
-
-  .result{
-    padding:15px;
-  }
-
-  .route{
-    grid-template-columns:1fr 45px 1fr;
-    gap:5px;
-  }
-
-  .place{
-    padding:9px 5px;
-    font-size:14px;
-  }
-
-  .arrow{
-    width:45px;
-  }
-
-  .distance,
-  .price-box{
-    font-size:32px;
-  }
-
-  .footer{
-    flex-direction:column;
-    text-align:center;
-  }
-}
-/* =====================================================
-   NWASSLEK — SOCIAL ACCOUNTS
-   ===================================================== */
-
-.social-card{
-  background:linear-gradient(135deg,#080a0c,#171b1f);
-  border-radius:24px;
-  padding:22px;
-  margin-bottom:16px;
-  box-shadow:0 9px 30px rgba(0,0,0,.12);
-  border-bottom:4px solid var(--yellow);
-  text-align:center;
-}
-
-.social-title{
-  color:#fff;
-  font-size:22px;
-  font-weight:1000;
-  margin-bottom:6px;
-}
-
-.social-subtitle{
-  color:#aaa;
-  font-size:13px;
-  margin-bottom:18px;
-}
-
-.social-grid{
-  display:grid;
-  grid-template-columns:repeat(5,1fr);
-  gap:10px;
-  direction:ltr;
-}
-
-.social-btn{
-  min-height:62px;
-  border-radius:16px;
-  background:#fff;
-  color:#111;
-  text-decoration:none;
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  justify-content:center;
-  gap:4px;
-  font-weight:1000;
-  transition:.2s;
-  border:2px solid transparent;
-}
-
-.social-btn:hover{
-  transform:translateY(-3px);
-  border-color:var(--yellow);
-}
-
-.social-icon{font-size:22px;}
-.social-name{font-size:11px;}
-
-@media(max-width:700px){
-
-  .container{
-    width:95%;
-    margin-top:9px;
-  }
-
-  .header{
-    min-height:205px;
-    border-radius:24px;
-    padding:20px 12px 23px;
-  }
-
-  .header-side{display:none;}
-
-  .brand{gap:11px;}
-
-  .logo-mark{
-    width:64px;
-    height:64px;
-    border-width:5px;
-  }
-
-  .logo-mark span{font-size:28px;}
-
-  .logo{
-    font-size:34px;
-    letter-spacing:1px;
-  }
-
-  .slogan{font-size:16px;}
-  .subtitle{font-size:13px;}
-
-  .search-grid{
-    grid-template-columns:1fr;
-    gap:15px;
-  }
-
-  .card{
-    padding:17px;
+    padding:14px;
     border-radius:21px;
   }
 
-  .field-head{font-size:16px;}
+  .search-grid{
+    grid-template-columns:1fr;
+    gap:11px;
+  }
 
-  input{
-    font-size:15px;
-    padding:16px;
+  .search-column{
+    padding:13px;
+    border-radius:17px;
   }
 
   .calc-btn{
-    font-size:17px;
-    padding:17px 40px;
+    padding:16px;
+    font-size:16px;
   }
 
-  .result{padding:19px;}
-
   .route{
-    grid-template-columns:1fr 52px 1fr;
+    grid-template-columns:1fr 46px 1fr;
     gap:6px;
   }
 
   .place{
     min-height:58px;
-    padding:10px 6px;
-    font-size:15px;
+    padding:9px 5px;
+    font-size:14px;
   }
 
   .arrow{
-    width:52px;
-    height:50px;
+    width:46px;
+    height:48px;
   }
 
-  .arrow:before{font-size:28px;}
-
-  .arrow:after{
-    font-size:19px;
-    top:15px;
+  .arrow:before{
+    font-size:25px;
   }
 
-  .distance,
-  .price-box{
-    font-size:35px;
+  .stats{
+    gap:10px;
+    padding:15px 8px;
   }
 
-  .divider{height:55px;}
+  .distance,.price-box{
+    font-size:32px;
+  }
+
+  .divider{
+    height:55px;
+  }
 
   .footer{
     flex-direction:column;
     text-align:center;
-    border-radius:24px;
+    border-radius:21px;
   }
-
-  .social-grid{
-    grid-template-columns:repeat(2,1fr);
-  }
-
-  .social-btn:last-child{
-    grid-column:span 2;
-  }
-
-}
-/* =====================================================
-   NWASSLEK — MODERN REDESIGN
-   ===================================================== */
-
-body{
-  background:
-    radial-gradient(circle at 8% 0%,rgba(255,210,28,.16),transparent 28%),
-    radial-gradient(circle at 92% 12%,rgba(8,10,12,.08),transparent 25%),
-    linear-gradient(180deg,#f8f8f6 0%,#eef0f2 100%);
-}
-
-.container{
-  width:min(1080px,94%);
-  margin:18px auto 34px;
-}
-
-/* ================= HEADER ================= */
-
-.header{
-  min-height:390px;
-  padding:34px 38px 32px;
-  border:1px solid rgba(255,255,255,.08);
-  border-radius:34px;
-  background:
-    radial-gradient(circle at 80% 18%,rgba(255,210,28,.18),transparent 28%),
-    radial-gradient(circle at 15% 90%,rgba(255,210,28,.08),transparent 30%),
-    linear-gradient(135deg,#050607 0%,#111417 52%,#1c2023 100%);
-  box-shadow:0 28px 70px rgba(0,0,0,.22);
-  overflow:hidden;
-}
-
-.header:before{
-  width:620px;
-  height:620px;
-  right:-300px;
-  top:-360px;
-  border:70px solid rgba(255,210,28,.045);
-}
-
-.header:after{
-  width:700px;
-  height:220px;
-  left:-230px;
-  bottom:-155px;
-  border-top:2px solid rgba(255,210,28,.12);
-  border-bottom:2px solid rgba(255,210,28,.05);
-}
-
-.brand{
-  gap:18px;
-}
-
-.logo-mark{
-  width:82px;
-  height:82px;
-  border-width:6px;
-  box-shadow:
-    0 0 0 12px rgba(255,210,28,.05),
-    0 15px 35px rgba(0,0,0,.3);
-}
-
-.logo{
-  font-size:clamp(44px,7vw,76px);
-  letter-spacing:3px;
-}
-
-.slogan{
-  margin-top:18px;
-  font-size:clamp(27px,4vw,42px);
-  color:#fff;
-  letter-spacing:-1px;
-}
-
-.subtitle{
-  margin-top:10px;
-  color:#aeb4b8;
-  font-size:15px;
-}
-
-.header-side{
-  position:static;
-  margin:28px auto 0;
-  padding:9px 16px;
-  border:1px solid rgba(255,210,28,.22);
-  background:rgba(255,255,255,.045);
-  border-radius:999px;
-  font-size:12px;
-  line-height:1.2;
-  text-align:center;
-  display:flex;
-  gap:10px;
-  direction:rtl;
-}
-
-.header-side br{
-  display:none;
-}
-
-/* ================= SOCIAL ================= */
-
-.social-card{
-  background:linear-gradient(135deg,#080a0c,#171b1f);
-  border-radius:26px;
-  padding:20px;
-  margin-bottom:16px;
-  box-shadow:0 14px 38px rgba(0,0,0,.14);
-  border:1px solid rgba(255,210,28,.15);
-  border-bottom:4px solid var(--yellow);
-}
-
-.social-title{
-  color:#fff;
-  font-size:21px;
-  font-weight:1000;
-  margin-bottom:6px;
-}
-
-.social-subtitle{
-  color:#aaa;
-  font-size:12px;
-  margin-bottom:17px;
-}
-
-.social-grid{
-  display:grid;
-  grid-template-columns:repeat(5,1fr);
-  gap:9px;
-  direction:ltr;
-}
-
-.social-btn{
-  min-height:62px;
-  border-radius:16px;
-  background:#15181b;
-  color:#fff;
-  text-decoration:none;
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  justify-content:center;
-  gap:4px;
-  font-weight:1000;
-  transition:.2s;
-  border:1px solid #2a2e32;
-}
-
-.social-btn:hover{
-  transform:translateY(-3px);
-  background:#20252a;
-  border-color:var(--yellow);
-}
-
-.social-icon{
-  font-size:22px;
-}
-
-.social-name{
-  font-size:11px;
-  color:#ddd;
-}
-
-/* ================= CARDS ================= */
-
-.card{
-  border-radius:26px;
-  padding:24px;
-  border:1px solid #e2e4e6;
-  box-shadow:0 16px 42px rgba(0,0,0,.07);
-}
-
-/* ================= SEARCH ================= */
-
-.search-grid{
-  gap:14px;
-}
-
-.search-column{
-  background:#f7f8f9;
-  border:1px solid #e5e7e9;
-  border-radius:21px;
-  padding:16px;
-}
-
-.field-head{
-  font-size:15px;
-  margin-bottom:9px;
-}
-
-.field-icon{
-  width:34px;
-  height:34px;
-  border-radius:10px;
-}
-
-input{
-  border:1.5px solid #d9dde0;
-  background:#fff;
-  padding:15px 16px;
-  border-radius:14px;
-}
-
-input:focus{
-  border-color:var(--yellow2);
-  box-shadow:0 0 0 4px rgba(255,210,28,.12);
-}
-
-/* ================= CALCULATE BUTTON ================= */
-
-.calc-wrap{
-  margin-top:16px;
-}
-
-.calc-btn{
-  width:100%;
-  background:var(--yellow);
-  color:#080a0c;
-  box-shadow:
-    0 5px 0 #c99f00,
-    0 14px 26px rgba(0,0,0,.12);
-  font-size:18px;
-}
-
-.calc-btn:before{
-  right:auto;
-  left:28px;
-  color:#080a0c;
-}
-
-/* ================= RESULT ================= */
-
-.result{
-  background:#0b0d0f;
-  color:#fff;
-  border:1px solid rgba(255,210,28,.18);
-}
-
-.result-head{
-  color:#fff;
-}
-
-.place{
-  background:#171a1d;
-  color:#fff;
-  border-color:#2b3035 !important;
-}
-
-.stats{
-  background:#121518;
-}
-
-.divider{
-  background:#30353a;
-}
-
-.distance{
-  color:#fff;
-}
-
-.stat-label{
-  color:#8e959b;
-}
-
-.note{
-  background:#171a1d;
-  color:#dfe2e5;
-}
-
-/* ================= FOOTER ================= */
-
-.footer{
-  border-radius:24px;
-  background:#050607;
-  border:1px solid #191c1f;
-}
-
-@media(max-width:700px){
-
-  .container{
-    width:94%;
-    margin-top:8px;
-  }
-
-  .header{
-    min-height:320px;
-    padding:28px 16px;
-    border-radius:26px;
-  }
-
-  .brand{
-    gap:10px;
-  }
-
-  .logo-mark{
-    width:60px;
-    height:60px;
-    border-width:4px;
-  }
-
-  .logo{
-    font-size:34px;
-  }
-
-  .slogan{
-    font-size:29px;
-    margin-top:16px;
-  }
-
-  .subtitle{
-    font-size:12px;
-  }
-
-  .header-side{
-    margin-top:20px;
-    font-size:10px;
-  }
-
-  .social-card{
-    border-radius:22px;
-    padding:15px;
-  }
-
-  .card{
-    padding:14px;
-    border-radius:22px;
-  }
-
-  .search-column{
-    padding:13px;
-    border-radius:18px;
-  }
-
-  .calc-btn{
-    font-size:16px;
-    padding:16px 35px;
-  }
-
-  .social-grid{
-    grid-template-columns:repeat(2,1fr);
-  }
-
-  .social-btn:last-child{
-    grid-column:span 2;
-  }
-
 }
 </style>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-
 </head>
 
 <body>
@@ -1165,7 +789,7 @@ input:focus{
   </div>
 
   <div class="subtitle">
-  توصيل سريع، واضح، وبلا تعقيد
+    توصيل سريع، واضح، وبلا تعقيد
   </div>
 
   <div class="header-side">
@@ -1176,10 +800,6 @@ input:focus{
 
 </div>
 
-
-<!-- =====================================================
-     NWASSLEK — SOCIAL ACCOUNTS
-     ===================================================== -->
 
 <div class="social-card">
 
@@ -1193,14 +813,32 @@ input:focus{
 
   <div class="social-grid">
 
-    <a
-      id="instagramLink"
-      class="social-btn"
-      href="#"
-      target="_blank"
-      rel="noopener">
+    <!-- INSTAGRAM -->
+    <a id="instagramLink"
+       class="social-btn"
+       href="#"
+       target="_blank"
+       rel="noopener">
 
-      <span class="social-icon">📸</span>
+      <span class="social-icon">
+
+        <svg viewBox="0 0 24 24">
+          <rect x="3" y="3"
+                width="18"
+                height="18"
+                rx="5"></rect>
+
+          <circle cx="12"
+                  cy="12"
+                  r="4"></circle>
+
+          <circle cx="17.5"
+                  cy="6.5"
+                  r="1"></circle>
+
+        </svg>
+
+      </span>
 
       <span class="social-name">
         Instagram
@@ -1209,14 +847,24 @@ input:focus{
     </a>
 
 
-    <a
-      id="tiktokLink"
-      class="social-btn"
-      href="#"
-      target="_blank"
-      rel="noopener">
+    <!-- TIKTOK -->
+    <a id="tiktokLink"
+       class="social-btn"
+       href="#"
+       target="_blank"
+       rel="noopener">
 
-      <span class="social-icon">🎵</span>
+      <span class="social-icon">
+
+        <svg viewBox="0 0 24 24">
+
+          <path d="M14 4v10.2a4.2 4.2 0 1 1-3.1-4.05"></path>
+
+          <path d="M14 4c.7 2.1 2.1 3.5 4.5 4"></path>
+
+        </svg>
+
+      </span>
 
       <span class="social-name">
         TikTok
@@ -1225,14 +873,22 @@ input:focus{
     </a>
 
 
-    <a
-      id="snapchatLink"
-      class="social-btn"
-      href="#"
-      target="_blank"
-      rel="noopener">
+    <!-- SNAPCHAT -->
+    <a id="snapchatLink"
+       class="social-btn"
+       href="#"
+       target="_blank"
+       rel="noopener">
 
-      <span class="social-icon">👻</span>
+      <span class="social-icon">
+
+        <svg viewBox="0 0 24 24">
+
+          <path d="M12 3.5c-3.1 0-5 2.1-5 5.1v2.1c0 1.2-.5 2.1-1.6 2.7-.5.3-.4.9.2 1.1l2.1.7c.3.8 1 1.4 1.8 1.5.5 1.5 1.4 2.1 2.5 2.1s2-.6 2.5-2.1c.8-.1 1.5-.7 1.8-1.5l2.1-.7c.6-.2.7-.8.2-1.1-1.1-.6-1.6-1.5-1.6-2.7V8.6c0-3-1.9-5.1-5-5.1Z"></path>
+
+        </svg>
+
+      </span>
 
       <span class="social-name">
         Snapchat
@@ -1241,14 +897,24 @@ input:focus{
     </a>
 
 
-    <a
-      id="whatsappLink"
-      class="social-btn"
-      href="#"
-      target="_blank"
-      rel="noopener">
+    <!-- WHATSAPP -->
+    <a id="whatsappLink"
+       class="social-btn"
+       href="#"
+       target="_blank"
+       rel="noopener">
 
-      <span class="social-icon">💬</span>
+      <span class="social-icon">
+
+        <svg viewBox="0 0 24 24">
+
+          <path d="M20 11.5a8 8 0 0 1-11.8 7L4 20l1.5-4.1A8 8 0 1 1 20 11.5Z"></path>
+
+          <path d="M9 8.5c.2 1.7 2.1 3.8 3.7 4.5l1.4-.9 1.6.7"></path>
+
+        </svg>
+
+      </span>
 
       <span class="social-name">
         WhatsApp
@@ -1257,12 +923,20 @@ input:focus{
     </a>
 
 
-    <a
-      id="phoneLink"
-      class="social-btn"
-      href="#">
+    <!-- PHONE -->
+    <a id="phoneLink"
+       class="social-btn"
+       href="#">
 
-      <span class="social-icon">📞</span>
+      <span class="social-icon">
+
+        <svg viewBox="0 0 24 24">
+
+          <path d="M7 4.5 9.5 4c.5-.1 1 .2 1.2.7l1 2.5c.2.5 0 .9-.4 1.2L10 9.5a12 12 0 0 0 4.5 4.5l1.1-1.3c.3-.4.7-.5 1.2-.4l2.5 1c.5.2.8.7.7 1.2l-.5 2.5c-.1.6-.6 1-1.2 1C11.1 18 6 12.9 6 6.7c0-1.1.4-2 1-2.2Z"></path>
+
+        </svg>
+
+      </span>
 
       <span class="social-name">
         اتصل بنا
@@ -1274,6 +948,8 @@ input:focus{
 
 </div>
 
+
+<!-- CALCULATOR -->
 
 <div class="card">
 
@@ -1300,8 +976,7 @@ input:focus{
           autocomplete="off"
           placeholder="أدخل مكان الانطلاق ..."
           oninput="showSuggestions('from')"
-          onfocus="showSuggestions('from')"
-        >
+          onfocus="showSuggestions('from')">
 
         <div
           id="fromSuggestions"
@@ -1311,6 +986,7 @@ input:focus{
       </div>
 
     </div>
+
 
     <div class="search-column">
 
@@ -1333,8 +1009,7 @@ input:focus{
           autocomplete="off"
           placeholder="أدخل مكان الوصول ..."
           oninput="showSuggestions('to')"
-          onfocus="showSuggestions('to')"
-        >
+          onfocus="showSuggestions('to')">
 
         <div
           id="toSuggestions"
@@ -1346,6 +1021,7 @@ input:focus{
     </div>
 
   </div>
+
 
   <div class="calc-wrap">
 
@@ -1359,9 +1035,11 @@ input:focus{
 
   </div>
 
+
   <div class="hint">
     اكتب اسم المنطقة والاختيارات تظهر لك مباشرة ✨
   </div>
+
 
   <div class="trial-note">
 
@@ -1374,9 +1052,10 @@ input:focus{
 </div>
 
 
-<div
-  id="result"
-  class="card result">
+<!-- RESULT -->
+
+<div id="result"
+     class="card result">
 
   <div class="result-head">
 
@@ -1388,21 +1067,21 @@ input:focus{
 
   </div>
 
+
   <div class="route">
 
-    <div
-      id="fromPlace"
-      class="place">
+    <div id="fromPlace"
+         class="place">
     </div>
 
     <div class="arrow"></div>
 
-    <div
-      id="toPlace"
-      class="place">
+    <div id="toPlace"
+         class="place">
     </div>
 
   </div>
+
 
   <div class="stats">
 
@@ -1426,13 +1105,14 @@ input:focus{
 
     </div>
 
+
     <div class="divider"></div>
+
 
     <div>
 
-      <div
-        id="priceBox"
-        class="price-box">
+      <div id="priceBox"
+           class="price-box">
 
         <span id="price">
           --
@@ -1442,9 +1122,8 @@ input:focus{
           دج
         </div>
 
-        <div
-          id="priceStatus"
-          class="price-status">
+        <div id="priceStatus"
+             class="price-status">
         </div>
 
       </div>
@@ -1457,33 +1136,37 @@ input:focus{
 
   </div>
 
-  <div
-    id="confirmation"
-    class="confirmation"
-    style="display:none">
+
+  <div id="confirmation"
+       class="confirmation"
+       style="display:none">
   </div>
 
-  <div
-    id="note"
-    class="note">
+
+  <div id="note"
+       class="note">
   </div>
 
-  <div
-    id="warning"
-    class="warning"
-    style="display:none">
+
+  <div id="warning"
+       class="warning"
+       style="display:none">
   </div>
+
 
   <div class="tagline">
 
     💛
     <span>نوصلك</span>
-    ... لأنك تستاهل الأفضل
+    ...
+    لأنك تستاهل الأفضل
 
   </div>
 
 </div>
 
+
+<!-- FOOTER -->
 
 <div class="footer">
 
@@ -1510,137 +1193,112 @@ input:focus{
 
 <script>
 
-/* =====================================================
-   SUPABASE — SITE SETTINGS
-   ===================================================== */
-
 const SUPABASE_URL =
-  "https://wwtodewazvhmcedvwbqm.supabase.co";
+"https://wwtodewazvhmcedvwbqm.supabase.co";
 
 const SUPABASE_KEY =
-  "sb_publishable_eIW--uDja5RoAwMZseokUw_TcYRRDQf";
+"sb_publishable_eIW--uDja5RoAwMZseokUw_TcYRRDQf";
 
 const supabaseClient =
-  supabase.createClient(
-    SUPABASE_URL,
-    SUPABASE_KEY
-  );
+supabase.createClient(
+  SUPABASE_URL,
+  SUPABASE_KEY
+);
 
 
 async function loadSiteSettings(){
 
   try{
 
-    const { data, error } =
+    const {data,error} =
       await supabaseClient
-        .from("site_settings")
-        .select("*")
-        .eq("id",1)
-        .maybeSingle();
+      .from("site_settings")
+      .select("*")
+      .eq("id",1)
+      .maybeSingle();
 
     if(error){
-
       console.log(
         "Supabase settings:",
         error
       );
-
       return;
-
     }
 
-    if(!data)
-      return;
+    if(!data)return;
 
-
-    /* =================================================
-       SITE NAME
-       ================================================= */
 
     const logo =
       document.querySelector(".logo");
 
-    if(
-      logo &&
-      data.site_name
-    ){
+    if(logo && data.site_name){
 
       logo.textContent =
         data.site_name
-          .replace(/ BY WALID/gi,"")
-          .trim();
+        .replace(/ BY WALID/gi,"")
+        .trim();
 
     }
 
 
-    /* =================================================
-       SLOGAN
-       ================================================= */
-
     const slogan =
       document.querySelector(".slogan");
 
-    if(
-      slogan &&
-      data.slogan
-    ){
+    if(slogan && data.slogan){
 
       slogan.textContent =
-        "— " +
-        data.slogan +
+        "— "+
+        data.slogan+
         " — 💛";
 
     }
 
 
-    /* =================================================
-       LOCATION
-       ================================================= */
-
     const footerSmall =
       document.querySelector(".footer small");
 
-    if(
-      footerSmall &&
-      data.location
-    ){
+    if(footerSmall && data.location){
 
       footerSmall.textContent =
-        "خدمات التوصيل في " +
-        data.location +
+        "خدمات التوصيل في "+
+        data.location+
         " 📍";
 
     }
 
 
-    /* =================================================
-       SOCIAL ACCOUNTS
-       ================================================= */
-
     const instagramLink =
-      document.getElementById("instagramLink");
+      document.getElementById(
+        "instagramLink"
+      );
 
     const tiktokLink =
-      document.getElementById("tiktokLink");
+      document.getElementById(
+        "tiktokLink"
+      );
 
     const snapchatLink =
-      document.getElementById("snapchatLink");
+      document.getElementById(
+        "snapchatLink"
+      );
 
     const whatsappLink =
-      document.getElementById("whatsappLink");
+      document.getElementById(
+        "whatsappLink"
+      );
 
     const phoneLink =
-      document.getElementById("phoneLink");
+      document.getElementById(
+        "phoneLink"
+      );
 
 
     if(
       instagramLink &&
       data.instagram
     ){
-
       instagramLink.href =
         data.instagram;
-
     }
 
 
@@ -1648,10 +1306,8 @@ async function loadSiteSettings(){
       tiktokLink &&
       data.tiktok
     ){
-
       tiktokLink.href =
         data.tiktok;
-
     }
 
 
@@ -1659,10 +1315,8 @@ async function loadSiteSettings(){
       snapchatLink &&
       data.snapchat
     ){
-
       snapchatLink.href =
         data.snapchat;
-
     }
 
 
@@ -1670,10 +1324,8 @@ async function loadSiteSettings(){
       whatsappLink &&
       data.whatsapp
     ){
-
       whatsappLink.href =
         data.whatsapp;
-
     }
 
 
@@ -1684,10 +1336,10 @@ async function loadSiteSettings(){
 
       const cleanPhone =
         String(data.phone)
-          .replace(/\s+/g,"");
+        .replace(/\s+/g,"");
 
       phoneLink.href =
-        "tel:" + cleanPhone;
+        "tel:"+cleanPhone;
 
     }
 
@@ -1707,576 +1359,326 @@ async function loadSiteSettings(){
 
 }
 
-
 loadSiteSettings();
 
 
-/* =====================================================
-   48 LOCAL ZONES
-   ===================================================== */
+/* =========================
+   PLACES
+========================= */
 
-const PLACES = [
+const PLACES=[
 
-  {
-    name:"البول",
-    lat:36.2656566,
-    lon:2.7946033,
-    confirmed:true
-  },
+{name:"البول",lat:36.2656566,lon:2.7946033,confirmed:true},
 
-  {
-    name:"الداميات",
-    lat:36.25878,
-    lon:2.78611,
-    confirmed:true
-  },
+{name:"الداميات",lat:36.25878,lon:2.78611,confirmed:true},
 
-  {
-    name:"شلعلع",
-    lat:36.25802,
-    lon:2.79039,
-    confirmed:true
-  },
+{name:"شلعلع",lat:36.25802,lon:2.79039,confirmed:true},
 
-  {
-    name:"مكراز",
-    lat:36.24657,
-    lon:2.74168,
-    confirmed:false
-  },
+{name:"مكراز",lat:36.24657,lon:2.74168,confirmed:false},
 
-  {
-    name:"باطي",
-    lat:36.24803,
-    lon:2.74210,
-    confirmed:true
-  },
+{name:"باطي",lat:36.24803,lon:2.74210,confirmed:true},
 
-  {
-    name:"عين الكبير",
-    lat:36.26820,
-    lon:2.77300,
-    confirmed:false
-  },
+{name:"عين الكبير",lat:36.26820,lon:2.77300,confirmed:false},
 
-  {
-    name:"سوترايت",
-    lat:36.26457,
-    lon:2.76956,
-    confirmed:true
-  },
+{name:"سوترايت",lat:36.26457,lon:2.76956,confirmed:true},
 
-  {
-    name:"بزيوش",
-    lat:36.26450,
-    lon:2.75650,
-    confirmed:false
-  },
+{name:"بزيوش",lat:36.26450,lon:2.75650,confirmed:false},
 
-  {
-    name:"24 فيفري",
-    lat:36.26890,
-    lon:2.76020,
-    confirmed:false
-  },
+{name:"24 فيفري",lat:36.26890,lon:2.76020,confirmed:false},
 
-  {
-    name:"مسلاح",
-    lat:36.262038,
-    lon:2.765247,
-    confirmed:true
-  },
+{name:"مسلاح",lat:36.262038,lon:2.765247,confirmed:true},
 
-  {
-    name:"مرج الشكير",
-    lat:36.27866,
-    lon:2.76039,
-    confirmed:true
-  },
+{name:"مرج الشكير",lat:36.27866,lon:2.76039,confirmed:true},
 
-  {
-    name:"ثنية الحجار",
-    lat:36.26991,
-    lon:2.774098,
-    confirmed:true
-  },
+{name:"ثنية الحجار",lat:36.26991,lon:2.774098,confirmed:true},
 
-  {
-    name:"عين الذهب",
-    lat:36.26672,
-    lon:2.78108,
-    confirmed:true
-  },
+{name:"عين الذهب",lat:36.26672,lon:2.78108,confirmed:true},
 
-  {
-    name:"تلاعيش",
-    lat:36.260963,
-    lon:2.745453,
-    confirmed:true
-  },
+{name:"تلاعيش",lat:36.260963,lon:2.745453,confirmed:true},
 
-  {
-    name:"تاكبو",
-    lat:36.26049,
-    lon:2.77299,
-    confirmed:true
-  },
+{name:"تاكبو",lat:36.26049,lon:2.77299,confirmed:true},
 
-  {
-    name:"تاخابيت",
-    lat:36.27007,
-    lon:2.75786,
-    confirmed:true
-  },
+{name:"تاخابيت",lat:36.27007,lon:2.75786,confirmed:true},
 
-  {
-    name:"الكتاب",
-    lat:36.27097,
-    lon:2.78130,
-    confirmed:false
-  },
+{name:"الكتاب",lat:36.27097,lon:2.78130,confirmed:false},
 
-  {
-    name:"كوتيتن",
-    lat:36.25391,
-    lon:2.75658,
-    confirmed:false
-  },
+{name:"كوتيتن",lat:36.25391,lon:2.75658,confirmed:false},
 
-  {
-    name:"الدخلة",
-    lat:36.27789,
-    lon:2.73025,
-    confirmed:true
-  },
+{name:"الدخلة",lat:36.27789,lon:2.73025,confirmed:true},
 
-  {
-    name:"الكوالة",
-    lat:36.28923,
-    lon:2.76317,
-    confirmed:true
-  },
+{name:"الكوالة",lat:36.28923,lon:2.76317,confirmed:true},
 
-  {
-    name:"الموالدية",
-    lat:36.29614,
-    lon:2.75174,
-    confirmed:true
-  },
+{name:"الموالدية",lat:36.29614,lon:2.75174,confirmed:true},
 
-  {
-    name:"القزارزة",
-    lat:36.29824,
-    lon:2.77044,
-    confirmed:true
-  },
+{name:"القزارزة",lat:36.29824,lon:2.77044,confirmed:true},
 
-  {
-    name:"بني عطلي",
-    lat:36.29604,
-    lon:2.74114,
-    confirmed:true
-  },
+{name:"بني عطلي",lat:36.29604,lon:2.74114,confirmed:true},
 
-  {
-    name:"رمالي",
-    lat:36.27200,
-    lon:2.74100,
-    confirmed:false
-  },
+{name:"رمالي",lat:36.27200,lon:36.27200?2.74100:2.74100,confirmed:false},
 
-  {
-    name:"وادي الزيتون",
-    lat:36.25206,
-    lon:2.76358,
-    confirmed:false
-  },
+{name:"وادي الزيتون",lat:36.25206,lon:2.76358,confirmed:false},
 
-  {
-    name:"عين العرائس",
-    lat:36.27600,
-    lon:2.74400,
-    confirmed:false
-  },
+{name:"عين العرائس",lat:36.27600,lon:2.74400,confirmed:false},
 
-  {
-    name:"الروايسية",
-    lat:36.26700,
-    lon:2.74800,
-    confirmed:false
-  },
+{name:"الروايسية",lat:36.26700,lon:2.74800,confirmed:false},
 
-  {
-    name:"سيدي صحراوي",
-    lat:36.26600,
-    lon:2.75300,
-    confirmed:false
-  },
+{name:"سيدي صحراوي",lat:36.26600,lon:2.75300,confirmed:false},
 
-  {
-    name:"حومة القراطبية",
-    lat:36.26900,
-    lon:2.75100,
-    confirmed:false
-  },
+{name:"حومة القراطبية",lat:36.26900,lon:2.75100,confirmed:false},
 
-  {
-    name:"شمبرتي",
-    lat:36.26700,
-    lon:2.75600,
-    confirmed:false
-  },
+{name:"شمبرتي",lat:36.26700,lon:2.75600,confirmed:false},
 
-  {
-    name:"بن زويش",
-    lat:36.26980,
-    lon:2.75484,
-    confirmed:false
-  },
+{name:"بن زويش",lat:36.26980,lon:2.75484,confirmed:false},
 
-  {
-    name:"كابينة",
-    lat:36.27355,
-    lon:2.76953,
-    confirmed:true
-  },
+{name:"كابينة",lat:36.27355,lon:2.76953,confirmed:true},
 
-  {
-    name:"حوش سي العربي",
-    lat:36.27532,
-    lon:2.75547,
-    confirmed:true
-  },
+{name:"حوش سي العربي",lat:36.27532,lon:2.75547,confirmed:true},
 
-  {
-    name:"رأس قلوش",
-    lat:36.26720,
-    lon:2.74450,
-    confirmed:false
-  },
+{name:"رأس قلوش",lat:36.26720,lon:2.74450,confirmed:false},
 
-  {
-    name:"رأس بيضا",
-    lat:36.26720,
-    lon:2.74450,
-    confirmed:false
-  },
+{name:"رأس بيضا",lat:36.26720,lon:2.74450,confirmed:false},
 
-  {
-    name:"الريشبا",
-    lat:36.26900,
-    lon:2.75500,
-    confirmed:false
-  },
+{name:"الريشبا",lat:36.26900,lon:2.75500,confirmed:false},
 
-  {
-    name:"تيبحرين",
-    lat:36.27000,
-    lon:2.74600,
-    confirmed:false
-  },
+{name:"تيبحرين",lat:36.27000,lon:2.74600,confirmed:false},
 
-  {
-    name:"سيدي بويحيى",
-    lat:36.26000,
-    lon:2.73500,
-    confirmed:false
-  },
+{name:"سيدي بويحيى",lat:36.26000,lon:2.73500,confirmed:false},
 
-  {
-    name:"رو دالجي",
-    lat:36.26760,
-    lon:2.74780,
-    confirmed:true,
-    fixedReference:"LAntica Forno Médéa — 7Q96+WR7"
-  },
+{name:"رو دالجي",lat:36.26760,lon:2.74780,confirmed:true,fixedReference:"LAntica Forno Médéa — 7Q96+WR7"},
 
-  {
-    name:"وزرة",
-    lat:36.25263,
-    lon:2.84660,
-    confirmed:true
-  },
+{name:"وزرة",lat:36.25263,lon:2.84660,confirmed:true},
 
-  {
-    name:"حوش بايزيد",
-    lat:36.2746125,
-    lon:2.8159531,
-    confirmed:true
-  },
+{name:"حوش بايزيد",lat:36.2746125,lon:2.8159531,confirmed:true},
 
-  {
-    name:"دورة الشيخ بن عيسى",
-    lat:36.2672625,
-    lon:2.8110781,
-    confirmed:true
-  },
+{name:"دورة الشيخ بن عيسى",lat:36.2672625,lon:2.8110781,confirmed:true},
 
-  {
-    name:"دراع بن غنيف",
-    lat:36.26550,
-    lon:2.70000,
-    confirmed:false
-  },
+{name:"دراع بن غنيف",lat:36.26550,lon:2.70000,confirmed:false},
 
-  {
-    name:"دراع السمار",
-    lat:36.29600,
-    lon:2.74100,
-    confirmed:false
-  },
+{name:"دراع السمار",lat:36.29600,lon:2.74100,confirmed:false},
 
-  {
-    name:"تيزي المهدي",
-    lat:36.20283,
-    lon:2.77591,
-    confirmed:true
-  },
+{name:"تيزي المهدي",lat:36.20283,lon:2.77591,confirmed:true},
 
-  {
-    name:"تمزقيدة",
-    lat:36.33000,
-    lon:2.79000,
-    confirmed:false
-  },
+{name:"تمزقيدة",lat:36.33000,lon:2.79000,confirmed:false},
 
-  {
-    name:"أبو شة",
-    lat:36.24158,
-    lon:2.77467,
-    confirmed:true
-  },
+{name:"أبو شة",lat:36.24158,lon:2.77467,confirmed:true},
 
-  {
-    name:"حوش المسعودي",
-    lat:36.2687375,
-    lon:2.784859375,
-    confirmed:false
-  }
+{name:"حوش المسعودي",lat:36.2687375,lon:2.784859375,confirmed:false}
 
 ];
 
 
-/* =====================================================
+/* =========================
    ALIASES
-   ===================================================== */
+========================= */
 
-const ALIASES = {
+const ALIASES={
 
-  "البول":"البول",
-  "pole":"البول",
-  "pôle":"البول",
-  "pole urbain":"البول",
-  "pôle urbain":"البول",
-  "القطب الحضري":"البول",
+"البول":"البول",
+"pole":"البول",
+"pôle":"البول",
+"pole urbain":"البول",
+"pôle urbain":"البول",
+"القطب الحضري":"البول",
 
-  "الداميات":"الداميات",
-  "damiette":"الداميات",
+"الداميات":"الداميات",
+"damiette":"الداميات",
 
-  "شلعلع":"شلعلع",
-  "شلعع":"شلعلع",
-  "chlaaalaa":"شلعلع",
-  "chlaalaa":"شلعلع",
+"شلعلع":"شلعلع",
+"شلعع":"شلعلع",
+"chlaaalaa":"شلعلع",
+"chlaalaa":"شلعلع",
 
-  "مكراز":"مكراز",
-  "mekraz":"مكراز",
-  "m'kraz":"مكراز",
+"مكراز":"مكراز",
+"mekraz":"مكراز",
+"m'kraz":"مكراز",
 
-  "باطي":"باطي",
-  "batti":"باطي",
-  "betti":"باطي",
+"باطي":"باطي",
+"batti":"باطي",
+"betti":"باطي",
 
-  "عين الكبير":"عين الكبير",
-  "ain el kebir":"عين الكبير",
+"عين الكبير":"عين الكبير",
+"ain el kebir":"عين الكبير",
 
-  "سوترايت":"سوترايت",
-  "soutratite":"سوترايت",
+"سوترايت":"سوترايت",
+"soutratite":"سوترايت",
 
-  "بزيوش":"بزيوش",
-  "beziouch":"بزيوش",
-  "bziouch":"بزيوش",
+"بزيوش":"بزيوش",
+"beziouch":"بزيوش",
+"bziouch":"بزيوش",
 
-  "24 فيفري":"24 فيفري",
-  "24 février":"24 فيفري",
-  "24 fevrier":"24 فيفري",
+"24 فيفري":"24 فيفري",
+"24 février":"24 فيفري",
+"24 fevrier":"24 فيفري",
 
-  "مسلاح":"مسلاح",
-  "m'sallah":"مسلاح",
-  "msallah":"مسلاح",
+"مسلاح":"مسلاح",
+"m'sallah":"مسلاح",
+"msallah":"مسلاح",
 
-  "مرج الشكير":"مرج الشكير",
-  "مرج شكير":"مرج الشكير",
-  "merdj chekir":"مرج الشكير",
+"مرج الشكير":"مرج الشكير",
+"مرج شكير":"مرج الشكير",
+"merdj chekir":"مرج الشكير",
 
-  "ثنية الحجار":"ثنية الحجار",
-  "ثنية الحجر":"ثنية الحجار",
-  "theniet lahdjar":"ثنية الحجار",
+"ثنية الحجار":"ثنية الحجار",
+"ثنية الحجر":"ثنية الحجار",
+"theniet lahdjar":"ثنية الحجار",
 
-  "عين الذهب":"عين الذهب",
-  "عين دهب":"عين الذهب",
-  "ain dahab":"عين الذهب",
-  "ain d'heb":"عين الذهب",
+"عين الذهب":"عين الذهب",
+"عين دهب":"عين الذهب",
+"ain dahab":"عين الذهب",
+"ain d'heb":"عين الذهب",
 
-  "تلاعيش":"تلاعيش",
-  "talaiche":"تلاعيش",
-  "talaich":"تلاعيش",
+"تلاعيش":"تلاعيش",
+"talaiche":"تلاعيش",
+"talaich":"تلاعيش",
 
-  "تاكبو":"تاكبو",
-  "takbou":"تاكبو",
-  "takbo":"تاكبو",
+"تاكبو":"تاكبو",
+"takbou":"تاكبو",
+"takbo":"تاكبو",
 
-  "تاخابيت":"تاخابيت",
-  "takhabit":"تاخابيت",
+"تاخابيت":"تاخابيت",
+"takhabit":"تاخابيت",
 
-  "الكتاب":"الكتاب",
-  "kouteb":"الكتاب",
-  "kouttab":"الكتاب",
+"الكتاب":"الكتاب",
+"kouteb":"الكتاب",
+"kouttab":"الكتاب",
 
-  "كوتيتن":"كوتيتن",
-  "koutiten":"كوتيتن",
-  "koutitin":"كوتيتن",
+"كوتيتن":"كوتيتن",
+"koutiten":"كوتيتن",
+"koutitin":"كوتيتن",
 
-  "الدخلة":"الدخلة",
-  "dakhla":"الدخلة",
+"الدخلة":"الدخلة",
+"dakhla":"الدخلة",
 
-  "الكوالة":"الكوالة",
-  "كوالة":"الكوالة",
-  "kouala":"الكوالة",
+"الكوالة":"الكوالة",
+"كوالة":"الكوالة",
+"kouala":"الكوالة",
 
-  "الموالدية":"الموالدية",
-  "el moualdia":"الموالدية",
+"الموالدية":"الموالدية",
+"el moualdia":"الموالدية",
 
-  "القزارزة":"القزارزة",
-  "الغزاغزة":"القزارزة",
-  "el ghezarza":"القزارزة",
+"القزارزة":"القزارزة",
+"الغزاغزة":"القزارزة",
+"el ghezarza":"القزارزة",
 
-  "بني عطلي":"بني عطلي",
-  "beni atelli":"بني عطلي",
+"بني عطلي":"بني عطلي",
+"beni atelli":"بني عطلي",
 
-  "رمالي":"رمالي",
-  "الرمالي":"رمالي",
-  "rmali":"رمالي",
+"رمالي":"رمالي",
+"الرمالي":"رمالي",
+"rmali":"رمالي",
 
-  "وادي الزيتون":"وادي الزيتون",
-  "واد الزيتون":"وادي الزيتون",
-  "واد زيتون":"وادي الزيتون",
-  "oued zitoun":"وادي الزيتون",
+"وادي الزيتون":"وادي الزيتون",
+"واد الزيتون":"وادي الزيتون",
+"واد زيتون":"وادي الزيتون",
+"oued zitoun":"وادي الزيتون",
 
-  "عين العرائس":"عين العرائس",
-  "عين العرايس":"عين العرائس",
-  "ain el arais":"عين العرائس",
+"عين العرائس":"عين العرائس",
+"عين العرايس":"عين العرائس",
+"ain el arais":"عين العرائس",
 
-  "الروايسية":"الروايسية",
-  "er rouaissia":"الروايسية",
+"الروايسية":"الروايسية",
+"er rouaissia":"الروايسية",
 
-  "سيدي صحراوي":"سيدي صحراوي",
-  "sidi sahraoui":"سيدي صحراوي",
+"سيدي صحراوي":"سيدي صحراوي",
+"sidi sahraoui":"سيدي صحراوي",
 
-  "حومة القراطبية":"حومة القراطبية",
-  "القراطبية":"حومة القراطبية",
+"حومة القراطبية":"حومة القراطبية",
+"القراطبية":"حومة القراطبية",
 
-  "شمبرتي":"شمبرتي",
-  "chamberti":"شمبرتي",
+"شمبرتي":"شمبرتي",
+"chamberti":"شمبرتي",
 
-  "بن زويش":"بن زويش",
-  "ben zouiche":"بن زويش",
-  "benzouich":"بن زويش",
+"بن زويش":"بن زويش",
+"ben zouiche":"بن زويش",
+"benzouich":"بن زويش",
 
-  "كابينة":"كابينة",
-  "kabinda":"كابينة",
+"كابينة":"كابينة",
+"kabinda":"كابينة",
 
-  "حوش سي العربي":"حوش سي العربي",
-  "haouch si larbi":"حوش سي العربي",
+"حوش سي العربي":"حوش سي العربي",
+"haouch si larbi":"حوش سي العربي",
 
-  "رأس قلوش":"رأس قلوش",
-  "ras guelouch":"رأس قلوش",
-  "ras ghelouch":"رأس قلوش",
+"رأس قلوش":"رأس قلوش",
+"ras guelouch":"رأس قلوش",
+"ras ghelouch":"رأس قلوش",
 
-  "رأس بيضا":"رأس بيضا",
-  "راس بيضة":"رأس بيضا",
-  "ras beida":"رأس بيضا",
-  "ras bida":"رأس بيضا",
+"رأس بيضا":"رأس بيضا",
+"راس بيضة":"رأس بيضا",
+"ras beida":"رأس بيضا",
+"ras bida":"رأس بيضا",
 
-  "الريشبا":"الريشبا",
-  "richaiba":"الريشبا",
+"الريشبا":"الريشبا",
+"richaiba":"الريشبا",
 
-  "تيبحرين":"تيبحرين",
-  "tibahrien":"تيبحرين",
-  "tibahriène":"تيبحرين",
+"تيبحرين":"تيبحرين",
+"tibahrien":"تيبحرين",
+"tibahriène":"تيبحرين",
 
-  "سيدي بويحيى":"سيدي بويحيى",
-  "sidi bouyahia":"سيدي بويحيى",
+"سيدي بويحيى":"سيدي بويحيى",
+"sidi bouyahia":"سيدي بويحيى",
 
-  "رو دالجي":"رو دالجي",
-  "رودالجي":"رو دالجي",
-  "route d'alger":"رو دالجي",
-  "rue d'alger":"رو دالجي",
-  "طريق الجزائر":"رو دالجي",
-  "طريق دزاير":"رو دالجي",
-  "antica":"رو دالجي",
-  "l'antica":"رو دالجي",
-  "lantica":"رو دالجي",
+"رو دالجي":"رو دالجي",
+"رودالجي":"رو دالجي",
+"route d'alger":"رو دالجي",
+"rue d'alger":"رو دالجي",
+"طريق الجزائر":"رو دالجي",
+"طريق دزاير":"رو دالجي",
+"antica":"رو دالجي",
+"l'antica":"رو دالجي",
+"lantica":"رو دالجي",
 
-  "وزرة":"وزرة",
-  "ouzera":"وزرة",
+"وزرة":"وزرة",
+"ouzera":"وزرة",
 
-  "حوش بايزيد":"حوش بايزيد",
-  "bayazid":"حوش بايزيد",
-  "houch bayazid":"حوش بايزيد",
+"حوش بايزيد":"حوش بايزيد",
+"bayazid":"حوش بايزيد",
+"houch bayazid":"حوش بايزيد",
 
-  "دورة الشيخ بن عيسى":"دورة الشيخ بن عيسى",
-  "دورة شيخ بن عيسى":"دورة الشيخ بن عيسى",
-  "doura cheikh ben aissa":"دورة الشيخ بن عيسى",
+"دورة الشيخ بن عيسى":"دورة الشيخ بن عيسى",
+"دورة شيخ بن عيسى":"دورة الشيخ بن عيسى",
+"doura cheikh ben aissa":"دورة الشيخ بن عيسى",
 
-  "دراع بن غنيف":"دراع بن غنيف",
-  "draa ben ghanif":"دراع بن غنيف",
-  "draa benganif":"دراع بن غنيف",
+"دراع بن غنيف":"دراع بن غنيف",
+"draa ben ghanif":"دراع بن غنيف",
+"draa benganif":"دراع بن غنيف",
 
-  "دراع السمار":"دراع السمار",
-  "draa essamar":"دراع السمار",
+"دراع السمار":"دراع السمار",
+"draa essamar":"دراع السمار",
 
-  "تيزي المهدي":"تيزي المهدي",
-  "tizi mahdi":"تيزي المهدي",
+"تيزي المهدي":"تيزي المهدي",
+"tizi mahdi":"تيزي المهدي",
 
-  "تمزقيدة":"تمزقيدة",
-  "tamesguida":"تمزقيدة",
+"تمزقيدة":"تمزقيدة",
+"tamesguida":"تمزقيدة",
 
-  "أبو شة":"أبو شة",
-  "ابوشة":"أبو شة",
-  "aboucha":"أبو شة",
+"أبو شة":"أبو شة",
+"ابوشة":"أبو شة",
+"aboucha":"أبو شة",
 
-  "حوش المسعودي":"حوش المسعودي",
-  "haouch messaoudi":"حوش المسعودي",
-  "messaoudi":"حوش المسعودي"
+"حوش المسعودي":"حوش المسعودي",
+"haouch messaoudi":"حوش المسعودي",
+"messaoudi":"حوش المسعودي"
 
 };
 
 
-/* =====================================================
-   NORMALIZE
-   ===================================================== */
-
 function normalize(str){
 
-  return String(str || "")
-    .toLowerCase()
-    .normalize("NFD")
-    .replace(/[\u0300-\u036f]/g,"")
-    .replace(/[أإآ]/g,"ا")
-    .replace(/ة/g,"ه")
-    .replace(/ى/g,"ي")
-    .replace(/ؤ/g,"و")
-    .replace(/ئ/g,"ي")
-    .replace(/ـ/g,"")
-    .replace(/[^a-z0-9\u0600-\u06ff]+/g,"")
-    .trim();
+  return String(str||"")
+  .toLowerCase()
+  .normalize("NFD")
+  .replace(/[\u0300-\u036f]/g,"")
+  .replace(/[أإآ]/g,"ا")
+  .replace(/ة/g,"ه")
+  .replace(/ى/g,"ي")
+  .replace(/ؤ/g,"و")
+  .replace(/ئ/g,"ي")
+  .replace(/ـ/g,"")
+  .replace(/[^a-z0-9\u0600-\u06ff]+/g,"")
+  .trim();
 
 }
 
-
-/* =====================================================
-   LEVENSHTEIN
-   ===================================================== */
 
 function levenshtein(a,b){
 
@@ -2285,31 +1687,44 @@ function levenshtein(a,b){
 
   const matrix=[];
 
-  for(let i=0;i<=b.length;i++){
+  for(
+    let i=0;
+    i<=b.length;
+    i++
+  ){
     matrix[i]=[i];
   }
 
-  for(let j=0;j<=a.length;j++){
+  for(
+    let j=0;
+    j<=a.length;
+    j++
+  ){
     matrix[0][j]=j;
   }
 
-  for(let i=1;i<=b.length;i++){
+  for(
+    let i=1;
+    i<=b.length;
+    i++
+  ){
 
-    for(let j=1;j<=a.length;j++){
+    for(
+      let j=1;
+      j<=a.length;
+      j++
+    ){
 
-      if(b.charAt(i-1)===a.charAt(j-1)){
-
-        matrix[i][j]=matrix[i-1][j];
-
-      }else{
-
-        matrix[i][j]=Math.min(
+      matrix[i][j]=
+        b.charAt(i-1)===a.charAt(j-1)
+        ?
+        matrix[i-1][j-1]
+        :
+        Math.min(
           matrix[i-1][j-1]+1,
           matrix[i][j-1]+1,
           matrix[i-1][j]+1
         );
-
-      }
 
     }
 
@@ -2320,31 +1735,37 @@ function levenshtein(a,b){
 }
 
 
-/* =====================================================
-   FIND PLACE
-   ===================================================== */
-
 function findPlace(input){
 
-  const raw=String(input || "").trim();
-  const n=normalize(raw);
+  const raw=
+    String(input||"").trim();
 
-  if(!n) return null;
+  const n=
+    normalize(raw);
 
-  for(const key in ALIASES){
+  if(!n)return null;
 
-    if(normalize(key)===n){
 
-      const name=ALIASES[key];
+  for(
+    const key in ALIASES
+  ){
 
-      const place=PLACES.find(
-        p=>p.name===name
-      );
+    if(
+      normalize(key)===n
+    ){
 
-      if(!place) continue;
+      const name=
+        ALIASES[key];
+
+      const place=
+        PLACES.find(
+          p=>p.name===name
+        );
+
+      if(!place)continue;
 
       return {
-        place:place,
+        place,
         corrected:name,
         exact:true
       };
@@ -2353,9 +1774,14 @@ function findPlace(input){
 
   }
 
-  for(const p of PLACES){
 
-    if(normalize(p.name)===n){
+  for(
+    const p of PLACES
+  ){
+
+    if(
+      normalize(p.name)===n
+    ){
 
       return {
         place:p,
@@ -2367,14 +1793,23 @@ function findPlace(input){
 
   }
 
+
   const contains=[];
 
-  for(const p of PLACES){
+  for(
+    const p of PLACES
+  ){
 
-    const pn=normalize(p.name);
+    const pn=
+      normalize(p.name);
 
-    if(pn.includes(n) || n.includes(pn)){
+    if(
+      pn.includes(n)||
+      n.includes(pn)
+    ){
+
       contains.push(p);
+
     }
 
   }
@@ -2389,14 +1824,23 @@ function findPlace(input){
 
   }
 
+
   let best=null;
   let bestDistance=Infinity;
 
-  for(const p of PLACES){
+  for(
+    const p of PLACES
+  ){
 
-    const d=levenshtein(n,p.name);
+    const d=
+      levenshtein(
+        n,
+        p.name
+      );
 
-    if(d<bestDistance){
+    if(
+      d<bestDistance
+    ){
 
       bestDistance=d;
       best=p;
@@ -2405,9 +1849,11 @@ function findPlace(input){
 
   }
 
+
   if(
     best &&
-    bestDistance<=Math.max(
+    bestDistance<=
+    Math.max(
       3,
       Math.floor(n.length*.45)
     )
@@ -2426,52 +1872,75 @@ function findPlace(input){
 }
 
 
-/* =====================================================
-   SUGGESTIONS
-   ===================================================== */
-
 function showSuggestions(type){
 
   const input=
-    document.getElementById(type).value.trim();
+    document.getElementById(type)
+    .value
+    .trim();
 
   const box=
-    document.getElementById(type+"Suggestions");
+    document.getElementById(
+      type+"Suggestions"
+    );
 
   if(!input){
 
     box.innerHTML="";
+
     return;
 
   }
 
-  const n=normalize(input);
 
-  let ranked=PLACES.map(p=>{
+  const n=
+    normalize(input);
 
-    const pn=normalize(p.name);
 
-    let score=levenshtein(n,pn);
+  let ranked=
+    PLACES.map(p=>{
 
-    if(pn.includes(n)){
-      score-=20;
-    }
+      const pn=
+        normalize(p.name);
 
-    if(n.includes(pn)){
-      score-=10;
-    }
+      let score=
+        levenshtein(n,pn);
 
-    return {p,score};
+      if(
+        pn.includes(n)
+      ){
+        score-=20;
+      }
 
-  });
+      if(
+        n.includes(pn)
+      ){
+        score-=10;
+      }
 
-  ranked.sort((a,b)=>a.score-b.score);
+      return {
+        p,
+        score
+      };
+
+    });
+
+
+  ranked.sort(
+    (a,b)=>
+      a.score-b.score
+  );
+
 
   box.innerHTML="";
 
-  ranked.slice(0,8).forEach(item=>{
 
-    const div=document.createElement("div");
+  ranked
+  .slice(0,8)
+  .forEach(item=>{
+
+    const div=
+      document.createElement("div");
 
     div.className=
       "suggestion "+
@@ -2483,16 +1952,27 @@ function showSuggestions(type){
         "uncertain"
       );
 
+
     div.innerHTML=`
 
       <span class="suggestion-icon">
-        ${item.p.confirmed ? "✓" : "!"}
+
+        ${
+          item.p.confirmed
+          ?
+          "✓"
+          :
+          "!"
+        }
+
       </span>
 
       <span class="suggestion-text">
 
         <span class="suggestion-name">
+
           ${item.p.name}
+
         </span>
 
         <span class="suggestion-sub">
@@ -2511,15 +1991,16 @@ function showSuggestions(type){
 
     `;
 
+
     div.onclick=()=>{
 
-      document
-        .getElementById(type)
-        .value=item.p.name;
+      document.getElementById(type).value=
+        item.p.name;
 
       box.innerHTML="";
 
     };
+
 
     box.appendChild(div);
 
@@ -2528,23 +2009,21 @@ function showSuggestions(type){
 }
 
 
-/* =====================================================
-   CLOSE SUGGESTIONS
-   ===================================================== */
-
 document.addEventListener(
   "click",
   function(e){
 
-    if(!e.target.closest(".input-wrap")){
+    if(
+      !e.target.closest(".input-wrap")
+    ){
 
-      document
-        .getElementById("fromSuggestions")
-        .innerHTML="";
+      document.getElementById(
+        "fromSuggestions"
+      ).innerHTML="";
 
-      document
-        .getElementById("toSuggestions")
-        .innerHTML="";
+      document.getElementById(
+        "toSuggestions"
+      ).innerHTML="";
 
     }
 
@@ -2552,25 +2031,31 @@ document.addEventListener(
 );
 
 
-/* =====================================================
-   HAVERSINE
-   ===================================================== */
-
 function haversine(a,b){
 
   const R=6371;
 
-  const lat1=a.lat*Math.PI/180;
-  const lat2=b.lat*Math.PI/180;
+  const lat1=
+    a.lat*Math.PI/180;
 
-  const dLat=(b.lat-a.lat)*Math.PI/180;
-  const dLon=(b.lon-a.lon)*Math.PI/180;
+  const lat2=
+    b.lat*Math.PI/180;
+
+  const dLat=
+    (b.lat-a.lat)*
+    Math.PI/180;
+
+  const dLon=
+    (b.lon-a.lon)*
+    Math.PI/180;
+
 
   const x=
     Math.sin(dLat/2)**2+
     Math.cos(lat1)*
     Math.cos(lat2)*
     Math.sin(dLon/2)**2;
+
 
   return R*
     2*
@@ -2582,10 +2067,6 @@ function haversine(a,b){
 }
 
 
-/* =====================================================
-   ROAD DISTANCE
-   ===================================================== */
-
 async function roadDistance(a,b){
 
   const url=
@@ -2593,15 +2074,21 @@ async function roadDistance(a,b){
     `${a.lon},${a.lat};${b.lon},${b.lat}`+
     "?overview=false&alternatives=true&steps=false";
 
+
   try{
 
-    const response=await fetch(url);
+    const response=
+      await fetch(url);
 
-    if(!response.ok){
-      throw new Error("OSRM error");
-    }
+    if(!response.ok)
+      throw new Error(
+        "OSRM error"
+      );
 
-    const data=await response.json();
+
+    const data=
+      await response.json();
+
 
     if(
       data.code==="Ok" &&
@@ -2611,17 +2098,26 @@ async function roadDistance(a,b){
 
       const routes=
         data.routes
-          .map(r=>r.distance/1000)
-          .filter(d=>Number.isFinite(d));
+        .map(
+          r=>r.distance/1000
+        )
+        .filter(
+          d=>Number.isFinite(d)
+        );
+
 
       if(routes.length){
 
-        const straight=haversine(a,b);
+        const straight=
+          haversine(a,b);
 
-        const distance=Math.min(...routes);
+        const distance=
+          Math.min(...routes);
+
 
         if(
-          distance<=Math.max(
+          distance<=
+          Math.max(
             12,
             straight*4
           )
@@ -2640,106 +2136,147 @@ async function roadDistance(a,b){
 
   }catch(error){
 
-    console.log("OSRM:",error);
+    console.log(
+      "OSRM:",
+      error
+    );
 
   }
 
+
   return {
-    distance:haversine(a,b)*1.35,
+    distance:
+      haversine(a,b)*1.35,
     fallback:true
   };
 
 }
 
 
-/* =====================================================
-   PRICE SYSTEM
-   ===================================================== */
-
 function calculatePrice(km){
 
-  if(km<=1) return 150;
-  if(km<=2) return 200;
-  if(km<=4) return 250;
-  if(km<=6) return 300;
-  if(km<=8) return 350;
-  if(km<=10) return 400;
-  if(km<=12) return 450;
-  if(km<=14) return 500;
-  if(km<=15) return 550;
+  if(km<=1)return 150;
 
-  return (
-    550+
-    Math.ceil(km-15)*50
-  );
+  if(km<=2)return 200;
+
+  if(km<=4)return 250;
+
+  if(km<=6)return 300;
+
+  if(km<=8)return 350;
+
+  if(km<=10)return 400;
+
+  if(km<=12)return 450;
+
+  if(km<=14)return 500;
+
+  if(km<=15)return 550;
+
+  return 550+
+    Math.ceil(km-15)*50;
 
 }
 
 
-/* =====================================================
-   CALCULATE
-   ===================================================== */
-
 async function calculate(){
 
   const fromInput=
-    document.getElementById("from").value;
+    document.getElementById(
+      "from"
+    ).value;
 
   const toInput=
-    document.getElementById("to").value;
+    document.getElementById(
+      "to"
+    ).value;
 
-  const from=findPlace(fromInput);
-  const to=findPlace(toInput);
+
+  const from=
+    findPlace(fromInput);
+
+  const to=
+    findPlace(toInput);
+
 
   const result=
-    document.getElementById("result");
+    document.getElementById(
+      "result"
+    );
 
   const warning=
-    document.getElementById("warning");
+    document.getElementById(
+      "warning"
+    );
 
   const note=
-    document.getElementById("note");
+    document.getElementById(
+      "note"
+    );
 
   const priceBox=
-    document.getElementById("priceBox");
+    document.getElementById(
+      "priceBox"
+    );
 
   const priceStatus=
-    document.getElementById("priceStatus");
+    document.getElementById(
+      "priceStatus"
+    );
 
   const confirmation=
-    document.getElementById("confirmation");
+    document.getElementById(
+      "confirmation"
+    );
 
   const fromPlace=
-    document.getElementById("fromPlace");
+    document.getElementById(
+      "fromPlace"
+    );
 
   const toPlace=
-    document.getElementById("toPlace");
+    document.getElementById(
+      "toPlace"
+    );
+
 
   warning.style.display="none";
+
   warning.innerHTML="";
 
-  confirmation.style.display="none";
+
+  confirmation.style.display=
+    "none";
+
   confirmation.innerHTML="";
+
 
   priceBox.classList.remove(
     "confirmed",
     "uncertain"
   );
 
-  priceStatus.className="price-status";
+
+  priceStatus.className=
+    "price-status";
+
   priceStatus.innerHTML="";
 
-  if(!from || !to){
 
-    result.style.display="block";
+  if(!from||!to){
 
-    document
-      .getElementById("distance")
-      .textContent="!";
+    result.style.display=
+      "block";
 
-    document
-      .getElementById("price")
-      .textContent="";
+    document.getElementById(
+      "distance"
+    ).textContent="!";
+
+
+    document.getElementById(
+      "price"
+    ).textContent="";
+
 
     note.innerHTML=
       "❌ ما قدرتش نحدد إحدى المناطق. حاول تكتب الاسم بطريقة أخرى.";
@@ -2748,8 +2285,13 @@ async function calculate(){
 
   }
 
-  fromPlace.textContent=from.corrected;
-  toPlace.textContent=to.corrected;
+
+  fromPlace.textContent=
+    from.corrected;
+
+  toPlace.textContent=
+    to.corrected;
+
 
   fromPlace.classList.remove(
     "confirmed",
@@ -2761,6 +2303,7 @@ async function calculate(){
     "uncertain"
   );
 
+
   fromPlace.classList.add(
     from.place.confirmed
     ?
@@ -2768,6 +2311,7 @@ async function calculate(){
     :
     "uncertain"
   );
+
 
   toPlace.classList.add(
     to.place.confirmed
@@ -2777,18 +2321,24 @@ async function calculate(){
     "uncertain"
   );
 
-  result.style.display="block";
 
-  document
-    .getElementById("distance")
-    .textContent="...";
+  result.style.display=
+    "block";
 
-  document
-    .getElementById("price")
-    .textContent="...";
+
+  document.getElementById(
+    "distance"
+  ).textContent="...";
+
+
+  document.getElementById(
+    "price"
+  ).textContent="...";
+
 
   note.innerHTML=
     "⏳ جاري حساب أقرب مسار بالسيارة...";
+
 
   const route=
     await roadDistance(
@@ -2796,69 +2346,92 @@ async function calculate(){
       to.place
     );
 
-  const km=route.distance;
 
-  const price=calculatePrice(km);
+  const km=
+    route.distance;
+
+  const price=
+    calculatePrice(km);
+
 
   const bothConfirmed=
     from.place.confirmed &&
     to.place.confirmed;
 
+
   if(bothConfirmed){
 
-    priceBox.classList.add("confirmed");
+    priceBox.classList.add(
+      "confirmed"
+    );
 
-    priceStatus.classList.add("blue");
+    priceStatus.classList.add(
+      "blue"
+    );
 
     priceStatus.innerHTML=
-      "🔵 المناطق مؤكدة<br>"+
-      "السعر تقديري حسب المسافة";
+      "🔵 المناطق مؤكدة<br>السعر تقديري حسب المسافة";
+
 
     confirmation.className=
       "confirmation blue";
 
+
     confirmation.innerHTML=
-      "🔵 الإحداثيات المستعملة مؤكدة. "+
-      "لكن التسعيرة تبقى تقديرية وقد تختلف حسب الطريق الفعلي.";
+      "🔵 الإحداثيات المستعملة مؤكدة. لكن التسعيرة تبقى تقديرية وقد تختلف حسب الطريق الفعلي.";
 
   }else{
 
-    priceBox.classList.add("uncertain");
+    priceBox.classList.add(
+      "uncertain"
+    );
 
-    priceStatus.classList.add("red");
+    priceStatus.classList.add(
+      "red"
+    );
 
     priceStatus.innerHTML=
-      "🔴 سعر تقديري<br>"+
-      "غير مؤكد 100%";
+      "🔴 سعر تقديري<br>غير مؤكد 100%";
+
 
     confirmation.className=
       "confirmation red";
 
+
     confirmation.innerHTML=
-      "🔴 توجد منطقة بإحداثيات غير مؤكدة. "+
-      "ما تعتمدش هذا السعر كسعر نهائي 100%.";
+      "🔴 توجد منطقة بإحداثيات غير مؤكدة. ما تعتمدش هذا السعر كسعر نهائي 100%.";
 
   }
 
-  confirmation.style.display="block";
 
-  document
-    .getElementById("distance")
-    .textContent=
+  confirmation.style.display=
+    "block";
+
+
+  document.getElementById(
+    "distance"
+  ).textContent=
     km.toFixed(1);
 
-  document
-    .getElementById("price")
-    .textContent=
-    price.toLocaleString("fr-FR");
+
+  document.getElementById(
+    "price"
+  ).textContent=
+    price.toLocaleString(
+      "fr-FR"
+    );
+
 
   note.innerHTML=
-    "💰 التسعيرة محسوبة حسب المسافة بالسيارة بين النقطتين.<br>"+
-    "💡 السعر الظاهر في الموقع تقديري وقد يتغير عند اعتماد المسار النهائي.";
+    "💰 التسعيرة محسوبة حسب المسافة بالسيارة بين النقطتين.<br>💡 السعر الظاهر في الموقع تقديري وقد يتغير عند اعتماد المسار النهائي.";
+
 
   const messages=[];
 
-  if(!from.place.confirmed){
+
+  if(
+    !from.place.confirmed
+  ){
 
     messages.push(
       `🔴 إحداثية الانطلاق غير مؤكدة: <b>${from.corrected}</b>`
@@ -2866,13 +2439,17 @@ async function calculate(){
 
   }
 
-  if(!to.place.confirmed){
+
+  if(
+    !to.place.confirmed
+  ){
 
     messages.push(
       `🔴 إحداثية الوصول غير مؤكدة: <b>${to.corrected}</b>`
     );
 
   }
+
 
   if(!from.exact){
 
@@ -2882,6 +2459,7 @@ async function calculate(){
 
   }
 
+
   if(!to.exact){
 
     messages.push(
@@ -2889,6 +2467,7 @@ async function calculate(){
     );
 
   }
+
 
   if(route.fallback){
 
@@ -2898,21 +2477,21 @@ async function calculate(){
 
   }
 
+
   if(messages.length){
 
-    warning.style.display="block";
+    warning.style.display=
+      "block";
 
     warning.innerHTML=
-      messages.join("<br><br>");
+      messages.join(
+        "<br><br>"
+      );
 
   }
 
 }
 
-
-/* =====================================================
-   ENTER KEY
-   ===================================================== */
 
 document.addEventListener(
   "keydown",
@@ -2920,7 +2499,8 @@ document.addEventListener(
 
     if(e.key==="Enter"){
 
-      const active=document.activeElement;
+      const active=
+        document.activeElement;
 
       if(
         active &&
