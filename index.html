@@ -36,15 +36,12 @@ body{
   margin:14px auto 30px;
 }
 
-/* =====================================================
-   HEADER
-===================================================== */
+/* ================= HEADER ================= */
 
 .header{
   position:relative;
   overflow:hidden;
-  background:
-    linear-gradient(135deg,#07090b,#181c20);
+  background:linear-gradient(135deg,#07090b,#181c20);
   color:#fff;
   border-radius:30px;
   padding:30px 30px 28px;
@@ -156,9 +153,7 @@ body{
   color:var(--yellow);
 }
 
-/* =====================================================
-   SEARCH CARD
-===================================================== */
+/* ================= CARD ================= */
 
 .card{
   background:rgba(255,255,255,.98);
@@ -168,6 +163,8 @@ body{
   box-shadow:0 9px 30px rgba(0,0,0,.08);
   border:1px solid rgba(0,0,0,.04);
 }
+
+/* ================= SEARCH ================= */
 
 .search-grid{
   display:grid;
@@ -226,9 +223,7 @@ input::placeholder{
   color:#999;
 }
 
-/* =====================================================
-   SUGGESTIONS
-===================================================== */
+/* ================= SUGGESTIONS ================= */
 
 .suggestions{
   position:absolute;
@@ -257,10 +252,6 @@ input::placeholder{
   background:#fff;
 }
 
-.suggestion:last-child{
-  border-bottom:0;
-}
-
 .suggestion:hover,
 .suggestion:active{
   background:#fff9dc;
@@ -275,7 +266,6 @@ input::placeholder{
   place-items:center;
   background:var(--yellow);
   color:#111;
-  font-size:16px;
 }
 
 .suggestion-text{
@@ -292,12 +282,9 @@ input::placeholder{
 .suggestion-sub{
   font-size:10px;
   color:#999;
-  font-weight:600;
 }
 
-/* =====================================================
-   BUTTON
-===================================================== */
+/* ================= BUTTON ================= */
 
 .calc-wrap{
   margin-top:22px;
@@ -343,9 +330,6 @@ input::placeholder{
 
 .calc-btn:active{
   transform:translateY(3px);
-  box-shadow:
-    0 4px 0 #d6a900,
-    0 9px 18px rgba(0,0,0,.12);
 }
 
 .hint{
@@ -355,9 +339,26 @@ input::placeholder{
   margin-top:14px;
 }
 
-/* =====================================================
-   RESULT
-===================================================== */
+/* ================= TRIAL NOTICE ================= */
+
+.trial-note{
+  margin:14px auto 0;
+  max-width:850px;
+  background:#fff7d8;
+  border:1px solid #f4d96b;
+  color:#5f4a00;
+  padding:11px 14px;
+  border-radius:14px;
+  text-align:center;
+  font-size:12px;
+  line-height:1.8;
+}
+
+.trial-note strong{
+  color:#111;
+}
+
+/* ================= RESULT ================= */
 
 .result{
   display:none;
@@ -408,7 +409,6 @@ input::placeholder{
   display:grid;
   place-items:center;
   position:relative;
-  background:transparent;
 }
 
 .arrow:before{
@@ -424,7 +424,6 @@ input::placeholder{
   top:17px;
   font-size:27px;
   font-weight:1000;
-  color:#111;
 }
 
 .stats{
@@ -432,8 +431,6 @@ input::placeholder{
   grid-template-columns:1fr 1px 1fr;
   align-items:center;
   text-align:center;
-  background:#fff;
-  border:0;
   border-radius:19px;
   padding:18px 8px;
 }
@@ -443,7 +440,8 @@ input::placeholder{
   background:#e5e5e5;
 }
 
-.distance{
+.distance,
+.price-box{
   font-size:50px;
   font-weight:1000;
   line-height:1;
@@ -452,12 +450,6 @@ input::placeholder{
 .distance small{
   font-size:14px;
   font-weight:800;
-}
-
-.price-box{
-  font-size:50px;
-  font-weight:1000;
-  line-height:1;
 }
 
 .price-box .currency{
@@ -505,9 +497,7 @@ input::placeholder{
   color:var(--yellow2);
 }
 
-/* =====================================================
-   FOOTER
-===================================================== */
+/* ================= FOOTER ================= */
 
 .footer{
   background:#0b0d0f;
@@ -520,7 +510,6 @@ input::placeholder{
   gap:10px;
   font-size:13px;
   font-weight:900;
-  box-shadow:0 10px 28px rgba(0,0,0,.12);
 }
 
 .footer strong{
@@ -532,9 +521,7 @@ input::placeholder{
   color:#aaa;
 }
 
-/* =====================================================
-   MOBILE
-===================================================== */
+/* ================= MOBILE ================= */
 
 @media(max-width:700px){
 
@@ -574,12 +561,10 @@ input::placeholder{
 
   .slogan{
     font-size:16px;
-    margin-top:8px;
   }
 
   .subtitle{
     font-size:13px;
-    margin-top:8px;
   }
 
   .search-grid{
@@ -601,23 +586,9 @@ input::placeholder{
     padding:16px;
   }
 
-  .calc-wrap{
-    margin-top:18px;
-  }
-
   .calc-btn{
     font-size:17px;
     padding:17px 40px;
-  }
-
-  .calc-btn:before{
-    right:18px;
-    font-size:20px;
-  }
-
-  .calc-btn:after{
-    left:18px;
-    font-size:25px;
   }
 
   .result{
@@ -631,7 +602,6 @@ input::placeholder{
 
   .place{
     min-height:58px;
-    border-radius:30px;
     padding:10px 6px;
     font-size:15px;
   }
@@ -664,6 +634,7 @@ input::placeholder{
     text-align:center;
     border-radius:24px;
   }
+
 }
 </style>
 </head>
@@ -672,9 +643,7 @@ input::placeholder{
 
 <div class="container">
 
-  <!-- =================================================
-       HEADER
-  ================================================== -->
+  <!-- HEADER -->
 
   <div class="header">
 
@@ -707,9 +676,7 @@ input::placeholder{
   </div>
 
 
-  <!-- =================================================
-       SEARCH
-  ================================================== -->
+  <!-- SEARCH CARD -->
 
   <div class="card">
 
@@ -736,8 +703,8 @@ input::placeholder{
 
           <div
             id="fromSuggestions"
-            class="suggestions"
-          ></div>
+            class="suggestions">
+          </div>
 
         </div>
 
@@ -765,8 +732,8 @@ input::placeholder{
 
           <div
             id="toSuggestions"
-            class="suggestions"
-          ></div>
+            class="suggestions">
+          </div>
 
         </div>
 
@@ -779,8 +746,7 @@ input::placeholder{
 
       <button
         class="calc-btn"
-        onclick="calculate()"
-      >
+        onclick="calculate()">
         احسب التسعيرة
       </button>
 
@@ -790,37 +756,39 @@ input::placeholder{
       اكتب اسم المنطقة والاختيارات تظهر لك مباشرة ✨
     </div>
 
+    <div class="trial-note">
+      🧪 هذا النظام
+      <strong>قيد التجربة والتطوير</strong>،
+      وقد تختلف التسعيرة النهائية قليلاً حسب الطريق الفعلي وحركة المرور.
+    </div>
+
   </div>
 
 
-  <!-- =================================================
-       RESULT
-  ================================================== -->
+  <!-- RESULT -->
 
   <div
     id="result"
-    class="card result"
-  >
+    class="card result">
 
     <div class="result-head">
       <span class="dot"></span>
       <span>تفاصيل التوصيلة</span>
     </div>
 
-
     <div class="route">
 
       <div
         id="fromPlace"
-        class="place"
-      ></div>
+        class="place">
+      </div>
 
       <div class="arrow"></div>
 
       <div
         id="toPlace"
-        class="place"
-      ></div>
+        class="place">
+      </div>
 
     </div>
 
@@ -867,15 +835,15 @@ input::placeholder{
 
     <div
       id="note"
-      class="note"
-    ></div>
+      class="note">
+    </div>
 
 
     <div
       id="warning"
       class="warning"
-      style="display:none"
-    ></div>
+      style="display:none">
+    </div>
 
 
     <div class="tagline">
@@ -885,9 +853,7 @@ input::placeholder{
   </div>
 
 
-  <!-- =================================================
-       FOOTER
-  ================================================== -->
+  <!-- FOOTER -->
 
   <div class="footer">
 
@@ -910,36 +876,66 @@ input::placeholder{
 
 /* =====================================================
    PLACES
-===================================================== */
+   ===================================================== */
 
 const PLACES = [
 
   {name:"تاكبو",lat:36.26049,lon:2.77299},
+
   {name:"عين الذهب",lat:36.26672,lon:2.78108},
 
   {name:"البول",lat:36.2656566,lon:2.7946033},
 
-  {name:"مسعودي",lat:36.26480,lon:2.75980},
+  /* UPDATED COORDINATES */
+
+  {
+    name:"مسعودي",
+    lat:36.2687375,
+    lon:2.784859375
+  },
+
   {name:"24 فيفري",lat:36.26890,lon:2.76020},
+
   {name:"تبيبي",lat:36.26620,lon:2.74780},
+
   {name:"ثنية الحجر",lat:36.27320,lon:2.77400},
+
   {name:"مصلى",lat:36.26920,lon:2.75900},
+
   {name:"ليزريكا سيا",lat:36.26400,lon:2.75200},
 
   {name:"Rue d'Algé",lat:36.26760,lon:2.74780},
 
   {name:"الداميات",lat:36.25878,lon:2.78611},
+
   {name:"شلعع",lat:36.25802,lon:2.79039},
+
   {name:"طحطوح",lat:36.27520,lon:2.75880},
+
   {name:"ريشبن",lat:36.26900,lon:2.75500},
+
   {name:"جامع النور",lat:36.263414,lon:2.753546},
+
   {name:"بريوش",lat:36.26450,lon:2.75650},
+
   {name:"الكتاب",lat:36.27097,lon:2.78130},
+
   {name:"عين الكبير",lat:36.26820,lon:2.77300},
+
   {name:"رورابلي",lat:36.26700,lon:2.74800},
+
   {name:"باب لقواص",lat:36.25500,lon:2.73780},
-  {name:"تلاعيش",lat:36.25650,lon:2.73850},
+
+  /* UPDATED COORDINATES */
+
+  {
+    name:"تلاعيش",
+    lat:36.2611875,
+    lon:2.7443125
+  },
+
   {name:"واد زيتون",lat:36.25206,lon:2.76358},
+
   {name:"قطيطين",lat:36.25391,lon:2.75658},
 
   {name:"باب القرط",lat:36.268324,lon:2.752031},
@@ -949,24 +945,41 @@ const PLACES = [
   {name:"دورة شيخ بن عيسى",lat:36.266542,lon:2.812205},
 
   {name:"الرمالي",lat:36.27200,lon:2.74100},
+
   {name:"كابس",lat:36.26889,lon:2.73281},
+
   {name:"كوالة",lat:36.28923,lon:2.76317},
+
   {name:"مكراز",lat:36.24657,lon:2.74168},
+
   {name:"باتي",lat:36.24803,lon:2.74210},
+
   {name:"لودي",lat:36.27354,lon:2.71695},
+
   {name:"الغزاغزة",lat:36.28100,lon:2.78600},
+
   {name:"شرارشية",lat:36.28500,lon:2.77500},
 
-  {name:"عين الجردة",lat:36.26506,lon:2.71256},
+  /* UPDATED COORDINATES */
+
+  {
+    name:"عين الجردة",
+    lat:36.2639625,
+    lon:2.712984375
+  },
 
   {name:"تمزقيدة",lat:36.33000,lon:2.79000},
+
   {name:"وزرة",lat:36.27700,lon:2.86000},
 
   {name:"عين العرايس",lat:36.27600,lon:2.74400},
+
   {name:"صالة بن رقية",lat:36.26750,lon:2.75250},
 
   {name:"راس بيضة",lat:36.26720,lon:2.74450},
+
   {name:"بوزيان",lat:36.268774,lon:2.751195},
+
   {name:"قرقارة",lat:36.26800,lon:2.75800}
 
 ];
@@ -974,7 +987,7 @@ const PLACES = [
 
 /* =====================================================
    ALIASES
-===================================================== */
+   ===================================================== */
 
 const ALIASES = {
 
@@ -986,8 +999,6 @@ const ALIASES = {
   "عين دهب":"عين الذهب",
   "عين الدهب":"عين الذهب",
   "ain dahab":"عين الذهب",
-  "ain d heb":"عين الذهب",
-  "ain d'heb":"عين الذهب",
 
   "البول":"البول",
   "القطب الحضري":"البول",
@@ -995,7 +1006,6 @@ const ALIASES = {
   "pole":"البول",
   "pole urbain":"البول",
   "pôle urbain":"البول",
-  "البول الحضري":"البول",
 
   "مسعودي":"مسعودي",
   "messaoudi":"مسعودي",
@@ -1009,7 +1019,6 @@ const ALIASES = {
 
   "ثنية الحجر":"ثنية الحجر",
   "ثنية لحجر":"ثنية الحجر",
-  "thenia el hadjar":"ثنية الحجر",
 
   "مصلى":"مصلى",
   "mosala":"مصلى",
@@ -1027,11 +1036,9 @@ const ALIASES = {
   "طريق دزاير":"Rue d'Algé",
 
   "الداميات":"الداميات",
-  "damiette":"الداميات",
 
   "شلعع":"شلعع",
   "شلاع":"شلعع",
-  "chelaa":"شلعع",
 
   "طحطوح":"طحطوح",
   "tahtouh":"طحطوح",
@@ -1047,7 +1054,6 @@ const ALIASES = {
 
   "الكتاب":"الكتاب",
   "kouttab":"الكتاب",
-  "el kouttab":"الكتاب",
 
   "عين الكبير":"عين الكبير",
 
@@ -1071,8 +1077,6 @@ const ALIASES = {
   "باب القرط":"باب القرط",
   "باب القرت":"باب القرط",
   "bab el kort":"باب القرط",
-  "bab el gort":"باب القرط",
-  "bab alghort":"باب القرط",
 
   "مرج شكير":"مرج شكير",
   "merdj chekir":"مرج شكير",
@@ -1080,14 +1084,11 @@ const ALIASES = {
   "دورة شيخ بن عيسى":"دورة شيخ بن عيسى",
   "دورة الشيخ بن عيسى":"دورة شيخ بن عيسى",
   "doura cheikh ben aissa":"دورة شيخ بن عيسى",
-  "doura chikh ben aissa":"دورة شيخ بن عيسى",
 
   "الرمالي":"الرمالي",
-  "r'mali":"الرمالي",
   "rmali":"الرمالي",
 
   "كابس":"كابس",
-  "2400 مسكن":"كابس",
   "caps":"كابس",
 
   "كوالة":"كوالة",
@@ -1101,12 +1102,8 @@ const ALIASES = {
 
   "لودي":"لودي",
   "lodi":"لودي",
-  "draa essamar":"لودي",
-  "draa essmar":"لودي",
-  "ذراع السمار":"لودي",
 
   "الغزاغزة":"الغزاغزة",
-  "الغزارقزة":"الغزاغزة",
   "ghezagheza":"الغزاغزة",
 
   "شرارشية":"شرارشية",
@@ -1115,7 +1112,6 @@ const ALIASES = {
   "عين الجردة":"عين الجردة",
   "عين الجردا":"عين الجردة",
   "ain jerda":"عين الجردة",
-  "ain al jerda":"عين الجردة",
   "ain el jerda":"عين الجردة",
 
   "تمزقيدة":"تمزقيدة",
@@ -1143,7 +1139,7 @@ const ALIASES = {
 
 /* =====================================================
    NORMALIZE
-===================================================== */
+   ===================================================== */
 
 function normalize(str){
 
@@ -1165,7 +1161,7 @@ function normalize(str){
 
 /* =====================================================
    LEVENSHTEIN
-===================================================== */
+   ===================================================== */
 
 function levenshtein(a,b){
 
@@ -1211,15 +1207,18 @@ function levenshtein(a,b){
 
 /* =====================================================
    FIND PLACE
-===================================================== */
+   ===================================================== */
 
 function findPlace(input){
 
   const raw=String(input || "").trim();
+
   const n=normalize(raw);
 
   if(!n) return null;
 
+
+  /* ALIAS */
 
   for(const key in ALIASES){
 
@@ -1228,7 +1227,9 @@ function findPlace(input){
       const name=ALIASES[key];
 
       return {
-        place:PLACES.find(p=>p.name===name),
+        place:PLACES.find(
+          p=>p.name===name
+        ),
         corrected:name,
         exact:true
       };
@@ -1237,6 +1238,8 @@ function findPlace(input){
 
   }
 
+
+  /* EXACT */
 
   for(const p of PLACES){
 
@@ -1252,6 +1255,8 @@ function findPlace(input){
 
   }
 
+
+  /* CONTAINS */
 
   let contains=[];
 
@@ -1270,7 +1275,6 @@ function findPlace(input){
 
   }
 
-
   if(contains.length){
 
     return {
@@ -1282,12 +1286,18 @@ function findPlace(input){
   }
 
 
+  /* FUZZY */
+
   let best=null;
+
   let bestDistance=Infinity;
 
   for(const p of PLACES){
 
-    const d=levenshtein(n,p.name);
+    const d=levenshtein(
+      n,
+      p.name
+    );
 
     if(d<bestDistance){
 
@@ -1297,7 +1307,6 @@ function findPlace(input){
     }
 
   }
-
 
   if(
     best &&
@@ -1315,7 +1324,6 @@ function findPlace(input){
 
   }
 
-
   return null;
 
 }
@@ -1323,7 +1331,7 @@ function findPlace(input){
 
 /* =====================================================
    SUGGESTIONS
-===================================================== */
+   ===================================================== */
 
 function showSuggestions(type){
 
@@ -1339,6 +1347,7 @@ function showSuggestions(type){
   if(!input){
 
     box.innerHTML="";
+
     return;
 
   }
@@ -1351,11 +1360,18 @@ function showSuggestions(type){
 
     const pn=normalize(p.name);
 
-    let score=levenshtein(n,pn);
+    let score=levenshtein(
+      n,
+      pn
+    );
 
-    if(pn.includes(n)) score-=20;
+    if(pn.includes(n)){
+      score-=20;
+    }
 
-    if(n.includes(pn)) score-=10;
+    if(n.includes(pn)){
+      score-=10;
+    }
 
     return {
       p,
@@ -1377,12 +1393,16 @@ function showSuggestions(type){
     .slice(0,6)
     .forEach(item=>{
 
-      const div=document.createElement("div");
+      const div=
+        document.createElement("div");
 
       div.className="suggestion";
 
       div.innerHTML=`
-        <span class="suggestion-icon">📍</span>
+
+        <span class="suggestion-icon">
+          📍
+        </span>
 
         <span class="suggestion-text">
 
@@ -1418,7 +1438,7 @@ function showSuggestions(type){
 
 /* =====================================================
    CLOSE SUGGESTIONS
-===================================================== */
+   ===================================================== */
 
 document.addEventListener(
   "click",
@@ -1442,20 +1462,25 @@ document.addEventListener(
 
 /* =====================================================
    HAVERSINE
-===================================================== */
+   ===================================================== */
 
 function haversine(a,b){
 
   const R=6371;
 
-  const lat1=a.lat*Math.PI/180;
-  const lat2=b.lat*Math.PI/180;
+  const lat1=
+    a.lat*Math.PI/180;
+
+  const lat2=
+    b.lat*Math.PI/180;
 
   const dLat=
-    (b.lat-a.lat)*Math.PI/180;
+    (b.lat-a.lat)*
+    Math.PI/180;
 
   const dLon=
-    (b.lon-a.lon)*Math.PI/180;
+    (b.lon-a.lon)*
+    Math.PI/180;
 
   const x=
     Math.sin(dLat/2)**2+
@@ -1474,8 +1499,8 @@ function haversine(a,b){
 
 
 /* =====================================================
-   ROAD DISTANCE
-===================================================== */
+   ROAD DISTANCE - OSRM
+   ===================================================== */
 
 async function roadDistance(a,b){
 
@@ -1512,12 +1537,12 @@ async function roadDistance(a,b){
 
       const routes=
         data.routes
-          .map(
-            r=>r.distance/1000
-          )
-          .filter(
-            d=>Number.isFinite(d)
-          );
+        .map(
+          r=>r.distance/1000
+        )
+        .filter(
+          d=>Number.isFinite(d)
+        );
 
 
       if(routes.length){
@@ -1530,8 +1555,7 @@ async function roadDistance(a,b){
 
 
         if(
-          distance<=
-          Math.max(
+          distance<=Math.max(
             12,
             straight*4
           )
@@ -1550,16 +1574,23 @@ async function roadDistance(a,b){
 
   }catch(e){
 
-    console.log(e);
+    console.log(
+      "OSRM:",
+      e
+    );
 
   }
 
 
+  /* FALLBACK */
+
   return {
+
     distance:
       haversine(a,b)*1.35,
 
     fallback:true
+
   };
 
 }
@@ -1567,27 +1598,36 @@ async function roadDistance(a,b){
 
 /* =====================================================
    PRICE
-===================================================== */
+   ===================================================== */
 
 function calculatePrice(km){
 
-  if(km<=1) return 150;
+  if(km<=1)
+    return 150;
 
-  if(km<=2) return 200;
+  if(km<=2)
+    return 200;
 
-  if(km<=4) return 250;
+  if(km<=4)
+    return 250;
 
-  if(km<=6) return 300;
+  if(km<=6)
+    return 300;
 
-  if(km<=8) return 350;
+  if(km<=8)
+    return 350;
 
-  if(km<=10) return 400;
+  if(km<=10)
+    return 400;
 
-  if(km<=12) return 450;
+  if(km<=12)
+    return 450;
 
-  if(km<=14) return 500;
+  if(km<=14)
+    return 500;
 
-  if(km<=15) return 550;
+  if(km<=15)
+    return 550;
 
   return 550+
     Math.ceil(km-15)*50;
@@ -1597,15 +1637,19 @@ function calculatePrice(km){
 
 /* =====================================================
    CALCULATE
-===================================================== */
+   ===================================================== */
 
 async function calculate(){
 
   const fromInput=
-    document.getElementById("from").value;
+    document
+      .getElementById("from")
+      .value;
 
   const toInput=
-    document.getElementById("to").value;
+    document
+      .getElementById("to")
+      .value;
 
 
   const from=
@@ -1616,26 +1660,34 @@ async function calculate(){
 
 
   const result=
-    document.getElementById("result");
+    document
+      .getElementById("result");
 
   const warning=
-    document.getElementById("warning");
+    document
+      .getElementById("warning");
 
   const note=
-    document.getElementById("note");
+    document
+      .getElementById("note");
 
 
   warning.style.display="none";
+
   warning.innerHTML="";
 
+
+  /* INVALID */
 
   if(!from || !to){
 
     result.style.display="block";
 
+
     document
       .getElementById("distance")
       .textContent="!";
+
 
     document
       .getElementById("price")
@@ -1650,14 +1702,18 @@ async function calculate(){
   }
 
 
+  /* PLACES */
+
   document
     .getElementById("fromPlace")
-    .textContent=from.corrected;
+    .textContent=
+    from.corrected;
 
 
   document
     .getElementById("toPlace")
-    .textContent=to.corrected;
+    .textContent=
+    to.corrected;
 
 
   result.style.display="block";
@@ -1677,6 +1733,8 @@ async function calculate(){
     "⏳ جاري حساب أقصر مسار بالسيارة...";
 
 
+  /* ROUTE */
+
   const route=
     await roadDistance(
       from.place,
@@ -1692,6 +1750,8 @@ async function calculate(){
     calculatePrice(km);
 
 
+  /* DISPLAY */
+
   document
     .getElementById("distance")
     .textContent=
@@ -1705,8 +1765,11 @@ async function calculate(){
 
 
   note.innerHTML=
-    "💰 التسعيرة محسوبة حسب المسافة بين نقطتي الانطلاق والوصول.";
+    "💰 التسعيرة محسوبة حسب المسافة بين نقطتي الانطلاق والوصول.<br>"+
+    "💡 قد تختلف المسافة والتسعيرة النهائية قليلاً حسب الطريق المختار وحركة المرور.";
 
+
+  /* WARNINGS */
 
   let messages=[];
 
@@ -1751,8 +1814,8 @@ async function calculate(){
 
 
 /* =====================================================
-   ENTER
-===================================================== */
+   ENTER KEY
+   ===================================================== */
 
 document.addEventListener(
   "keydown",
