@@ -1,221 +1,145 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nwasslek - Calculateur de livraison</title>
 
-  <title>Nwasslek - حساب سعر التوصيل</title>
+<style>
+*{box-sizing:border-box}
 
-  <style>
-    * {
-      box-sizing: border-box;
-    }
+body{
+  margin:0;
+  font-family:Arial,"Tahoma",sans-serif;
+  background:#f5f7fa;
+  color:#17202a;
+}
 
-    body {
-      margin: 0;
-      font-family: Arial, Tahoma, sans-serif;
-      background: linear-gradient(135deg, #f5f7fa, #e9eef5);
-      color: #222;
-    }
+.container{
+  max-width:650px;
+  margin:auto;
+  padding:20px 15px 40px;
+}
 
-    .container {
-      width: min(95%, 700px);
-      margin: 25px auto;
-    }
+.header{
+  background:#111827;
+  color:white;
+  border-radius:20px;
+  padding:25px 18px;
+  text-align:center;
+  margin-bottom:18px;
+}
 
-    .header {
-      background: #111827;
-      color: white;
-      border-radius: 20px;
-      padding: 25px 20px;
-      text-align: center;
-      box-shadow: 0 8px 25px rgba(0,0,0,.12);
-    }
+.header h1{
+  margin:0 0 8px;
+  font-size:28px;
+}
 
-    .header h1 {
-      margin: 0 0 8px;
-      font-size: 28px;
-    }
+.header p{
+  margin:0;
+  opacity:.85;
+  font-size:15px;
+}
 
-    .header p {
-      margin: 0;
-      font-size: 15px;
-      opacity: .9;
-    }
+.card{
+  background:white;
+  border-radius:18px;
+  padding:18px;
+  margin-bottom:15px;
+  box-shadow:0 5px 20px rgba(0,0,0,.07);
+}
 
-    .card {
-      background: white;
-      margin-top: 18px;
-      padding: 22px;
-      border-radius: 20px;
-      box-shadow: 0 8px 25px rgba(0,0,0,.08);
-    }
+label{
+  display:block;
+  font-weight:bold;
+  margin-bottom:8px;
+}
 
-    label {
-      display: block;
-      font-weight: bold;
-      margin-bottom: 8px;
-      font-size: 15px;
-    }
+input{
+  width:100%;
+  padding:14px;
+  border:1px solid #d7dce2;
+  border-radius:12px;
+  font-size:16px;
+  outline:none;
+  margin-bottom:15px;
+}
 
-    .field {
-      margin-bottom: 18px;
-    }
+input:focus{
+  border-color:#111827;
+}
 
-    input {
-      width: 100%;
-      padding: 15px;
-      border: 2px solid #e5e7eb;
-      border-radius: 12px;
-      font-size: 16px;
-      outline: none;
-      transition: .2s;
-      direction: rtl;
-    }
+button{
+  width:100%;
+  padding:15px;
+  border:0;
+  border-radius:12px;
+  background:#111827;
+  color:white;
+  font-size:17px;
+  font-weight:bold;
+  cursor:pointer;
+}
 
-    input:focus {
-      border-color: #111827;
-    }
+button:disabled{
+  opacity:.6;
+  cursor:not-allowed;
+}
 
-    .suggestion {
-      background: #f3f4f6;
-      border-radius: 10px;
-      margin-top: 7px;
-      padding: 10px;
-      display: none;
-      font-size: 14px;
-    }
+.result{
+  display:none;
+  text-align:center;
+}
 
-    .suggestion strong {
-      color: #111827;
-    }
+.price{
+  font-size:42px;
+  font-weight:bold;
+  margin:10px 0;
+}
 
-    button {
-      width: 100%;
-      border: 0;
-      border-radius: 13px;
-      padding: 16px;
-      font-size: 17px;
-      font-weight: bold;
-      cursor: pointer;
-      transition: .2s;
-    }
+.km{
+  font-size:18px;
+  margin-bottom:10px;
+}
 
-    #calculateBtn {
-      background: #111827;
-      color: white;
-    }
+.corrected{
+  background:#fff7d6;
+  padding:10px;
+  border-radius:10px;
+  margin-top:10px;
+  font-size:14px;
+}
 
-    #calculateBtn:hover {
-      transform: translateY(-1px);
-      opacity: .95;
-    }
+.error{
+  background:#ffe8e8;
+  color:#a40000;
+  padding:12px;
+  border-radius:10px;
+  margin-top:12px;
+  display:none;
+}
 
-    #calculateBtn:disabled {
-      opacity: .6;
-      cursor: wait;
-    }
+.loading{
+  display:none;
+  text-align:center;
+  margin-top:12px;
+  color:#555;
+}
 
-    .result {
-      display: none;
-      margin-top: 20px;
-      text-align: center;
-    }
+.small{
+  color:#777;
+  font-size:12px;
+  margin-top:12px;
+  text-align:center;
+}
 
-    .price-box {
-      background: #111827;
-      color: white;
-      border-radius: 18px;
-      padding: 22px;
-      margin-bottom: 12px;
-    }
-
-    .price-label {
-      font-size: 15px;
-      opacity: .85;
-    }
-
-    .price {
-      font-size: 42px;
-      font-weight: bold;
-      margin-top: 5px;
-    }
-
-    .details {
-      background: #f8fafc;
-      border-radius: 15px;
-      padding: 15px;
-      line-height: 1.9;
-      font-size: 15px;
-    }
-
-    .error {
-      display: none;
-      background: #fee2e2;
-      color: #991b1b;
-      padding: 13px;
-      border-radius: 12px;
-      margin-top: 15px;
-      text-align: center;
-      font-weight: bold;
-    }
-
-    .loading {
-      display: none;
-      text-align: center;
-      margin-top: 15px;
-      color: #374151;
-      font-weight: bold;
-    }
-
-    .zones-title {
-      text-align: center;
-      margin-bottom: 15px;
-    }
-
-    .zones-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 8px;
-    }
-
-    .zone {
-      background: #f8fafc;
-      border: 1px solid #e5e7eb;
-      border-radius: 10px;
-      padding: 9px;
-      text-align: center;
-      font-size: 14px;
-    }
-
-    .zone small {
-      display: block;
-      color: #6b7280;
-      margin-top: 3px;
-    }
-
-    .footer {
-      text-align: center;
-      font-size: 12px;
-      color: #6b7280;
-      margin: 20px 0;
-      line-height: 1.7;
-    }
-
-    @media(max-width: 500px) {
-      .container {
-        width: 94%;
-      }
-
-      .header h1 {
-        font-size: 24px;
-      }
-
-      .price {
-        font-size: 36px;
-      }
-    }
-  </style>
+.osm{
+  font-size:11px;
+  color:#777;
+  text-align:center;
+  margin-top:20px;
+}
+</style>
 </head>
 
 <body>
@@ -224,1091 +148,867 @@
 
   <div class="header">
     <h1>🚚 Nwasslek</h1>
-    <p>حساب سعر التوصيل داخل Médéa والمناطق المجاورة</p>
+    <p>Calculateur de prix de livraison - Médéa</p>
   </div>
 
   <div class="card">
 
-    <div class="field">
-      <label for="from">📍 نقطة الانطلاق</label>
+    <label for="from">📍 نقطة الانطلاق</label>
+    <input
+      id="from"
+      list="places"
+      placeholder="مثال: تاكبو"
+      autocomplete="off"
+    >
 
-      <input
-        id="from"
-        type="text"
-        list="places"
-        placeholder="مثال: تاكبو"
-        autocomplete="off"
-      >
-
-      <div id="fromSuggestion" class="suggestion"></div>
-    </div>
-
-    <div class="field">
-      <label for="to">🏁 نقطة الوصول</label>
-
-      <input
-        id="to"
-        type="text"
-        list="places"
-        placeholder="مثال: عين الذهب"
-        autocomplete="off"
-      >
-
-      <div id="toSuggestion" class="suggestion"></div>
-    </div>
+    <label for="to">🏁 نقطة الوصول</label>
+    <input
+      id="to"
+      list="places"
+      placeholder="مثال: قطيطين"
+      autocomplete="off"
+    >
 
     <datalist id="places"></datalist>
 
-    <button id="calculateBtn">
+    <button id="calculateBtn" onclick="calculatePrice()">
       احسب سعر التوصيل
     </button>
 
-    <div id="loading" class="loading">
-      ⏳ جاري تحديد الأماكن وحساب الطريق الحقيقي...
+    <div class="loading" id="loading">
+      ⏳ جاري حساب المسافة عبر الطريق...
     </div>
 
-    <div id="error" class="error"></div>
+    <div class="error" id="error"></div>
 
-    <div id="result" class="result">
-
-      <div class="price-box">
-        <div class="price-label">سعر التوصيل</div>
-        <div id="price" class="price">0 دج</div>
-      </div>
-
-      <div class="details">
-        <div>
-          📍 الانطلاق:
-          <strong id="resultFrom"></strong>
-        </div>
-
-        <div>
-          🏁 الوصول:
-          <strong id="resultTo"></strong>
-        </div>
-
-        <div>
-          🛣️ مسافة الطريق:
-          <strong id="distance"></strong>
-        </div>
-
-        <div>
-          💰 التسعيرة:
-          <strong id="pricingInfo"></strong>
-        </div>
-      </div>
-
-    </div>
   </div>
 
-  <div class="card">
-    <div class="zones-title">
-      <strong>📍 المناطق المعتمدة</strong>
-    </div>
+  <div class="card result" id="result">
 
-    <div id="zonesGrid" class="zones-grid"></div>
+    <div>المسافة عبر الطريق</div>
+
+    <div class="km" id="distance"></div>
+
+    <div>سعر التوصيل</div>
+
+    <div class="price" id="price"></div>
+
+    <div id="correction"></div>
+
   </div>
 
-  <div class="footer">
-    حساب المسافة يتم عبر الطريق وليس المسافة الجوية.<br>
+  <div class="small">
+    السعر يحسب حسب المسافة الفعلية بين نقطة الانطلاق والوصول.
+  </div>
+
+  <div class="osm">
     © OpenStreetMap contributors
   </div>
 
 </div>
 
-
 <script>
 
 /* =========================================================
-   N W A S S L E K
-   نظام حساب التسعيرة حسب المسافة الحقيقية بالطريق
+   1. الأماكن الموجودة في قائمة Nwasslek
    ========================================================= */
 
+const PLACES = [
+  "تاكبو",
+  "عين الذهب",
+  "البول",
+  "مسعودي",
+  "24 فيفري",
+  "تبيبي",
+  "ثنية الحجر",
+  "مصلى",
+  "ليزريكا سيا",
+  "Rue d'Algé",
+  "الداميات",
+  "شلعع",
+  "طحطوح",
+  "ريشبن",
+  "جامع النور",
+  "بريوش",
+  "الكتاب",
+  "عين الكبير",
+  "رورابلي",
+  "باب لقواص",
+  "تلاعيش",
+  "واد زيتون",
+  "قطيطين",
+  "باب القرط",
+  "مرج شكير",
+  "دورة شيخ بن عيسى",
+  "الرمالي",
+  "كابس",
+  "كوالة",
+  "مكراز",
+  "باتي",
+  "لودي",
+  "الغزاغزة",
+  "شرارشية",
+  "عين الجردة",
+  "تمزقيدة",
+  "وزرة",
+  "عين العرايس",
+  "صالة بن رقية"
+];
 
-/* ---------------------------------------------------------
-   1. المناطق الموجودة في الصورة
-   --------------------------------------------------------- */
+/* =========================================================
+   2. أسماء بديلة للمساعدة في البحث الذكي
+   ========================================================= */
 
-const ZONES = [
-  {
-    name: "تاكبو",
-    reference: "150 دج",
-    aliases: ["تاكبو", "takbou", "takbo"]
+const ALIASES = {
+
+  "تاكبو": [
+    "takbou",
+    "takbo",
+    "takbou medea"
+  ],
+
+  "عين الذهب": [
+    "ain d heb",
+    "ain dheb",
+    "ain d'heb",
+    "ain edheb",
+    "ain el dheb"
+  ],
+
+  "24 فيفري": [
+    "24 fevrier",
+    "24 février",
+    "24فيفري"
+  ],
+
+  "ثنية الحجر": [
+    "theniet el hadjar",
+    "thenia el hadjar",
+    "teniet el hadjar"
+  ],
+
+  "مصلى": [
+    "msalla",
+    "m'sallah",
+    "mssallah"
+  ],
+
+  "Rue d'Algé": [
+    "rue d alger",
+    "rue d'alger",
+    "route d alger",
+    "route d'alger",
+    "طريق الجزائر",
+    "رودالجي",
+    "رو دالجي"
+  ],
+
+  "الكتاب": [
+    "kouteb",
+    "el kouteb",
+    "elkouteb",
+    "koutab"
+  ],
+
+  "باب لقواص": [
+    "bab lakouas",
+    "bab lakouess",
+    "bab el kouas"
+  ],
+
+  "واد زيتون": [
+    "oued zitoun",
+    "oued ezitoun",
+    "oued zitoune"
+  ],
+
+  "قطيطين": [
+    "ktiten",
+    "koutiten",
+    "koutitin",
+    "قطيطن",
+    "كتيتن",
+    "كوتيتن"
+  ],
+
+  "باب القرط": [
+    "bab el kort",
+    "bab el qort",
+    "bab elkort"
+  ],
+
+  "مرج شكير": [
+    "merdj chekir",
+    "merd jchekir",
+    "merdjchkir"
+  ],
+
+  "دورة شيخ بن عيسى": [
+    "doura cheikh ben aissa",
+    "douar cheikh ben aissa"
+  ],
+
+  "كوالة": [
+    "kouala",
+    "el kouala"
+  ],
+
+  "مكراز": [
+    "mekraz",
+    "mekhraz"
+  ],
+
+  "باتي": [
+    "betti",
+    "batti"
+  ],
+
+  "عين العرايس": [
+    "ain el arais",
+    "ain el araïs",
+    "ain arais"
+  ],
+
+  "صالة بن رقية": [
+    "sala ben reguia",
+    "salle ben reguia",
+    "sala ben reqia"
+  ]
+};
+
+/* =========================================================
+   3. إحداثيات محلية مؤكدة
+   ========================================================= */
+
+const LOCAL_COORDS = {
+
+  "مédéa": {
+    lat:36.2675,
+    lon:2.7500
   },
 
-  {
-    name: "عين الذهب",
-    reference: "150 / 200 دج",
-    aliases: ["عين الذهب", "عين دهب", "عين الذهب المدية", "ain dahab", "aindahab"]
+  "تاكبو": {
+    lat:36.26049,
+    lon:2.77299
   },
 
-  {
-    name: "البول",
-    reference: "200 دج",
-    aliases: ["البول", "el boul", "boul"]
+  "عين الذهب": {
+    lat:36.26672,
+    lon:2.78108
   },
 
-  {
-    name: "مسعودي",
-    reference: "200 دج",
-    aliases: ["مسعودي", "masoudi"]
+  "كوالة": {
+    lat:36.28923,
+    lon:2.76317
   },
 
-  {
-    name: "24 فيفري",
-    reference: "150 دج",
-    aliases: ["24 فيفري", "24فيفري", "24 février", "24 fevrier"]
+  "مرج شكير": {
+    lat:36.27866,
+    lon:2.76039
   },
 
-  {
-    name: "تبيبي",
-    reference: "150 دج",
-    aliases: ["تبيبي", "تببي", "tbibi"]
+  "الكتاب": {
+    lat:36.27097,
+    lon:2.78130
   },
 
-  {
-    name: "ثنية الحجر",
-    reference: "150 دج",
-    aliases: ["ثنية الحجر", "ثنية الحجر", "theniet el hadjar"]
+  "باتي": {
+    lat:36.24803,
+    lon:2.74210
   },
 
-  {
-    name: "مصلى",
-    reference: "150 / 200 دج",
-    aliases: ["مصلى", "مسلى", "mosalla", "musalla"]
+  "مكراز": {
+    lat:36.24657,
+    lon:2.74168
   },
 
-  {
-    name: "ليزريكا سيا",
-    reference: "150 دج",
-    aliases: ["ليزريكا سيا", "ليزريكا", "lezrika sia"]
+  "واد زيتون": {
+    lat:36.25206,
+    lon:2.76358
   },
 
-  {
-    name: "Rue d'Algé",
-    reference: "حسب المسافة",
-    aliases: [
-      "Rue d'Algé",
-      "Rue d'Alger",
-      "Rue d Alge",
-      "Route d'Alger",
-      "Route Alger",
-      "طريق الجزائر",
-      "رودالجي",
-      "رود الجزائر",
-      "رو دالجي"
-    ]
-  },
-
-  {
-    name: "الداميات",
-    reference: "200 دج",
-    aliases: ["الداميات", "داميات", "damiet"]
-  },
-
-  {
-    name: "شلعع",
-    reference: "250 دج",
-    aliases: ["شلعع", "شلاع", "chlaa"]
-  },
-
-  {
-    name: "طحطوح",
-    reference: "150 دج",
-    aliases: ["طحطوح", "tahtouh"]
-  },
-
-  {
-    name: "ريشبن",
-    reference: "150 دج",
-    aliases: ["ريشبن", "ريشبان", "rishban"]
-  },
-
-  {
-    name: "جامع النور",
-    reference: "150 دج",
-    aliases: ["جامع النور", "مسجد النور", "djamaa nour", "mosquee nour"]
-  },
-
-  {
-    name: "بريوش",
-    reference: "150 دج",
-    aliases: ["بريوش", "briouche"]
-  },
-
-  {
-    name: "الكتاب",
-    reference: "200 دج",
-    aliases: ["الكتاب", "el kitab", "kitab"]
-  },
-
-  {
-    name: "عين الكبير",
-    reference: "150 / 200 دج",
-    aliases: ["عين الكبير", "عين الكبر", "ain el kebir", "ain kebir"]
-  },
-
-  {
-    name: "رورابلي",
-    reference: "150 دج",
-    aliases: ["رورابلي", "رورابلي", "rorabli"]
-  },
-
-  {
-    name: "باب لقواص",
-    reference: "150 / 200 دج",
-    aliases: ["باب لقواص", "باب القواص", "bab lqouas", "bab el qouas"]
-  },
-
-  {
-    name: "تلاعيش",
-    reference: "150 / 200 دج",
-    aliases: ["تلاعيش", "تلاعش", "tlaaich", "tlaich"]
-  },
-
-  {
-    name: "واد زيتون",
-    reference: "250 / 300 دج",
-    aliases: ["واد زيتون", "وادي زيتون", "oued zitoun", "wadi zitoun"]
-  },
-
-  {
-    name: "قطيطين",
-    reference: "200 / 250 دج",
-    aliases: ["قطيطين", "قطيطن", "qatitin", "qtitin"]
-  },
-
-  {
-    name: "باب القرط",
-    reference: "200 / 150 دج",
-    aliases: ["باب القرط", "bab el kort", "bab el qart"]
-  },
-
-  {
-    name: "مرج شكير",
-    reference: "150 / 200 دج",
-    aliases: ["مرج شكير", "مرج شكير", "marj chekir"]
-  },
-
-  {
-    name: "دورة شيخ بن عيسى",
-    reference: "250 دج",
-    aliases: [
-      "دورة شيخ بن عيسى",
-      "دور شيخ بن عيسى",
-      "douar cheikh ben aissa",
-      "doura cheikh ben aissa"
-    ]
-  },
-
-  {
-    name: "الرمالي",
-    reference: "300 دج",
-    aliases: ["الرمالي", "رمالي", "ramali"]
-  },
-
-  {
-    name: "كابس",
-    reference: "300 دج",
-    aliases: ["كابس", "kabs", "kabes"]
-  },
-
-  {
-    name: "كوالة",
-    reference: "250 / 200 دج",
-    aliases: ["كوالة", "كوالا", "kouala", "kwala"]
-  },
-
-  {
-    name: "مكراز",
-    reference: "200 / 250 دج",
-    aliases: ["مكراز", "مكرز", "makraz", "mekraz"]
-  },
-
-  {
-    name: "باتي",
-    reference: "250 / 300 دج",
-    aliases: ["باتي", "bati"]
-  },
-
-  {
-    name: "لودي",
-    reference: "350 دج",
-    aliases: ["لودي", "loudi", "loudy"]
-  },
-
-  {
-    name: "الغزاغزة",
-    reference: "350 دج",
-    aliases: ["الغزاغزة", "غزاغزة", "ghzaghza"]
-  },
-
-  {
-    name: "شرارشية",
-    reference: "350 دج",
-    aliases: ["شرارشية", "شرارشيا", "cherarchia", "chararchia"]
-  },
-
-  {
-    name: "عين الجردة",
-    reference: "350 دج",
-    aliases: ["عين الجردة", "عين الجرد", "ain el jerda", "ain jerda"]
-  },
-
-  {
-    name: "تمزقيدة",
-    reference: "500 دج",
-    aliases: ["تمزقيدة", "tamzguida", "tamzguida"]
-  },
-
-  {
-    name: "وزرة",
-    reference: "500 دج",
-    aliases: ["وزرة", "ouzera", "ouzra"]
-  },
-
-  {
-    name: "عين العرايس",
-    reference: "350 دج",
-    aliases: ["عين العرايس", "عين لعرايس", "ain el araies"]
-  },
-
-  {
-    name: "صالة بن رقية",
-    reference: "250 دج",
-    aliases: ["صالة بن رقية", "salle ben reqia", "sala ben reqia"]
+  "قطيطين": {
+    lat:36.25391,
+    lon:2.75658
   }
-];
+};
 
+/* =========================================================
+   4. التسعيرة حسب المسافة
+   ========================================================= */
 
-/* ---------------------------------------------------------
-   2. سلم التسعيرة حسب المسافة
-   --------------------------------------------------------- */
+function getPrice(km){
 
-const PRICE_TABLE = [
-  { max: 1,  price: 150 },
-  { max: 2,  price: 200 },
-  { max: 4,  price: 250 },
-  { max: 6,  price: 300 },
-  { max: 8,  price: 350 },
-  { max: 10, price: 400 },
-  { max: 12, price: 450 },
-  { max: 14, price: 500 },
-  { max: 15, price: 550 }
-];
+  if(km <= 1)  return 150;
+  if(km <= 2)  return 200;
+  if(km <= 4)  return 250;
+  if(km <= 6)  return 300;
+  if(km <= 8)  return 350;
+  if(km <= 10) return 400;
+  if(km <= 12) return 450;
+  if(km <= 14) return 500;
+  if(km <= 15) return 550;
 
-const EXTRA_PER_KM = 50;
+  return 550 + Math.ceil(km - 15) * 50;
+}
 
+/* =========================================================
+   5. تجهيز القائمة
+   ========================================================= */
 
-/* ---------------------------------------------------------
-   3. أدوات النص والبحث الذكي
-   --------------------------------------------------------- */
+const datalist = document.getElementById("places");
 
-function normalizeText(text) {
+PLACES.forEach(place => {
 
-  return String(text || "")
+  const option = document.createElement("option");
+  option.value = place;
+  datalist.appendChild(option);
+
+});
+
+/* =========================================================
+   6. تنظيف النص
+   ========================================================= */
+
+function normalize(text){
+
+  return text
     .toLowerCase()
     .trim()
 
-    .replace(/[أإآ]/g, "ا")
-    .replace(/ى/g, "ي")
-    .replace(/ة/g, "ه")
-    .replace(/ؤ/g, "و")
-    .replace(/ئ/g, "ي")
+    .replace(/[أإآ]/g,"ا")
+    .replace(/ة/g,"ه")
+    .replace(/ى/g,"ي")
 
-    .replace(/[ًٌٍَُِّْـ]/g, "")
+    .replace(/[ًٌٍَُِّْـ]/g,"")
 
-    .replace(/['"`’‘]/g, "")
-    .replace(/[-_/.,()]/g, " ")
+    .replace(/['’`]/g,"")
 
-    .replace(/\s+/g, " ");
+    .replace(/[-_]/g," ")
+
+    .replace(/\s+/g," ");
 }
 
+/* =========================================================
+   7. مسافة Levenshtein
+   ========================================================= */
 
-/* Levenshtein distance */
-
-function levenshtein(a, b) {
+function levenshtein(a,b){
 
   const matrix = [];
 
-  for (let i = 0; i <= b.length; i++) {
-    matrix[i] = [i];
+  for(let i=0;i<=b.length;i++){
+    matrix[i]=[i];
   }
 
-  for (let j = 0; j <= a.length; j++) {
-    matrix[0][j] = j;
+  for(let j=0;j<=a.length;j++){
+    matrix[0][j]=j;
   }
 
-  for (let i = 1; i <= b.length; i++) {
+  for(let i=1;i<=b.length;i++){
 
-    for (let j = 1; j <= a.length; j++) {
+    for(let j=1;j<=a.length;j++){
 
-      if (b.charAt(i - 1) === a.charAt(j - 1)) {
-
-        matrix[i][j] = matrix[i - 1][j - 1];
-
-      } else {
-
-        matrix[i][j] = Math.min(
-          matrix[i - 1][j] + 1,
-          matrix[i][j - 1] + 1,
-          matrix[i - 1][j - 1] + 1
+      if(b.charAt(i-1) === a.charAt(j-1)){
+        matrix[i][j]=matrix[i-1][j-1];
+      }else{
+        matrix[i][j]=Math.min(
+          matrix[i-1][j-1]+1,
+          matrix[i][j-1]+1,
+          matrix[i-1][j]+1
         );
       }
+
     }
   }
 
   return matrix[b.length][a.length];
 }
 
+/* =========================================================
+   8. البحث الذكي عن المكان
+   ========================================================= */
 
-/* حساب نسبة التشابه */
+function findBestPlace(input){
 
-function similarity(a, b) {
+  const value = normalize(input);
 
-  a = normalizeText(a);
-  b = normalizeText(b);
-
-  if (!a || !b) return 0;
-
-  if (a === b) return 1;
-
-  if (a.includes(b) || b.includes(a)) {
-    return 0.92;
+  if(!value){
+    return null;
   }
 
-  const distance = levenshtein(a, b);
-  const maxLength = Math.max(a.length, b.length);
+  /* تطابق مباشر */
 
-  return maxLength === 0
-    ? 1
-    : 1 - distance / maxLength;
-}
+  for(const place of PLACES){
 
+    if(normalize(place) === value){
+      return {
+        name:place,
+        score:0,
+        corrected:false
+      };
+    }
 
-/* البحث عن أقرب منطقة */
+  }
 
-function findBestZone(input) {
-
-  const clean = normalizeText(input);
-
-  if (!clean) return null;
+  /* البحث داخل الأسماء البديلة */
 
   let best = null;
-  let bestScore = 0;
 
-  for (const zone of ZONES) {
+  for(const place of PLACES){
 
-    const names = [zone.name, ...(zone.aliases || [])];
+    const names = [
+      place,
+      ...(ALIASES[place] || [])
+    ];
 
-    for (const alias of names) {
+    for(const name of names){
 
-      const score = similarity(clean, alias);
+      const n = normalize(name);
 
-      if (score > bestScore) {
+      if(n === value){
 
-        bestScore = score;
-
-        best = {
-          zone,
-          score
+        return {
+          name:place,
+          score:0,
+          corrected:true
         };
+
       }
+
+      if(n.includes(value) || value.includes(n)){
+
+        const score = Math.abs(n.length-value.length);
+
+        if(!best || score < best.score){
+
+          best = {
+            name:place,
+            score:score,
+            corrected:true
+          };
+
+        }
+
+      }
+
     }
+
+  }
+
+  /* Levenshtein */
+
+  for(const place of PLACES){
+
+    const names = [
+      place,
+      ...(ALIASES[place] || [])
+    ];
+
+    for(const name of names){
+
+      const n = normalize(name);
+
+      const distance = levenshtein(value,n);
+
+      const maxLength = Math.max(value.length,n.length);
+
+      const similarity = 1 - distance / maxLength;
+
+      if(similarity >= 0.55){
+
+        if(!best || distance < best.score){
+
+          best = {
+            name:place,
+            score:distance,
+            corrected:true
+          };
+
+        }
+
+      }
+
+    }
+
   }
 
   return best;
 }
 
+/* =========================================================
+   9. Cache الإحداثيات
+   ========================================================= */
 
-/* ---------------------------------------------------------
-   4. Datalist
-   --------------------------------------------------------- */
+function getCache(){
 
-const datalist = document.getElementById("places");
-
-ZONES.forEach(zone => {
-
-  const option = document.createElement("option");
-
-  option.value = zone.name;
-
-  datalist.appendChild(option);
-});
-
-
-/* عرض الاقتراح الذكي */
-
-function setupSmartInput(inputId, suggestionId) {
-
-  const input = document.getElementById(inputId);
-  const suggestion = document.getElementById(suggestionId);
-
-  input.addEventListener("input", () => {
-
-    const value = input.value.trim();
-
-    if (!value) {
-
-      suggestion.style.display = "none";
-      return;
-    }
-
-    const best = findBestZone(value);
-
-    if (!best) {
-
-      suggestion.style.display = "none";
-      return;
-    }
-
-    if (best.zone.name !== value) {
-
-      suggestion.innerHTML =
-        `هل تقصد: <strong>${best.zone.name}</strong> ؟`;
-
-      suggestion.style.display = "block";
-
-    } else {
-
-      suggestion.style.display = "none";
-    }
-  });
-}
-
-setupSmartInput("from", "fromSuggestion");
-setupSmartInput("to", "toSuggestion");
-
-
-/* ---------------------------------------------------------
-   5. Cache
-   --------------------------------------------------------- */
-
-const CACHE_KEY = "nwasslek_geocode_cache_v3";
-
-function getCache() {
-
-  try {
-
-    return JSON.parse(
-      localStorage.getItem(CACHE_KEY) || "{}"
-    );
-
-  } catch {
-
+  try{
+    return JSON.parse(localStorage.getItem("nwasslek_coords") || "{}");
+  }catch(e){
     return {};
   }
+
 }
 
-function saveCache(cache) {
+function saveCache(cache){
 
-  try {
+  localStorage.setItem(
+    "nwasslek_coords",
+    JSON.stringify(cache)
+  );
 
-    localStorage.setItem(
-      CACHE_KEY,
-      JSON.stringify(cache)
-    );
-
-  } catch {
-
-    // تجاهل خطأ التخزين
-  }
 }
 
+/* =========================================================
+   10. انتظار Nominatim
+   ========================================================= */
 
-/* ---------------------------------------------------------
-   6. انتظار بين طلبات Nominatim
-   --------------------------------------------------------- */
+let lastNominatimRequest = 0;
 
-let lastGeocodeTime = 0;
-
-async function waitForNominatimLimit() {
+async function waitForNominatim(){
 
   const now = Date.now();
 
-  const elapsed = now - lastGeocodeTime;
+  const wait = Math.max(
+    0,
+    1200 - (now-lastNominatimRequest)
+  );
 
-  const wait = Math.max(0, 1100 - elapsed);
-
-  if (wait > 0) {
+  if(wait > 0){
 
     await new Promise(resolve =>
-      setTimeout(resolve, wait)
+      setTimeout(resolve,wait)
     );
+
   }
 
-  lastGeocodeTime = Date.now();
+  lastNominatimRequest = Date.now();
 }
 
+/* =========================================================
+   11. Geocoding
+   ========================================================= */
 
-/* ---------------------------------------------------------
-   7. Geocoding
-   --------------------------------------------------------- */
+async function geocodePlace(place){
 
-async function geocodePlace(zone) {
+  /* أولاً الإحداثيات المحلية */
+
+  if(LOCAL_COORDS[place]){
+    return LOCAL_COORDS[place];
+  }
+
+  /* Cache */
 
   const cache = getCache();
 
-  const key = normalizeText(zone.name);
-
-  if (cache[key]) {
-
-    return cache[key];
+  if(cache[place]){
+    return cache[place];
   }
 
+  let queries = [];
 
-  await waitForNominatimLimit();
+  if(place === "Rue d'Algé"){
 
+    queries = [
+      "Rue d'Alger, Médéa, Algérie",
+      "Route d'Alger, Médéa, Algérie",
+      "طريق الجزائر، المدية، الجزائر"
+    ];
 
-  const queries = [
+  }else{
 
-    `${zone.name}, Médéa, Algérie`,
+    const aliases = ALIASES[place] || [];
 
-    `${zone.name}, Medea, Algeria`,
+    queries = [
+      `${place}, Médéa, Algérie`,
+      ...aliases.map(x => `${x}, Médéa, Algérie`)
+    ];
 
-    `${zone.name}, Wilaya de Médéa, Algérie`
-  ];
+  }
 
+  for(const query of queries){
 
-  for (const query of queries) {
+    try{
 
-    try {
+      await waitForNominatim();
 
       const url =
-        "https://nominatim.openstreetmap.org/search?" +
-        new URLSearchParams({
-          q: query,
-          format: "json",
-          limit: "1",
-          countrycodes: "dz",
-          addressdetails: "1"
-        });
+        "https://nominatim.openstreetmap.org/search" +
+        "?format=jsonv2" +
+        "&limit=1" +
+        "&countrycodes=dz" +
+        "&q=" +
+        encodeURIComponent(query);
 
+      const response = await fetch(url);
 
-      const response = await fetch(url, {
-        headers: {
-          "Accept": "application/json"
-        }
-      });
-
-
-      if (!response.ok) {
+      if(!response.ok){
         continue;
       }
 
-
       const data = await response.json();
 
-
-      if (data && data.length > 0) {
+      if(data && data.length){
 
         const result = {
-          lat: Number(data[0].lat),
-          lon: Number(data[0].lon),
-          display: data[0].display_name
+          lat:parseFloat(data[0].lat),
+          lon:parseFloat(data[0].lon)
         };
 
+        /*
+         * نحفظ النتيجة حتى ما نعاودوش
+         * نفس البحث كل مرة.
+         */
 
-        if (
-          Number.isFinite(result.lat) &&
-          Number.isFinite(result.lon)
-        ) {
+        cache[place] = result;
+        saveCache(cache);
 
-          cache[key] = result;
-
-          saveCache(cache);
-
-          return result;
-        }
+        return result;
       }
 
-    } catch (error) {
+    }catch(error){
 
-      console.warn(
+      console.log(
         "Geocoding error:",
+        query,
         error
       );
-    }
-  }
 
+    }
+
+  }
 
   return null;
 }
 
+/* =========================================================
+   12. حساب المسافة بالطريق باستعمال OSRM
+   ========================================================= */
 
-/* ---------------------------------------------------------
-   8. OSRM - حساب المسافة الحقيقية بالطريق
-   --------------------------------------------------------- */
-
-async function getRoadDistance(from, to) {
-
-  const coordinates =
-    `${from.lon},${from.lat};${to.lon},${to.lat}`;
-
+async function getRoadDistance(a,b){
 
   const url =
-    `https://router.project-osrm.org/route/v1/driving/${coordinates}` +
-    `?overview=false&alternatives=false&steps=false`;
-
+    "https://router.project-osrm.org/route/v1/driving/" +
+    `${a.lon},${a.lat};${b.lon},${b.lat}` +
+    "?overview=false";
 
   const response = await fetch(url);
 
-
-  if (!response.ok) {
-
-    throw new Error(
-      "تعذر الاتصال بخدمة حساب الطريق."
-    );
+  if(!response.ok){
+    throw new Error("تعذر الاتصال بخدمة حساب الطريق.");
   }
-
 
   const data = await response.json();
 
-
-  if (
-    data.code !== "Ok" ||
+  if(
     !data.routes ||
     !data.routes.length
-  ) {
-
-    throw new Error(
-      "لم يتم العثور على طريق بين المكانين."
-    );
+  ){
+    throw new Error("لم يتم العثور على طريق بين المكانين.");
   }
-
 
   return data.routes[0].distance / 1000;
 }
 
+/* =========================================================
+   13. إظهار الخطأ
+   ========================================================= */
 
-/* ---------------------------------------------------------
-   9. حساب السعر
-   --------------------------------------------------------- */
-
-function calculatePrice(distanceKm) {
-
-  if (!Number.isFinite(distanceKm)) {
-    return null;
-  }
-
-
-  /*
-    نقرب المسافة إلى رقمين بعد الفاصلة
-  */
-
-  const distance =
-    Math.round(distanceKm * 100) / 100;
-
-
-  /*
-    حتى 15 كم:
-    نأخذ أول شريحة تصل إليها المسافة.
-  */
-
-  for (const row of PRICE_TABLE) {
-
-    if (distance <= row.max) {
-
-      return {
-        price: row.price,
-        label: `${row.price} دج`
-      };
-    }
-  }
-
-
-  /*
-    أكثر من 15 كم:
-    550 دج + 50 دج لكل كيلومتر إضافي بدأ.
-  */
-
-  const extraKm =
-    Math.ceil(distance - 15);
-
-  const price =
-    550 + extraKm * EXTRA_PER_KM;
-
-
-  return {
-    price,
-    label:
-      `${price} دج`
-  };
-}
-
-
-/* ---------------------------------------------------------
-   10. عرض النتيجة
-   --------------------------------------------------------- */
-
-function showResult(fromZone, toZone, distanceKm, pricing) {
-
-  document.getElementById("result").style.display = "block";
-
-  document.getElementById("price").textContent =
-    `${pricing.price} دج`;
-
-  document.getElementById("resultFrom").textContent =
-    fromZone.name;
-
-  document.getElementById("resultTo").textContent =
-    toZone.name;
-
-  document.getElementById("distance").textContent =
-    `${distanceKm.toFixed(2)} كم`;
-
-  document.getElementById("pricingInfo").textContent =
-    pricing.label;
-}
-
-
-/* ---------------------------------------------------------
-   11. رسالة الخطأ
-   --------------------------------------------------------- */
-
-function showError(message) {
+function showError(message){
 
   const error = document.getElementById("error");
 
   error.textContent = message;
-
   error.style.display = "block";
+
 }
 
+/* =========================================================
+   14. الحساب الرئيسي
+   ========================================================= */
 
-function hideError() {
+async function calculatePrice(){
 
-  document.getElementById("error").style.display =
-    "none";
-}
+  const fromInput =
+    document.getElementById("from").value;
 
+  const toInput =
+    document.getElementById("to").value;
 
-/* ---------------------------------------------------------
-   12. زر الحساب
-   --------------------------------------------------------- */
+  const button =
+    document.getElementById("calculateBtn");
 
-document
-  .getElementById("calculateBtn")
-  .addEventListener("click", async () => {
+  const loading =
+    document.getElementById("loading");
 
-    hideError();
+  const result =
+    document.getElementById("result");
 
-    document.getElementById("result").style.display =
-      "none";
+  const error =
+    document.getElementById("error");
 
+  const correction =
+    document.getElementById("correction");
 
-    const fromInput =
-      document.getElementById("from").value.trim();
+  error.style.display = "none";
+  result.style.display = "none";
+  correction.innerHTML = "";
 
-    const toInput =
-      document.getElementById("to").value.trim();
+  if(!fromInput || !toInput){
 
+    showError(
+      "⚠️ اكتب نقطة الانطلاق ونقطة الوصول."
+    );
 
-    if (!fromInput || !toInput) {
+    return;
+  }
 
-      showError(
-        "اكتب نقطة الانطلاق ونقطة الوصول."
-      );
+  const from = findBestPlace(fromInput);
+  const to = findBestPlace(toInput);
 
-      return;
-    }
+  if(!from){
 
+    showError(
+      `❌ لم أتعرف على "${fromInput}".`
+    );
 
-    const fromMatch =
-      findBestZone(fromInput);
+    return;
+  }
 
-    const toMatch =
-      findBestZone(toInput);
+  if(!to){
 
+    showError(
+      `❌ لم أتعرف على "${toInput}".`
+    );
 
-    if (!fromMatch || fromMatch.score < 0.45) {
+    return;
+  }
 
-      showError(
-        `لم أتعرف على نقطة الانطلاق: "${fromInput}".`
-      );
+  /*
+   * نبدل الاسم تلقائياً بالاسم الصحيح
+   */
 
-      return;
-    }
-
-
-    if (!toMatch || toMatch.score < 0.45) {
-
-      showError(
-        `لم أتعرف على نقطة الوصول: "${toInput}".`
-      );
-
-      return;
-    }
-
-
-    const fromZone =
-      fromMatch.zone;
-
-    const toZone =
-      toMatch.zone;
-
-
-    /*
-      إذا كان هناك خطأ بسيط في الاسم،
-      نستعمل الاسم الصحيح تلقائياً.
-    */
+  if(from.name !== fromInput.trim()){
 
     document.getElementById("from").value =
-      fromZone.name;
+      from.name;
+
+  }
+
+  if(to.name !== toInput.trim()){
 
     document.getElementById("to").value =
-      toZone.name;
+      to.name;
 
+  }
 
-    const button =
-      document.getElementById("calculateBtn");
+  button.disabled = true;
+  loading.style.display = "block";
 
-    const loading =
-      document.getElementById("loading");
+  try{
 
+    const fromCoords =
+      await geocodePlace(from.name);
 
-    button.disabled = true;
+    const toCoords =
+      await geocodePlace(to.name);
 
-    loading.style.display = "block";
+    if(!fromCoords){
 
-
-    try {
-
-      /*
-        Geocode الانطلاق
-      */
-
-      const fromCoords =
-        await geocodePlace(fromZone);
-
-
-      if (!fromCoords) {
-
-        throw new Error(
-          `لم أستطع تحديد موقع "${fromZone.name}" على الخريطة.`
-        );
-      }
-
-
-      /*
-        Geocode الوصول
-      */
-
-      const toCoords =
-        await geocodePlace(toZone);
-
-
-      if (!toCoords) {
-
-        throw new Error(
-          `لم أستطع تحديد موقع "${toZone.name}" على الخريطة.`
-        );
-      }
-
-
-      /*
-        حساب الطريق الحقيقي
-      */
-
-      const distance =
-        await getRoadDistance(
-          fromCoords,
-          toCoords
-        );
-
-
-      /*
-        حساب السعر
-      */
-
-      const pricing =
-        calculatePrice(distance);
-
-
-      if (!pricing) {
-
-        throw new Error(
-          "تعذر حساب السعر."
-        );
-      }
-
-
-      showResult(
-        fromZone,
-        toZone,
-        distance,
-        pricing
+      throw new Error(
+        `لم أستطع تحديد موقع "${from.name}" على الخريطة.`
       );
 
-
-    } catch (error) {
-
-      console.error(error);
-
-      showError(
-        error.message ||
-        "حدث خطأ أثناء حساب المسافة."
-      );
-
-    } finally {
-
-      button.disabled = false;
-
-      loading.style.display = "none";
     }
 
-  });
+    if(!toCoords){
 
+      throw new Error(
+        `لم أستطع تحديد موقع "${to.name}" على الخريطة.`
+      );
 
-/* ---------------------------------------------------------
-   13. عرض قائمة المناطق
-   --------------------------------------------------------- */
+    }
 
-const zonesGrid =
-  document.getElementById("zonesGrid");
+    const km =
+      await getRoadDistance(
+        fromCoords,
+        toCoords
+      );
 
+    const price =
+      getPrice(km);
 
-ZONES.forEach(zone => {
+    document.getElementById("distance").textContent =
+      km.toFixed(1) + " كم";
 
-  const div =
-    document.createElement("div");
+    document.getElementById("price").textContent =
+      price.toLocaleString("fr-DZ") + " دج";
 
-  div.className = "zone";
+    let messages = [];
 
-  div.innerHTML = `
-    <strong>${zone.name}</strong>
-    <small>${zone.reference}</small>
-  `;
+    if(from.corrected){
 
-  zonesGrid.appendChild(div);
-});
+      messages.push(
+        `نقطة الانطلاق: تم تصحيحها إلى «${from.name}»`
+      );
 
+    }
 
-/* ---------------------------------------------------------
-   14. Enter = حساب
-   --------------------------------------------------------- */
+    if(to.corrected){
 
-document
-  .getElementById("from")
-  .addEventListener("keydown", event => {
+      messages.push(
+        `نقطة الوصول: تم تصحيحها إلى «${to.name}»`
+      );
 
-    if (event.key === "Enter") {
+    }
 
+    if(messages.length){
+
+      correction.innerHTML =
+        `<div class="corrected">💡 ${messages.join("<br>")}</div>`;
+
+    }
+
+    result.style.display = "block";
+
+  }catch(err){
+
+    console.error(err);
+
+    showError(
+      "❌ " + err.message
+    );
+
+  }finally{
+
+    button.disabled = false;
+    loading.style.display = "none";
+
+  }
+
+}
+
+/* =========================================================
+   15. Enter للحساب
+   ========================================================= */
+
+document.getElementById("from").addEventListener(
+  "keydown",
+  e => {
+    if(e.key === "Enter"){
       document.getElementById("to").focus();
     }
-  });
+  }
+);
 
-
-document
-  .getElementById("to")
-  .addEventListener("keydown", event => {
-
-    if (event.key === "Enter") {
-
-      document.getElementById("calculateBtn").click();
+document.getElementById("to").addEventListener(
+  "keydown",
+  e => {
+    if(e.key === "Enter"){
+      calculatePrice();
     }
-  });
-
+  }
+);
 
 </script>
 
