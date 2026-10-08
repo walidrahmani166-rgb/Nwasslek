@@ -9,6 +9,8 @@
 
 <style>
 
+/* نفس CSS تاعك كامل بدون تغيير */
+
 :root{
   --yellow:#ffd21c;
   --yellow2:#ffbd00;
@@ -18,35 +20,21 @@
   --muted:#777;
   --line:#e9e9e9;
   --soft:#f5f6f7;
-
   --blue:#1683ff;
   --blueSoft:#eef7ff;
-
   --red:#e53935;
   --redSoft:#fff0f0;
 }
 
-*{
-  box-sizing:border-box;
-}
+*{box-sizing:border-box;}
 
 body{
   margin:0;
   font-family:Arial,"Tahoma",sans-serif;
-
   background:
-    radial-gradient(
-      circle at 10% 5%,
-      rgba(255,210,28,.10),
-      transparent 25%
-    ),
-    radial-gradient(
-      circle at 90% 20%,
-      rgba(0,0,0,.05),
-      transparent 25%
-    ),
+    radial-gradient(circle at 10% 5%,rgba(255,210,28,.10),transparent 25%),
+    radial-gradient(circle at 90% 20%,rgba(0,0,0,.05),transparent 25%),
     #f5f6f7;
-
   color:#111;
 }
 
@@ -55,114 +43,63 @@ body{
   margin:14px auto 30px;
 }
 
-
-/* =====================================================
-   HEADER
-   ===================================================== */
-
 .header{
   position:relative;
   overflow:hidden;
-
-  background:
-    linear-gradient(
-      135deg,
-      #07090b,
-      #181c20
-    );
-
+  background:linear-gradient(135deg,#07090b,#181c20);
   color:#fff;
-
   border-radius:30px;
-
   padding:30px 30px 28px;
-
   text-align:center;
-
   margin-bottom:18px;
-
-  box-shadow:
-    0 16px 40px rgba(0,0,0,.18);
-
+  box-shadow:0 16px 40px rgba(0,0,0,.18);
   border-bottom:7px solid var(--yellow);
-
   min-height:245px;
 }
 
 .header:before{
   content:"";
-
   position:absolute;
-
   width:450px;
   height:450px;
-
   right:-210px;
   top:-270px;
-
   border-radius:50%;
-
-  border:
-    35px solid
-    rgba(255,210,28,.035);
+  border:35px solid rgba(255,210,28,.035);
 }
 
 .header:after{
   content:"";
-
   position:absolute;
-
   width:430px;
   height:160px;
-
   left:-130px;
   bottom:-110px;
-
   transform:rotate(-20deg);
-
-  border-top:
-    2px solid
-    rgba(255,255,255,.04);
-
-  border-bottom:
-    2px solid
-    rgba(255,255,255,.04);
+  border-top:2px solid rgba(255,255,255,.04);
+  border-bottom:2px solid rgba(255,255,255,.04);
 }
 
 .brand{
   position:relative;
   z-index:2;
-
   display:flex;
   align-items:center;
   justify-content:center;
-
   gap:20px;
 }
 
 .logo-mark{
   width:94px;
   height:94px;
-
-  border:
-    7px solid
-    var(--yellow);
-
-  border-radius:
-    50% 50% 50% 12px;
-
+  border:7px solid var(--yellow);
+  border-radius:50% 50% 50% 12px;
   transform:rotate(-45deg);
-
   display:grid;
   place-items:center;
-
   box-shadow:
-    0 0 0 9px
-    rgba(255,210,28,.07),
-
-    0 8px 30px
-    rgba(0,0,0,.25);
-
+    0 0 0 9px rgba(255,210,28,.07),
+    0 8px 30px rgba(0,0,0,.25);
   flex-shrink:0;
 }
 
@@ -173,262 +110,145 @@ body{
 
 .logo{
   font-size:58px;
-
   font-weight:1000;
-
   letter-spacing:2px;
-
-  background:
-    linear-gradient(
-      90deg,
-      #ffd21c 0 20%,
-      #fff 21% 65%,
-      #ffd21c 66% 100%
-    );
-
+  background:linear-gradient(90deg,#ffd21c 0 20%,#fff 21% 65%,#ffd21c 66% 100%);
   -webkit-background-clip:text;
   background-clip:text;
-
   color:transparent;
-
   white-space:nowrap;
 }
 
 .slogan{
   position:relative;
   z-index:2;
-
   color:var(--yellow);
-
   font-weight:1000;
-
   font-size:21px;
-
   margin-top:7px;
 }
 
 .subtitle{
   position:relative;
   z-index:2;
-
   margin-top:9px;
-
   color:#eee;
-
   font-size:17px;
 }
 
 .header-side{
   position:absolute;
   z-index:3;
-
   right:34px;
   top:65px;
-
   color:#fff;
-
   font-size:21px;
-
   font-weight:900;
-
   line-height:1.65;
-
   text-align:right;
 }
 
-.header-side span{
-  color:var(--yellow);
-}
-
-
-/* =====================================================
-   CARD
-   ===================================================== */
+.header-side span{color:var(--yellow);}
 
 .card{
-  background:
-    rgba(255,255,255,.98);
-
+  background:rgba(255,255,255,.98);
   border-radius:24px;
-
   padding:22px;
-
   margin-bottom:16px;
-
-  box-shadow:
-    0 9px 30px
-    rgba(0,0,0,.08);
-
-  border:
-    1px solid
-    rgba(0,0,0,.04);
+  box-shadow:0 9px 30px rgba(0,0,0,.08);
+  border:1px solid rgba(0,0,0,.04);
 }
-
-
-/* =====================================================
-   SEARCH
-   ===================================================== */
 
 .search-grid{
   display:grid;
-
-  grid-template-columns:
-    1fr 1fr;
-
+  grid-template-columns:1fr 1fr;
   gap:22px;
-
   direction:ltr;
 }
 
-.search-column{
-  direction:rtl;
-}
+.search-column{direction:rtl;}
 
 .field-head{
   display:flex;
-
   align-items:center;
-
   gap:10px;
-
   margin-bottom:9px;
-
   font-weight:1000;
-
   font-size:19px;
 }
 
 .field-icon{
   width:39px;
   height:39px;
-
   display:grid;
   place-items:center;
-
   border-radius:12px;
-
   background:#080a0c;
-
   color:var(--yellow);
-
   font-size:19px;
-
   flex-shrink:0;
 }
 
-.input-wrap{
-  position:relative;
-}
+.input-wrap{position:relative;}
 
 input{
   width:100%;
-
   padding:17px 18px;
-
-  border:
-    2px solid
-    var(--yellow);
-
+  border:2px solid var(--yellow);
   border-radius:16px;
-
   font-size:17px;
-
   outline:none;
-
   direction:rtl;
-
   background:#fff;
-
   transition:.2s;
 }
 
 input:focus{
   border-color:#e0a900;
-
-  box-shadow:
-    0 0 0 4px
-    rgba(255,210,28,.15);
+  box-shadow:0 0 0 4px rgba(255,210,28,.15);
 }
 
-input::placeholder{
-  color:#999;
-}
-
-
-/* =====================================================
-   SUGGESTIONS
-   ===================================================== */
+input::placeholder{color:#999;}
 
 .suggestions{
   position:absolute;
-
   z-index:100;
-
-  top:
-    calc(100% + 7px);
-
+  top:calc(100% + 7px);
   right:0;
   left:0;
-
   background:#fff;
-
-  border:
-    1px solid #ddd;
-
+  border:1px solid #ddd;
   border-radius:17px;
-
   overflow:hidden;
-
-  box-shadow:
-    0 18px 35px
-    rgba(0,0,0,.18);
-
+  box-shadow:0 18px 35px rgba(0,0,0,.18);
   max-height:310px;
-
   overflow-y:auto;
 }
 
 .suggestion{
   display:flex;
-
   align-items:center;
-
   gap:11px;
-
   padding:13px 14px;
-
-  border-bottom:
-    1px solid #f0f0f0;
-
+  border-bottom:1px solid #f0f0f0;
   cursor:pointer;
-
   font-weight:800;
-
   transition:.15s;
-
   background:#fff;
 }
 
 .suggestion:hover,
-.suggestion:active{
-  background:#fff9dc;
-}
+.suggestion:active{background:#fff9dc;}
 
 .suggestion-icon{
   flex:0 0 36px;
-
   width:36px;
   height:36px;
-
   border-radius:11px;
-
   display:grid;
   place-items:center;
-
   background:var(--yellow);
-
   color:#111;
-
   font-size:17px;
 }
 
@@ -444,21 +264,15 @@ input::placeholder{
 
 .suggestion-text{
   display:flex;
-
   flex-direction:column;
-
   align-items:flex-start;
-
   gap:2px;
 }
 
-.suggestion-name{
-  font-size:14px;
-}
+.suggestion-name{font-size:14px;}
 
 .suggestion-sub{
   font-size:10px;
-
   color:#999;
 }
 
@@ -472,468 +286,271 @@ input::placeholder{
   font-weight:900;
 }
 
-
-/* =====================================================
-   BUTTON
-   ===================================================== */
-
 .calc-wrap{
   margin-top:22px;
-
   text-align:center;
 }
 
 .calc-btn{
   position:relative;
-
   overflow:hidden;
-
   width:min(850px,100%);
-
   border:0;
-
-  background:
-    linear-gradient(
-      135deg,
-      #080a0c,
-      #191d20
-    );
-
+  background:linear-gradient(135deg,#080a0c,#191d20);
   color:#fff;
-
   padding:18px 30px;
-
   border-radius:999px;
-
   font-size:20px;
-
   font-weight:1000;
-
   cursor:pointer;
-
   box-shadow:
     0 7px 0 #d6a900,
-    0 14px 25px
-    rgba(0,0,0,.15);
-
+    0 14px 25px rgba(0,0,0,.15);
   transition:.15s;
 }
 
 .calc-btn:before{
   content:"🧮";
-
   position:absolute;
-
   right:28px;
-
   top:50%;
-
-  transform:
-    translateY(-50%);
-
+  transform:translateY(-50%);
   font-size:24px;
 }
 
 .calc-btn:after{
   content:"←";
-
   position:absolute;
-
   left:28px;
-
   top:50%;
-
-  transform:
-    translateY(-53%);
-
+  transform:translateY(-53%);
   color:var(--yellow);
-
   font-size:30px;
 }
 
-.calc-btn:active{
-  transform:translateY(3px);
-}
+.calc-btn:active{transform:translateY(3px);}
 
 .hint{
   text-align:center;
-
   color:#888;
-
   font-size:12px;
-
   margin-top:14px;
 }
 
-
-/* =====================================================
-   TRIAL
-   ===================================================== */
-
 .trial-note{
-  margin:
-    14px auto 0;
-
+  margin:14px auto 0;
   max-width:850px;
-
   background:#fff7d8;
-
-  border:
-    1px solid #f4d96b;
-
+  border:1px solid #f4d96b;
   color:#5f4a00;
-
   padding:11px 14px;
-
   border-radius:14px;
-
   text-align:center;
-
   font-size:12px;
-
   line-height:1.8;
 }
 
-.trial-note strong{
-  color:#111;
-}
-
-
-/* =====================================================
-   RESULT
-   ===================================================== */
+.trial-note strong{color:#111;}
 
 .result{
   display:none;
-
-  border:
-    1px solid #efd36a;
-
+  border:1px solid #efd36a;
   padding:28px;
 }
 
 .result-head{
   display:flex;
-
   align-items:center;
-
   gap:8px;
-
   font-weight:900;
-
   margin-bottom:18px;
 }
 
 .result-head .dot{
   width:10px;
   height:10px;
-
   background:var(--yellow);
-
   border-radius:50%;
-
-  box-shadow:
-    0 0 0 5px
-    rgba(255,210,28,.15);
+  box-shadow:0 0 0 5px rgba(255,210,28,.15);
 }
 
 .route{
   display:grid;
-
-  grid-template-columns:
-    1fr 100px 1fr;
-
+  grid-template-columns:1fr 100px 1fr;
   align-items:center;
-
   gap:18px;
-
   margin-bottom:22px;
 }
 
 .place{
-  background:
-    linear-gradient(
-      135deg,
-      #f7f8f9,
-      #eef0f2
-    );
-
+  background:linear-gradient(135deg,#f7f8f9,#eef0f2);
   border-radius:40px;
-
   padding:15px 18px;
-
   text-align:center;
-
   font-weight:1000;
-
   min-height:66px;
-
   display:flex;
-
   align-items:center;
-
   justify-content:center;
-
   font-size:20px;
 }
 
 .place.confirmed{
-  border:
-    2px solid
-    rgba(22,131,255,.35);
+  border:2px solid rgba(22,131,255,.35);
 }
 
 .place.uncertain{
-  border:
-    2px solid
-    rgba(229,57,53,.35);
+  border:2px solid rgba(229,57,53,.35);
 }
 
 .arrow{
   width:90px;
   height:60px;
-
   display:grid;
-
   place-items:center;
-
   position:relative;
 }
 
 .arrow:before{
   content:"🛣️";
-
   font-size:43px;
-
-  filter:
-    grayscale(1)
-    brightness(.25);
+  filter:grayscale(1) brightness(.25);
 }
 
 .arrow:after{
   content:"→";
-
   position:absolute;
-
   right:0;
   top:17px;
-
   font-size:27px;
-
   font-weight:1000;
 }
 
 .stats{
   display:grid;
-
-  grid-template-columns:
-    1fr 1px 1fr;
-
+  grid-template-columns:1fr 1px 1fr;
   align-items:center;
-
   text-align:center;
-
   border-radius:19px;
-
   padding:18px 8px;
 }
 
 .divider{
   height:65px;
-
   background:#e5e5e5;
 }
 
 .distance,
 .price-box{
   font-size:50px;
-
   font-weight:1000;
-
   line-height:1;
 }
 
 .distance small{
   font-size:14px;
-
   font-weight:800;
 }
 
-.price-box{
-  color:#1683ff;
-}
-
-.price-box.uncertain{
-  color:var(--red);
-}
-
-.price-box.confirmed{
-  color:var(--blue);
-}
+.price-box{color:#1683ff;}
+.price-box.uncertain{color:var(--red);}
+.price-box.confirmed{color:var(--blue);}
 
 .price-box .currency{
   font-size:14px;
-
   color:inherit;
-
   opacity:.8;
-
   font-weight:1000;
-
   margin-top:5px;
 }
 
 .price-status{
   font-size:11px;
-
   font-weight:900;
-
   line-height:1.5;
-
   margin-top:8px;
 }
 
-.price-status.blue{
-  color:var(--blue);
-}
-
-.price-status.red{
-  color:var(--red);
-}
+.price-status.blue{color:var(--blue);}
+.price-status.red{color:var(--red);}
 
 .stat-label{
   font-size:12px;
-
   color:#888;
-
   font-weight:800;
-
   margin-top:7px;
 }
 
 .confirmation{
   margin-top:15px;
-
   padding:13px 15px;
-
   border-radius:15px;
-
   font-size:13px;
-
   line-height:1.8;
-
   text-align:center;
-
   font-weight:900;
 }
 
 .confirmation.blue{
   background:var(--blueSoft);
-
   color:#1268c4;
-
-  border:
-    1px solid #b9ddff;
+  border:1px solid #b9ddff;
 }
 
 .confirmation.red{
   background:var(--redSoft);
-
   color:#c62828;
-
-  border:
-    1px solid #ffc1c1;
+  border:1px solid #ffc1c1;
 }
 
 .note{
   margin-top:14px;
-
   background:#f1f3f5;
-
   padding:14px;
-
   border-radius:15px;
-
   font-size:13px;
-
   line-height:1.8;
-
   text-align:center;
 }
 
 .warning{
   margin-top:12px;
-
   background:#fff7d8;
-
-  border:
-    1px solid #f4d96b;
-
+  border:1px solid #f4d96b;
   padding:13px;
-
   border-radius:15px;
-
   font-size:13px;
-
   line-height:1.8;
 }
 
 .tagline{
   text-align:center;
-
-  margin:
-    23px 0 3px;
-
+  margin:23px 0 3px;
   font-weight:1000;
-
   font-size:18px;
 }
 
-.tagline span{
-  color:var(--yellow2);
-}
-
-
-/* =====================================================
-   FOOTER
-   ===================================================== */
+.tagline span{color:var(--yellow2);}
 
 .footer{
   background:#0b0d0f;
-
   color:#fff;
-
   border-radius:30px;
-
   padding:18px 25px;
-
   display:flex;
-
   align-items:center;
-
   justify-content:space-between;
-
   gap:10px;
-
   font-size:13px;
-
   font-weight:900;
 }
 
 .footer strong{
   color:var(--yellow);
-
   font-size:16px;
 }
 
-.footer small{
-  color:#aaa;
-}
-
-
-/* =====================================================
-   MOBILE
-   ===================================================== */
+.footer small{color:#aaa;}
 
 @media(max-width:700px){
 
@@ -944,92 +561,62 @@ input::placeholder{
 
   .header{
     min-height:205px;
-
     border-radius:24px;
-
-    padding:
-      20px 12px 23px;
+    padding:20px 12px 23px;
   }
 
-  .header-side{
-    display:none;
-  }
+  .header-side{display:none;}
 
-  .brand{
-    gap:11px;
-  }
+  .brand{gap:11px;}
 
   .logo-mark{
     width:64px;
     height:64px;
-
     border-width:5px;
   }
 
-  .logo-mark span{
-    font-size:28px;
-  }
+  .logo-mark span{font-size:28px;}
 
   .logo{
     font-size:34px;
-
     letter-spacing:1px;
   }
 
-  .slogan{
-    font-size:16px;
-  }
-
-  .subtitle{
-    font-size:13px;
-  }
+  .slogan{font-size:16px;}
+  .subtitle{font-size:13px;}
 
   .search-grid{
     grid-template-columns:1fr;
-
     gap:15px;
   }
 
   .card{
     padding:17px;
-
     border-radius:21px;
   }
 
-  .field-head{
-    font-size:16px;
-  }
+  .field-head{font-size:16px;}
 
   input{
     font-size:15px;
-
     padding:16px;
   }
 
   .calc-btn{
     font-size:17px;
-
-    padding:
-      17px 40px;
+    padding:17px 40px;
   }
 
-  .result{
-    padding:19px;
-  }
+  .result{padding:19px;}
 
   .route{
-    grid-template-columns:
-      1fr 52px 1fr;
-
+    grid-template-columns:1fr 52px 1fr;
     gap:6px;
   }
 
   .place{
     min-height:58px;
-
-    padding:
-      10px 6px;
-
+    padding:10px 6px;
     font-size:15px;
   }
 
@@ -1038,13 +625,10 @@ input::placeholder{
     height:50px;
   }
 
-  .arrow:before{
-    font-size:28px;
-  }
+  .arrow:before{font-size:28px;}
 
   .arrow:after{
     font-size:19px;
-
     top:15px;
   }
 
@@ -1053,15 +637,11 @@ input::placeholder{
     font-size:35px;
   }
 
-  .divider{
-    height:55px;
-  }
+  .divider{height:55px;}
 
   .footer{
     flex-direction:column;
-
     text-align:center;
-
     border-radius:24px;
   }
 
@@ -1069,18 +649,16 @@ input::placeholder{
 
 </style>
 
-</head>
+<!-- =====================================================
+     SUPABASE
+     ===================================================== -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
+</head>
 
 <body>
 
-
 <div class="container">
-
-
-<!-- =====================================================
-     HEADER
-     ===================================================== -->
 
 <div class="header">
 
@@ -1096,16 +674,13 @@ input::placeholder{
 
   </div>
 
-
   <div class="slogan">
     — نوصلك وين ما كنت — 💛
   </div>
 
-
   <div class="subtitle">
     حساب تسعيرة التوصيل حسب المسافة الفعلية
   </div>
-
 
   <div class="header-side">
     بكل أمان<br>
@@ -1115,18 +690,9 @@ input::placeholder{
 
 </div>
 
-
-
-<!-- =====================================================
-     SEARCH CARD
-     ===================================================== -->
-
 <div class="card">
 
   <div class="search-grid">
-
-
-    <!-- FROM -->
 
     <div class="search-column">
 
@@ -1141,7 +707,6 @@ input::placeholder{
         </span>
 
       </div>
-
 
       <div class="input-wrap">
 
@@ -1162,10 +727,6 @@ input::placeholder{
 
     </div>
 
-
-
-    <!-- TO -->
-
     <div class="search-column">
 
       <div class="field-head">
@@ -1179,7 +740,6 @@ input::placeholder{
         </span>
 
       </div>
-
 
       <div class="input-wrap">
 
@@ -1200,10 +760,7 @@ input::placeholder{
 
     </div>
 
-
   </div>
-
-
 
   <div class="calc-wrap">
 
@@ -1217,13 +774,9 @@ input::placeholder{
 
   </div>
 
-
   <div class="hint">
-
     اكتب اسم المنطقة والاختيارات تظهر لك مباشرة ✨
-
   </div>
-
 
   <div class="trial-note">
 
@@ -1235,16 +788,9 @@ input::placeholder{
 
 </div>
 
-
-
-<!-- =====================================================
-     RESULT
-     ===================================================== -->
-
 <div
   id="result"
   class="card result">
-
 
   <div class="result-head">
 
@@ -1256,34 +802,23 @@ input::placeholder{
 
   </div>
 
-
-
   <div class="route">
-
 
     <div
       id="fromPlace"
       class="place">
     </div>
 
-
     <div class="arrow"></div>
-
 
     <div
       id="toPlace"
       class="place">
     </div>
 
-
   </div>
 
-
-
   <div class="stats">
-
-
-    <!-- DISTANCE -->
 
     <div>
 
@@ -1305,13 +840,7 @@ input::placeholder{
 
     </div>
 
-
-
     <div class="divider"></div>
-
-
-
-    <!-- PRICE -->
 
     <div>
 
@@ -1334,17 +863,13 @@ input::placeholder{
 
       </div>
 
-
       <div class="stat-label">
         التسعيرة
       </div>
 
     </div>
 
-
   </div>
-
-
 
   <div
     id="confirmation"
@@ -1352,22 +877,16 @@ input::placeholder{
     style="display:none">
   </div>
 
-
-
   <div
     id="note"
     class="note">
   </div>
-
-
 
   <div
     id="warning"
     class="warning"
     style="display:none">
   </div>
-
-
 
   <div class="tagline">
 
@@ -1377,14 +896,7 @@ input::placeholder{
 
   </div>
 
-
 </div>
-
-
-
-<!-- =====================================================
-     FOOTER
-     ===================================================== -->
 
 <div class="footer">
 
@@ -1400,33 +912,148 @@ input::placeholder{
 
   </div>
 
-
   <small>
     خدمات التوصيل في المدية وما جاورها 📍
   </small>
 
 </div>
 
-
 </div>
 
-
-
 <script>
+
+/* =====================================================
+   SUPABASE — SITE SETTINGS
+   ===================================================== */
+
+const SUPABASE_URL =
+  "https://wwtodewazvhmcedvwbqm.supabase.co";
+
+const SUPABASE_KEY =
+  "sb_publishable_eIW--uDja5RoAwMZseokUw_TcYRRDQf";
+
+const supabaseClient =
+  supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_KEY
+  );
+
+
+async function loadSiteSettings(){
+
+  try{
+
+    const { data, error } =
+      await supabaseClient
+        .from("site_settings")
+        .select("*")
+        .eq("id",1)
+        .maybeSingle();
+
+    if(error){
+
+      console.log(
+        "Supabase settings:",
+        error
+      );
+
+      return;
+
+    }
+
+    if(!data)
+      return;
+
+
+    /* =================================================
+       SITE NAME
+       ================================================= */
+
+    const logo =
+      document.querySelector(".logo");
+
+    if(
+      logo &&
+      data.site_name
+    ){
+
+      /*
+       نخلي الشكل الحالي NWASSLEK
+       وننحي BY WALID إذا كان موجود
+      */
+
+      logo.textContent =
+        data.site_name
+          .replace(/ BY WALID/gi,"")
+          .trim();
+
+    }
+
+
+    /* =================================================
+       SLOGAN
+       ================================================= */
+
+    const slogan =
+      document.querySelector(".slogan");
+
+    if(
+      slogan &&
+      data.slogan
+    ){
+
+      slogan.textContent =
+        "— " +
+        data.slogan +
+        " — 💛";
+
+    }
+
+
+    /* =================================================
+       LOCATION
+       ================================================= */
+
+    const footerSmall =
+      document.querySelector(".footer small");
+
+    if(
+      footerSmall &&
+      data.location
+    ){
+
+      footerSmall.textContent =
+        "خدمات التوصيل في " +
+        data.location +
+        " 📍";
+
+    }
+
+
+    console.log(
+      "NWASSLEK settings loaded ✅"
+    );
+
+  }catch(error){
+
+    console.log(
+      "Settings error:",
+      error
+    );
+
+  }
+
+}
+
+
+/* نشغل Supabase بعد تحميل الصفحة */
+
+loadSiteSettings();
 
 
 /* =====================================================
    48 LOCAL ZONES
-   =====================================================
-
-   confirmed:true
-   = إحداثية موثوقة بما يكفي للاستعمال
-
-   confirmed:false
-   = الاسم معروف ولكن الإحداثية مازال غير مؤكدة
-     والسعر سيظهر بالأحمر كتقديري
    ===================================================== */
-
 
 const PLACES = [
 
@@ -1701,12 +1328,6 @@ const PLACES = [
     lat:36.26760,
     lon:2.74780,
     confirmed:true,
-
-    /* مرجع ثابت:
-       LAntica Forno Médéa
-       Plus Code: 7Q96+WR7
-    */
-
     fixedReference:"LAntica Forno Médéa — 7Q96+WR7"
   },
 
@@ -1774,7 +1395,6 @@ const PLACES = [
   }
 
 ];
-
 
 
 /* =====================================================
@@ -1972,7 +1592,6 @@ const ALIASES = {
 };
 
 
-
 /* =====================================================
    NORMALIZE
    ===================================================== */
@@ -1980,34 +1599,19 @@ const ALIASES = {
 function normalize(str){
 
   return String(str || "")
-
     .toLowerCase()
-
     .normalize("NFD")
-
     .replace(/[\u0300-\u036f]/g,"")
-
     .replace(/[أإآ]/g,"ا")
-
     .replace(/ة/g,"ه")
-
     .replace(/ى/g,"ي")
-
     .replace(/ؤ/g,"و")
-
     .replace(/ئ/g,"ي")
-
     .replace(/ـ/g,"")
-
-    .replace(
-      /[^a-z0-9\u0600-\u06ff]+/g,
-      ""
-    )
-
+    .replace(/[^a-z0-9\u0600-\u06ff]+/g,"")
     .trim();
 
 }
-
 
 
 /* =====================================================
@@ -2021,58 +1625,28 @@ function levenshtein(a,b){
 
   const matrix=[];
 
-  for(
-    let i=0;
-    i<=b.length;
-    i++
-  ){
-
+  for(let i=0;i<=b.length;i++){
     matrix[i]=[i];
-
   }
 
-
-  for(
-    let j=0;
-    j<=a.length;
-    j++
-  ){
-
+  for(let j=0;j<=a.length;j++){
     matrix[0][j]=j;
-
   }
 
+  for(let i=1;i<=b.length;i++){
 
-  for(
-    let i=1;
-    i<=b.length;
-    i++
-  ){
+    for(let j=1;j<=a.length;j++){
 
-    for(
-      let j=1;
-      j<=a.length;
-      j++
-    ){
+      if(b.charAt(i-1)===a.charAt(j-1)){
 
-      if(
-        b.charAt(i-1)===
-        a.charAt(j-1)
-      ){
-
-        matrix[i][j]=
-          matrix[i-1][j];
+        matrix[i][j]=matrix[i-1][j];
 
       }else{
 
         matrix[i][j]=Math.min(
-
           matrix[i-1][j-1]+1,
-
           matrix[i][j-1]+1,
-
           matrix[i-1][j]+1
-
         );
 
       }
@@ -2086,188 +1660,110 @@ function levenshtein(a,b){
 }
 
 
-
 /* =====================================================
    FIND PLACE
    ===================================================== */
 
 function findPlace(input){
 
-  const raw=
-    String(input || "")
-    .trim();
+  const raw=String(input || "").trim();
+  const n=normalize(raw);
 
-  const n=
-    normalize(raw);
+  if(!n) return null;
 
-  if(!n)
-    return null;
+  for(const key in ALIASES){
 
+    if(normalize(key)===n){
 
+      const name=ALIASES[key];
 
-  /* ALIAS */
+      const place=PLACES.find(
+        p=>p.name===name
+      );
 
-  for(
-    const key in ALIASES
-  ){
-
-    if(
-      normalize(key)===n
-    ){
-
-      const name=
-        ALIASES[key];
-
-      const place=
-        PLACES.find(
-          p=>p.name===name
-        );
-
-      if(!place)
-        continue;
+      if(!place) continue;
 
       return {
-
         place:place,
-
         corrected:name,
-
         exact:true
-
       };
 
     }
 
   }
 
+  for(const p of PLACES){
 
-
-  /* EXACT */
-
-  for(
-    const p of PLACES
-  ){
-
-    if(
-      normalize(p.name)===n
-    ){
+    if(normalize(p.name)===n){
 
       return {
-
         place:p,
-
         corrected:p.name,
-
         exact:true
-
       };
 
     }
 
   }
-
-
-
-  /* CONTAINS */
 
   const contains=[];
 
-  for(
-    const p of PLACES
-  ){
+  for(const p of PLACES){
 
-    const pn=
-      normalize(p.name);
+    const pn=normalize(p.name);
 
-    if(
-      pn.includes(n) ||
-      n.includes(pn)
-    ){
-
+    if(pn.includes(n) || n.includes(pn)){
       contains.push(p);
-
     }
 
   }
 
-
-  if(
-    contains.length
-  ){
+  if(contains.length){
 
     return {
-
       place:contains[0],
-
-      corrected:
-        contains[0].name,
-
+      corrected:contains[0].name,
       exact:false
-
     };
 
   }
 
-
-
-  /* FUZZY */
-
   let best=null;
+  let bestDistance=Infinity;
 
-  let bestDistance=
-    Infinity;
+  for(const p of PLACES){
 
+    const d=levenshtein(n,p.name);
 
-  for(
-    const p of PLACES
-  ){
-
-    const d=
-      levenshtein(
-        n,
-        p.name
-      );
-
-    if(
-      d<bestDistance
-    ){
+    if(d<bestDistance){
 
       bestDistance=d;
-
       best=p;
 
     }
 
   }
 
-
   if(
     best &&
-    bestDistance<=
-      Math.max(
-        3,
-        Math.floor(n.length*.45)
-      )
+    bestDistance<=Math.max(
+      3,
+      Math.floor(n.length*.45)
+    )
   ){
 
     return {
-
       place:best,
-
-      corrected:
-        best.name,
-
+      corrected:best.name,
       exact:false
-
     };
 
   }
 
-
   return null;
 
 }
-
 
 
 /* =====================================================
@@ -2277,147 +1773,99 @@ function findPlace(input){
 function showSuggestions(type){
 
   const input=
-    document
-      .getElementById(type)
-      .value
-      .trim();
-
+    document.getElementById(type).value.trim();
 
   const box=
-    document
-      .getElementById(
-        type+"Suggestions"
-      );
-
+    document.getElementById(type+"Suggestions");
 
   if(!input){
 
     box.innerHTML="";
-
     return;
 
   }
 
+  const n=normalize(input);
 
-  const n=
-    normalize(input);
+  let ranked=PLACES.map(p=>{
 
+    const pn=normalize(p.name);
 
-  let ranked=
-    PLACES.map(p=>{
+    let score=levenshtein(n,pn);
 
-      const pn=
-        normalize(p.name);
+    if(pn.includes(n)){
+      score-=20;
+    }
 
-      let score=
-        levenshtein(
-          n,
-          pn
-        );
+    if(n.includes(pn)){
+      score-=10;
+    }
 
+    return {p,score};
 
-      if(
-        pn.includes(n)
-      ){
+  });
 
-        score-=20;
-
-      }
-
-
-      if(
-        n.includes(pn)
-      ){
-
-        score-=10;
-
-      }
-
-
-      return {
-        p,
-        score
-      };
-
-    });
-
-
-  ranked.sort(
-    (a,b)=>
-      a.score-b.score
-  );
-
+  ranked.sort((a,b)=>a.score-b.score);
 
   box.innerHTML="";
 
+  ranked.slice(0,8).forEach(item=>{
 
-  ranked
-    .slice(0,8)
-    .forEach(item=>{
+    const div=document.createElement("div");
 
-      const div=
-        document
-          .createElement("div");
+    div.className=
+      "suggestion "+
+      (
+        item.p.confirmed
+        ?
+        "confirmed"
+        :
+        "uncertain"
+      );
 
+    div.innerHTML=`
 
-      div.className=
-        "suggestion "+
-        (
-          item.p.confirmed
-          ?
-          "confirmed"
-          :
-          "uncertain"
-        );
+      <span class="suggestion-icon">
+        ${item.p.confirmed ? "✓" : "!"}
+      </span>
 
+      <span class="suggestion-text">
 
-      div.innerHTML=`
-
-        <span class="suggestion-icon">
-          ${item.p.confirmed ? "✓" : "!"}
+        <span class="suggestion-name">
+          ${item.p.name}
         </span>
 
-        <span class="suggestion-text">
+        <span class="suggestion-sub">
 
-          <span class="suggestion-name">
-            ${item.p.name}
-          </span>
-
-          <span class="suggestion-sub">
-
-            ${
-              item.p.confirmed
-              ?
-              "🔵 إحداثيات مؤكدة"
-              :
-              "🔴 إحداثيات غير مؤكدة — السعر تقديري"
-            }
-
-          </span>
+          ${
+            item.p.confirmed
+            ?
+            "🔵 إحداثيات مؤكدة"
+            :
+            "🔴 إحداثيات غير مؤكدة — السعر تقديري"
+          }
 
         </span>
 
-      `;
+      </span>
 
+    `;
 
-      div.onclick=()=>{
+    div.onclick=()=>{
 
-        document
-          .getElementById(type)
-          .value=
-          item.p.name;
+      document
+        .getElementById(type)
+        .value=item.p.name;
 
-        box.innerHTML="";
+      box.innerHTML="";
 
-      };
+    };
 
+    box.appendChild(div);
 
-      box.appendChild(div);
-
-    });
+  });
 
 }
-
 
 
 /* =====================================================
@@ -2428,30 +1876,20 @@ document.addEventListener(
   "click",
   function(e){
 
-    if(
-      !e.target.closest(
-        ".input-wrap"
-      )
-    ){
+    if(!e.target.closest(".input-wrap")){
 
       document
-        .getElementById(
-          "fromSuggestions"
-        )
+        .getElementById("fromSuggestions")
         .innerHTML="";
 
-
       document
-        .getElementById(
-          "toSuggestions"
-        )
+        .getElementById("toSuggestions")
         .innerHTML="";
 
     }
 
   }
 );
-
 
 
 /* =====================================================
@@ -2462,42 +1900,17 @@ function haversine(a,b){
 
   const R=6371;
 
+  const lat1=a.lat*Math.PI/180;
+  const lat2=b.lat*Math.PI/180;
 
-  const lat1=
-    a.lat*
-    Math.PI/180;
-
-
-  const lat2=
-    b.lat*
-    Math.PI/180;
-
-
-  const dLat=
-    (b.lat-a.lat)*
-    Math.PI/180;
-
-
-  const dLon=
-    (b.lon-a.lon)*
-    Math.PI/180;
-
+  const dLat=(b.lat-a.lat)*Math.PI/180;
+  const dLon=(b.lon-a.lon)*Math.PI/180;
 
   const x=
-
-    Math.sin(
-      dLat/2
-    )**2
-
-    +
-
+    Math.sin(dLat/2)**2+
     Math.cos(lat1)*
     Math.cos(lat2)*
-
-    Math.sin(
-      dLon/2
-    )**2;
-
+    Math.sin(dLon/2)**2;
 
   return R*
     2*
@@ -2509,7 +1922,6 @@ function haversine(a,b){
 }
 
 
-
 /* =====================================================
    ROAD DISTANCE
    ===================================================== */
@@ -2517,30 +1929,19 @@ function haversine(a,b){
 async function roadDistance(a,b){
 
   const url=
-
     "https://router.project-osrm.org/route/v1/driving/"+
     `${a.lon},${a.lat};${b.lon},${b.lat}`+
     "?overview=false&alternatives=true&steps=false";
 
-
   try{
 
-    const response=
-      await fetch(url);
-
+    const response=await fetch(url);
 
     if(!response.ok){
-
-      throw new Error(
-        "OSRM error"
-      );
-
+      throw new Error("OSRM error");
     }
 
-
-    const data=
-      await response.json();
-
+    const data=await response.json();
 
     if(
       data.code==="Ok" &&
@@ -2549,48 +1950,26 @@ async function roadDistance(a,b){
     ){
 
       const routes=
-
         data.routes
+          .map(r=>r.distance/1000)
+          .filter(d=>Number.isFinite(d));
 
-          .map(
-            r=>
-              r.distance/1000
-          )
+      if(routes.length){
 
-          .filter(
-            d=>
-              Number.isFinite(d)
-          );
+        const straight=haversine(a,b);
 
-
-      if(
-        routes.length
-      ){
-
-        const straight=
-          haversine(a,b);
-
-
-        const distance=
-          Math.min(
-            ...routes
-          );
-
+        const distance=Math.min(...routes);
 
         if(
-          distance<=
-          Math.max(
+          distance<=Math.max(
             12,
             straight*4
           )
         ){
 
           return {
-
             distance,
-
             fallback:false
-
           };
 
         }
@@ -2601,28 +1980,16 @@ async function roadDistance(a,b){
 
   }catch(error){
 
-    console.log(
-      "OSRM:",
-      error
-    );
+    console.log("OSRM:",error);
 
   }
 
-
-
-  /* FALLBACK */
-
   return {
-
-    distance:
-      haversine(a,b)*1.35,
-
+    distance:haversine(a,b)*1.35,
     fallback:true
-
   };
 
 }
-
 
 
 /* =====================================================
@@ -2631,42 +1998,22 @@ async function roadDistance(a,b){
 
 function calculatePrice(km){
 
-  if(km<=1)
-    return 150;
-
-  if(km<=2)
-    return 200;
-
-  if(km<=4)
-    return 250;
-
-  if(km<=6)
-    return 300;
-
-  if(km<=8)
-    return 350;
-
-  if(km<=10)
-    return 400;
-
-  if(km<=12)
-    return 450;
-
-  if(km<=14)
-    return 500;
-
-  if(km<=15)
-    return 550;
+  if(km<=1) return 150;
+  if(km<=2) return 200;
+  if(km<=4) return 250;
+  if(km<=6) return 300;
+  if(km<=8) return 350;
+  if(km<=10) return 400;
+  if(km<=12) return 450;
+  if(km<=14) return 500;
+  if(km<=15) return 550;
 
   return (
     550+
-    Math.ceil(
-      km-15
-    )*50
+    Math.ceil(km-15)*50
   );
 
 }
-
 
 
 /* =====================================================
@@ -2676,133 +2023,63 @@ function calculatePrice(km){
 async function calculate(){
 
   const fromInput=
-    document
-      .getElementById("from")
-      .value;
-
+    document.getElementById("from").value;
 
   const toInput=
-    document
-      .getElementById("to")
-      .value;
+    document.getElementById("to").value;
 
-
-  const from=
-    findPlace(
-      fromInput
-    );
-
-
-  const to=
-    findPlace(
-      toInput
-    );
-
+  const from=findPlace(fromInput);
+  const to=findPlace(toInput);
 
   const result=
-    document
-      .getElementById(
-        "result"
-      );
-
+    document.getElementById("result");
 
   const warning=
-    document
-      .getElementById(
-        "warning"
-      );
-
+    document.getElementById("warning");
 
   const note=
-    document
-      .getElementById(
-        "note"
-      );
-
+    document.getElementById("note");
 
   const priceBox=
-    document
-      .getElementById(
-        "priceBox"
-      );
-
+    document.getElementById("priceBox");
 
   const priceStatus=
-    document
-      .getElementById(
-        "priceStatus"
-      );
-
+    document.getElementById("priceStatus");
 
   const confirmation=
-    document
-      .getElementById(
-        "confirmation"
-      );
-
+    document.getElementById("confirmation");
 
   const fromPlace=
-    document
-      .getElementById(
-        "fromPlace"
-      );
-
+    document.getElementById("fromPlace");
 
   const toPlace=
-    document
-      .getElementById(
-        "toPlace"
-      );
+    document.getElementById("toPlace");
 
-
-  warning.style.display=
-    "none";
-
+  warning.style.display="none";
   warning.innerHTML="";
 
-
-  confirmation.style.display=
-    "none";
-
+  confirmation.style.display="none";
   confirmation.innerHTML="";
-
 
   priceBox.classList.remove(
     "confirmed",
     "uncertain"
   );
 
-
-  priceStatus.className=
-    "price-status";
-
+  priceStatus.className="price-status";
   priceStatus.innerHTML="";
-
-
-
-  /* =====================================================
-     INVALID
-     ===================================================== */
 
   if(!from || !to){
 
-    result.style.display=
-      "block";
-
+    result.style.display="block";
 
     document
-      .getElementById(
-        "distance"
-      )
+      .getElementById("distance")
       .textContent="!";
 
-
     document
-      .getElementById(
-        "price"
-      )
+      .getElementById("price")
       .textContent="";
-
 
     note.innerHTML=
       "❌ ما قدرتش نحدد إحدى المناطق. حاول تكتب الاسم بطريقة أخرى.";
@@ -2811,18 +2088,8 @@ async function calculate(){
 
   }
 
-
-
-  /* =====================================================
-     DISPLAY PLACES
-     ===================================================== */
-
-  fromPlace.textContent=
-    from.corrected;
-
-  toPlace.textContent=
-    to.corrected;
-
+  fromPlace.textContent=from.corrected;
+  toPlace.textContent=to.corrected;
 
   fromPlace.classList.remove(
     "confirmed",
@@ -2834,7 +2101,6 @@ async function calculate(){
     "uncertain"
   );
 
-
   fromPlace.classList.add(
     from.place.confirmed
     ?
@@ -2842,7 +2108,6 @@ async function calculate(){
     :
     "uncertain"
   );
-
 
   toPlace.classList.add(
     to.place.confirmed
@@ -2852,35 +2117,18 @@ async function calculate(){
     "uncertain"
   );
 
-
-  result.style.display=
-    "block";
-
+  result.style.display="block";
 
   document
-    .getElementById(
-      "distance"
-    )
-    .textContent=
-    "...";
-
+    .getElementById("distance")
+    .textContent="...";
 
   document
-    .getElementById(
-      "price"
-    )
-    .textContent=
-    "...";
-
+    .getElementById("price")
+    .textContent="...";
 
   note.innerHTML=
     "⏳ جاري حساب أقرب مسار بالسيارة...";
-
-
-
-  /* =====================================================
-     ROAD ROUTE
-     ===================================================== */
 
   const route=
     await roadDistance(
@@ -2888,34 +2136,19 @@ async function calculate(){
       to.place
     );
 
+  const km=route.distance;
 
-  const km=
-    route.distance;
-
-
-  const price=
-    calculatePrice(km);
-
-
-
-  /* =====================================================
-     PRICE COLOR
-     ===================================================== */
+  const price=calculatePrice(km);
 
   const bothConfirmed=
     from.place.confirmed &&
     to.place.confirmed;
 
-
   if(bothConfirmed){
 
-    priceBox.classList.add(
-      "confirmed"
-    );
+    priceBox.classList.add("confirmed");
 
-    priceStatus.classList.add(
-      "blue"
-    );
+    priceStatus.classList.add("blue");
 
     priceStatus.innerHTML=
       "🔵 المناطق مؤكدة<br>"+
@@ -2930,13 +2163,9 @@ async function calculate(){
 
   }else{
 
-    priceBox.classList.add(
-      "uncertain"
-    );
+    priceBox.classList.add("uncertain");
 
-    priceStatus.classList.add(
-      "red"
-    );
+    priceStatus.classList.add("red");
 
     priceStatus.innerHTML=
       "🔴 سعر تقديري<br>"+
@@ -2951,46 +2180,23 @@ async function calculate(){
 
   }
 
-
-  confirmation.style.display=
-    "block";
-
-
-
-  /* =====================================================
-     DISPLAY
-     ===================================================== */
+  confirmation.style.display="block";
 
   document
-    .getElementById(
-      "distance"
-    )
+    .getElementById("distance")
     .textContent=
     km.toFixed(1);
 
-
   document
-    .getElementById(
-      "price"
-    )
+    .getElementById("price")
     .textContent=
-    price.toLocaleString(
-      "fr-FR"
-    );
-
+    price.toLocaleString("fr-FR");
 
   note.innerHTML=
     "💰 التسعيرة محسوبة حسب المسافة بالسيارة بين النقطتين.<br>"+
     "💡 السعر الظاهر في الموقع تقديري وقد يتغير عند اعتماد المسار النهائي.";
 
-  
-
-  /* =====================================================
-     WARNINGS
-     ===================================================== */
-
   const messages=[];
-
 
   if(!from.place.confirmed){
 
@@ -3000,7 +2206,6 @@ async function calculate(){
 
   }
 
-
   if(!to.place.confirmed){
 
     messages.push(
@@ -3008,7 +2213,6 @@ async function calculate(){
     );
 
   }
-
 
   if(!from.exact){
 
@@ -3018,7 +2222,6 @@ async function calculate(){
 
   }
 
-
   if(!to.exact){
 
     messages.push(
@@ -3026,7 +2229,6 @@ async function calculate(){
     );
 
   }
-
 
   if(route.fallback){
 
@@ -3036,21 +2238,16 @@ async function calculate(){
 
   }
 
-
   if(messages.length){
 
-    warning.style.display=
-      "block";
+    warning.style.display="block";
 
     warning.innerHTML=
-      messages.join(
-        "<br><br>"
-      );
+      messages.join("<br><br>");
 
   }
 
 }
-
 
 
 /* =====================================================
@@ -3061,13 +2258,9 @@ document.addEventListener(
   "keydown",
   function(e){
 
-    if(
-      e.key==="Enter"
-    ){
+    if(e.key==="Enter"){
 
-      const active=
-        document.activeElement;
-
+      const active=document.activeElement;
 
       if(
         active &&
@@ -3086,9 +2279,7 @@ document.addEventListener(
   }
 );
 
-
 </script>
-
 
 </body>
 </html>
