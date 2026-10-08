@@ -9,8 +9,6 @@
 
 <style>
 
-/* نفس CSS تاعك كامل بدون تغيير */
-
 :root{
   --yellow:#ffd21c;
   --yellow2:#ffbd00;
@@ -552,6 +550,65 @@ input::placeholder{color:#999;}
 
 .footer small{color:#aaa;}
 
+
+/* =====================================================
+   NWASSLEK — SOCIAL ACCOUNTS
+   ===================================================== */
+
+.social-card{
+  background:linear-gradient(135deg,#080a0c,#171b1f);
+  border-radius:24px;
+  padding:22px;
+  margin-bottom:16px;
+  box-shadow:0 9px 30px rgba(0,0,0,.12);
+  border-bottom:4px solid var(--yellow);
+  text-align:center;
+}
+
+.social-title{
+  color:#fff;
+  font-size:22px;
+  font-weight:1000;
+  margin-bottom:6px;
+}
+
+.social-subtitle{
+  color:#aaa;
+  font-size:13px;
+  margin-bottom:18px;
+}
+
+.social-grid{
+  display:grid;
+  grid-template-columns:repeat(5,1fr);
+  gap:10px;
+  direction:ltr;
+}
+
+.social-btn{
+  min-height:62px;
+  border-radius:16px;
+  background:#fff;
+  color:#111;
+  text-decoration:none;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:4px;
+  font-weight:1000;
+  transition:.2s;
+  border:2px solid transparent;
+}
+
+.social-btn:hover{
+  transform:translateY(-3px);
+  border-color:var(--yellow);
+}
+
+.social-icon{font-size:22px;}
+.social-name{font-size:11px;}
+
 @media(max-width:700px){
 
   .container{
@@ -645,13 +702,18 @@ input::placeholder{color:#999;}
     border-radius:24px;
   }
 
+  .social-grid{
+    grid-template-columns:repeat(2,1fr);
+  }
+
+  .social-btn:last-child{
+    grid-column:span 2;
+  }
+
 }
 
 </style>
 
-<!-- =====================================================
-     SUPABASE
-     ===================================================== -->
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 </head>
@@ -689,6 +751,105 @@ input::placeholder{color:#999;}
   </div>
 
 </div>
+
+
+<!-- =====================================================
+     NWASSLEK — SOCIAL ACCOUNTS
+     ===================================================== -->
+
+<div class="social-card">
+
+  <div class="social-title">
+    تابعنا وتواصل معنا 💛
+  </div>
+
+  <div class="social-subtitle">
+    حسابات NWASSLEK الرسمية
+  </div>
+
+  <div class="social-grid">
+
+    <a
+      id="instagramLink"
+      class="social-btn"
+      href="#"
+      target="_blank"
+      rel="noopener">
+
+      <span class="social-icon">📸</span>
+
+      <span class="social-name">
+        Instagram
+      </span>
+
+    </a>
+
+
+    <a
+      id="tiktokLink"
+      class="social-btn"
+      href="#"
+      target="_blank"
+      rel="noopener">
+
+      <span class="social-icon">🎵</span>
+
+      <span class="social-name">
+        TikTok
+      </span>
+
+    </a>
+
+
+    <a
+      id="snapchatLink"
+      class="social-btn"
+      href="#"
+      target="_blank"
+      rel="noopener">
+
+      <span class="social-icon">👻</span>
+
+      <span class="social-name">
+        Snapchat
+      </span>
+
+    </a>
+
+
+    <a
+      id="whatsappLink"
+      class="social-btn"
+      href="#"
+      target="_blank"
+      rel="noopener">
+
+      <span class="social-icon">💬</span>
+
+      <span class="social-name">
+        WhatsApp
+      </span>
+
+    </a>
+
+
+    <a
+      id="phoneLink"
+      class="social-btn"
+      href="#">
+
+      <span class="social-icon">📞</span>
+
+      <span class="social-name">
+        اتصل بنا
+      </span>
+
+    </a>
+
+  </div>
+
+</div>
+
 
 <div class="card">
 
@@ -787,6 +948,7 @@ input::placeholder{color:#999;}
   </div>
 
 </div>
+
 
 <div
   id="result"
@@ -898,6 +1060,7 @@ input::placeholder{color:#999;}
 
 </div>
 
+
 <div class="footer">
 
   <div>
@@ -919,6 +1082,7 @@ input::placeholder{color:#999;}
 </div>
 
 </div>
+
 
 <script>
 
@@ -977,11 +1141,6 @@ async function loadSiteSettings(){
       data.site_name
     ){
 
-      /*
-       نخلي الشكل الحالي NWASSLEK
-       وننحي BY WALID إذا كان موجود
-      */
-
       logo.textContent =
         data.site_name
           .replace(/ BY WALID/gi,"")
@@ -1030,6 +1189,85 @@ async function loadSiteSettings(){
     }
 
 
+    /* =================================================
+       SOCIAL ACCOUNTS
+       ================================================= */
+
+    const instagramLink =
+      document.getElementById("instagramLink");
+
+    const tiktokLink =
+      document.getElementById("tiktokLink");
+
+    const snapchatLink =
+      document.getElementById("snapchatLink");
+
+    const whatsappLink =
+      document.getElementById("whatsappLink");
+
+    const phoneLink =
+      document.getElementById("phoneLink");
+
+
+    if(
+      instagramLink &&
+      data.instagram
+    ){
+
+      instagramLink.href =
+        data.instagram;
+
+    }
+
+
+    if(
+      tiktokLink &&
+      data.tiktok
+    ){
+
+      tiktokLink.href =
+        data.tiktok;
+
+    }
+
+
+    if(
+      snapchatLink &&
+      data.snapchat
+    ){
+
+      snapchatLink.href =
+        data.snapchat;
+
+    }
+
+
+    if(
+      whatsappLink &&
+      data.whatsapp
+    ){
+
+      whatsappLink.href =
+        data.whatsapp;
+
+    }
+
+
+    if(
+      phoneLink &&
+      data.phone
+    ){
+
+      const cleanPhone =
+        String(data.phone)
+          .replace(/\s+/g,"");
+
+      phoneLink.href =
+        "tel:" + cleanPhone;
+
+    }
+
+
     console.log(
       "NWASSLEK settings loaded ✅"
     );
@@ -1045,8 +1283,6 @@ async function loadSiteSettings(){
 
 }
 
-
-/* نشغل Supabase بعد تحميل الصفحة */
 
 loadSiteSettings();
 
