@@ -2,17 +2,20 @@
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Nwasslek - حساب سعر التوصيل</title>
 
 <style>
-*{box-sizing:border-box}
+*{
+  box-sizing:border-box;
+}
 
 body{
   margin:0;
   font-family:Arial,Tahoma,sans-serif;
   background:#f4f6f8;
-  color:#18202a;
+  color:#222;
 }
 
 .container{
@@ -22,123 +25,145 @@ body{
 }
 
 .header{
-  background:#111827;
-  color:#fff;
-  border-radius:22px;
+  background:linear-gradient(135deg,#111,#333);
+  color:white;
+  border-radius:20px;
   padding:25px 18px;
   text-align:center;
-  margin-bottom:16px;
+  margin-bottom:18px;
+  box-shadow:0 8px 25px rgba(0,0,0,.12);
 }
 
 .header h1{
-  margin:0 0 7px;
-  font-size:29px;
+  margin:0 0 8px;
+  font-size:28px;
 }
 
 .header p{
   margin:0;
-  opacity:.85;
+  opacity:.9;
+  font-size:15px;
 }
 
 .card{
-  background:#fff;
+  background:white;
   border-radius:18px;
-  padding:18px;
-  margin-bottom:15px;
+  padding:20px;
+  margin-bottom:16px;
   box-shadow:0 5px 20px rgba(0,0,0,.07);
 }
 
 label{
   display:block;
   font-weight:bold;
-  margin:4px 0 8px;
+  margin-bottom:8px;
 }
 
 input{
   width:100%;
   padding:14px;
-  border:1px solid #d8dde3;
+  border:1px solid #ddd;
   border-radius:12px;
   font-size:16px;
   outline:none;
-  margin-bottom:15px;
-  direction:auto;
+  margin-bottom:16px;
+  direction:rtl;
 }
 
 input:focus{
-  border-color:#111827;
+  border-color:#111;
 }
 
 button{
   width:100%;
   border:0;
-  border-radius:12px;
+  border-radius:13px;
   padding:15px;
-  background:#111827;
-  color:#fff;
+  background:#111;
+  color:white;
   font-size:17px;
   font-weight:bold;
   cursor:pointer;
 }
 
-button:disabled{
-  opacity:.6;
+button:active{
+  transform:scale(.99);
 }
 
-.loading{
-  display:none;
+#status{
+  margin-top:15px;
   text-align:center;
-  margin-top:13px;
+  font-size:14px;
   color:#555;
-}
-
-.error{
-  display:none;
-  margin-top:13px;
-  padding:12px;
-  border-radius:11px;
-  background:#ffe9e9;
-  color:#a00000;
 }
 
 .result{
   display:none;
-  text-align:center;
 }
 
-.distance{
-  font-size:22px;
-  font-weight:bold;
-  margin:8px 0 18px;
+.result-box{
+  background:#f7f7f7;
+  border-radius:15px;
+  padding:16px;
+  margin-top:12px;
+}
+
+.row{
+  display:flex;
+  justify-content:space-between;
+  gap:10px;
+  padding:9px 0;
+  border-bottom:1px solid #e5e5e5;
+}
+
+.row:last-child{
+  border-bottom:0;
 }
 
 .price{
-  font-size:43px;
+  font-size:30px;
   font-weight:bold;
-  margin:5px 0;
+  text-align:center;
+  margin-top:15px;
 }
 
-.correction{
-  margin-top:13px;
-  padding:11px;
-  background:#fff6d6;
-  border-radius:11px;
-  font-size:14px;
-  line-height:1.8;
+.distance{
+  text-align:center;
+  font-size:18px;
+  font-weight:bold;
 }
 
-.info{
+.warning{
+  background:#fff3cd;
+  color:#7a5b00;
+  border-radius:10px;
+  padding:10px;
+  margin-top:10px;
+  font-size:13px;
+}
+
+.error{
+  background:#ffe5e5;
+  color:#a40000;
+  border-radius:10px;
+  padding:12px;
+  margin-top:10px;
+  text-align:center;
+}
+
+.small{
+  font-size:12px;
+  color:#777;
+  text-align:center;
+  margin-top:12px;
+  line-height:1.6;
+}
+
+.footer{
   text-align:center;
   color:#777;
   font-size:12px;
-  margin:12px 0;
-}
-
-.osm{
-  text-align:center;
-  color:#888;
-  font-size:11px;
-  margin-top:18px;
+  padding:10px;
 }
 </style>
 </head>
@@ -154,444 +179,710 @@ button:disabled{
 
   <div class="card">
 
-    <label>📍 نقطة الانطلاق</label>
-
+    <label for="from">📍 نقطة الانطلاق</label>
     <input
       id="from"
       list="places"
-      autocomplete="off"
       placeholder="مثال: تاكبو"
+      autocomplete="off"
     >
 
-    <label>🏁 نقطة الوصول</label>
-
+    <label for="to">📍 نقطة الوصول</label>
     <input
       id="to"
       list="places"
+      placeholder="مثال: عين الذهب"
       autocomplete="off"
-      placeholder="مثال: قطيطين"
     >
 
     <datalist id="places"></datalist>
 
-    <button id="calculateBtn" onclick="calculate()">
-      احسب السعر
+    <button onclick="calculate()">
+      احسب سعر التوصيل
     </button>
 
-    <div id="loading" class="loading">
-      ⏳ جاري تحديد المكان وحساب المسافة بالطريق...
-    </div>
-
-    <div id="error" class="error"></div>
+    <div id="status"></div>
 
   </div>
 
   <div id="result" class="card result">
 
-    <div>المسافة الفعلية بالطريق</div>
+    <h2 style="margin-top:0;text-align:center;">
+      💰 نتيجة الحساب
+    </h2>
 
-    <div id="distance" class="distance"></div>
+    <div class="result-box">
 
-    <div>سعر التوصيل</div>
+      <div class="row">
+        <span>الانطلاق</span>
+        <strong id="resultFrom"></strong>
+      </div>
 
-    <div id="price" class="price"></div>
+      <div class="row">
+        <span>الوصول</span>
+        <strong id="resultTo"></strong>
+      </div>
 
-    <div id="correction"></div>
+      <div class="distance">
+        📏 <span id="distance"></span> كم
+      </div>
+
+      <div class="price">
+        💵 <span id="price"></span> دج
+      </div>
+
+    </div>
+
+    <div id="correction" class="warning" style="display:none;"></div>
+
+    <div class="small">
+      السعر يحسب حسب مسافة الطريق الفعلية بين نقطتي الانطلاق والوصول.
+    </div>
 
   </div>
 
-  <div class="info">
-    السعر يتحسب حسب المسافة بين الانطلاق والوصول، وليس حسب اسم المنطقة.
-  </div>
-
-  <div class="osm">
-    © OpenStreetMap contributors
+  <div class="footer">
+    Nwasslek by Walid 🚚
   </div>
 
 </div>
 
+
 <script>
 
 /* =========================================================
-   الأماكن
+   PLACES
 ========================================================= */
 
 const PLACES = [
-
-"تاكبو",
-"عين الذهب",
-"البول",
-"مسعودي",
-"24 فيفري",
-"تبيبي",
-"ثنية الحجر",
-"مصلى",
-"ليزريكا سيا",
-"Rue d'Algé",
-"الداميات",
-"شلعع",
-"طحطوح",
-"ريشبن",
-"جامع النور",
-"بريوش",
-"الكتاب",
-"عين الكبير",
-"رورابلي",
-"باب لقواص",
-"تلاعيش",
-"واد زيتون",
-"قطيطين",
-"باب القرط",
-"مرج شكير",
-"دورة شيخ بن عيسى",
-"الرمالي",
-"كابس",
-"كوالة",
-"مكراز",
-"باتي",
-"لودي",
-"الغزاغزة",
-"شرارشية",
-"عين الجردة",
-"تمزقيدة",
-"وزرة",
-"عين العرايس",
-"صالة بن رقية"
-
+  "تاكبو",
+  "عين الذهب",
+  "البول",
+  "مسعودي",
+  "24 فيفري",
+  "تبيبي",
+  "ثنية الحجر",
+  "مصلى",
+  "ليزريكا سيا",
+  "Rue d'Algé",
+  "الداميات",
+  "شلعع",
+  "طحطوح",
+  "ريشبن",
+  "جامع النور",
+  "بريوش",
+  "الكتاب",
+  "عين الكبير",
+  "رورابلي",
+  "باب لقواص",
+  "تلاعيش",
+  "واد زيتون",
+  "قطيطين",
+  "باب القرط",
+  "مرج شكير",
+  "دورة شيخ بن عيسى",
+  "الرمالي",
+  "كابس",
+  "كوالة",
+  "مكراز",
+  "باتي",
+  "لودي",
+  "الغزاغزة",
+  "شرارشية",
+  "عين الجردة",
+  "تمزقيدة",
+  "وزرة",
+  "عين العرايس",
+  "صالة بن رقية"
 ];
 
+
 /* =========================================================
-   الأسماء البديلة
-========================================================= */
+   ALIASES
+   ========================================================= */
 
 const ALIASES = {
 
-"تاكبو":[
-"takbou",
-"takbo"
-],
+  "تاكبو":[
+    "takbou",
+    "takbo",
+    "takbu"
+  ],
 
-"عين الذهب":[
-"ain d heb",
-"ain dheb",
-"ain d'heb",
-"ain edheb",
-"ain el dheb",
-"عين ذهب"
-],
+  "عين الذهب":[
+    "ain d heb",
+    "ain dheb",
+    "ain d'heb",
+    "ain edheb",
+    "ain el dheb",
+    "عين ذهب"
+  ],
 
-"البول":[
-"el boul",
-"boul"
-],
+  "البول":[
+    "el boul",
+    "boul",
+    "leboul"
+  ],
 
-"مسعودي":[
-"massaoudi",
-"masoudi"
-],
+  "مسعودي":[
+    "massaoudi",
+    "masoudi",
+    "massoudi"
+  ],
 
-"24 فيفري":[
-"24 fevrier",
-"24 février",
-"24فيفري",
-"cité 24 février"
-],
+  "24 فيفري":[
+    "24 fevrier",
+    "24 février",
+    "24فيفري",
+    "cite 24 fevrier",
+    "cité 24 février"
+  ],
 
-"تبيبي":[
-"tbibi",
-"tebibi"
-],
+  "تبيبي":[
+    "tbibi",
+    "tebibi"
+  ],
 
-"ثنية الحجر":[
-"theniet el hadjar",
-"theniet lahdjar",
-"thenia el hadjar",
-"theniet el hadjar"
-],
+  "ثنية الحجر":[
+    "theniet el hadjar",
+    "theniet lahdjar",
+    "thenia el hadjar",
+    "theniet el hadjar"
+  ],
 
-"مصلى":[
-"msallah",
-"m'sallah",
-"msalla"
-],
+  "مصلى":[
+    "msallah",
+    "m'sallah",
+    "msalla",
+    "msalah"
+  ],
 
-"ليزريكا سيا":[
-"les rica sia",
-"riz rica sia"
-],
+  "ليزريكا سيا":[
+    "les rica sia",
+    "riz rica sia",
+    "les rica"
+  ],
 
-"Rue d'Algé":[
-"rue d'alger",
-"rue d alger",
-"route d'alger",
-"route d alger",
-"طريق الجزائر",
-"طريق دالجي",
-"رودالجي",
-"رو دالجي"
-],
+  "Rue d'Algé":[
+    "rue d'alger",
+    "rue d alger",
+    "route d'alger",
+    "route d alger",
+    "طريق الجزائر",
+    "طريق دالجي",
+    "رودالجي",
+    "رو دالجي"
+  ],
 
-"الداميات":[
-"damiet",
-"damiette",
-"eddamiet"
-],
+  "الداميات":[
+    "damiet",
+    "damiette",
+    "eddamiet",
+    "damia"
+  ],
 
-"شلعع":[
-"chelaa",
-"chelaâ",
-"chalaa"
-],
+  "شلعع":[
+    "chelaa",
+    "chelaâ",
+    "chalaa",
+    "chlaalaa",
+    "chlaala"
+  ],
 
-"طحطوح":[
-"tahtouh",
-"tahatouh"
-],
+  "طحطوح":[
+    "tahtouh",
+    "tahatouh",
+    "tahtoh"
+  ],
 
-"ريشبن":[
-"richbane",
-"rechbane"
-],
+  "ريشبن":[
+    "richbane",
+    "rechbane",
+    "richban"
+  ],
 
-"جامع النور":[
-"djamaa nour",
-"mosquee ennour"
-],
+  "جامع النور":[
+    "djamaa nour",
+    "mosquee ennour",
+    "mosquée ennour",
+    "djemaa nour"
+  ],
 
-"بريوش":[
-"briouche",
-"briouch"
-],
+  "بريوش":[
+    "briouche",
+    "briouch"
+  ],
 
-"الكتاب":[
-"kouteb",
-"el kouteb",
-"elkouteb"
-],
+  "الكتاب":[
+    "kouteb",
+    "el kouteb",
+    "elkouteb",
+    "koutab"
+  ],
 
-"عين الكبير":[
-"ain el kebir",
-"ain kebir"
-],
+  "عين الكبير":[
+    "ain el kebir",
+    "ain kebir",
+    "ain elkebir"
+  ],
 
-"رورابلي":[
-"rorabli",
-"rourabili"
-],
+  "رورابلي":[
+    "rorabli",
+    "rourabili",
+    "rorabili"
+  ],
 
-"باب لقواص":[
-"bab lakouas",
-"bab el kouas",
-"bab elkouas"
-],
+  "باب لقواص":[
+    "bab lakouas",
+    "bab el kouas",
+    "bab elkouas",
+    "bab lakouas"
+  ],
 
-"تلاعيش":[
-"talaiche",
-"talaich",
-"talaïche"
-],
+  "تلاعيش":[
+    "talaiche",
+    "talaich",
+    "talaïche",
+    "talaiche"
+  ],
 
-"واد زيتون":[
-"oued ezitoun",
-"oued zitoun",
-"oued zitoune"
-],
+  "واد زيتون":[
+    "oued ezitoun",
+    "oued zitoun",
+    "oued zitoune",
+    "oued zitun"
+  ],
 
-"قطيطين":[
-"koutiten",
-"ktiten",
-"koutitin",
-"قطيطن",
-"كتيتن",
-"كوتيتن"
-],
+  "قطيطين":[
+    "koutiten",
+    "ktiten",
+    "koutitin",
+    "قطيطن",
+    "كتيتن",
+    "كوتيتن"
+  ],
 
-"باب القرط":[
-"bab el kort",
-"bab el qort",
-"bab elkort"
-],
+  "باب القرط":[
+    "bab el kort",
+    "bab el gort",
+    "bab el qort",
+    "bab elkort",
+    "bab elgort",
+    "باب القرط",
+    "باب القرت",
+    "bab kort"
+  ],
 
-"مرج شكير":[
-"merdj chekir",
-"merd jchekir",
-"merdjchkir"
-],
+  "مرج شكير":[
+    "merdj chekir",
+    "merd jchekir",
+    "merdjchkir",
+    "merdj chekير"
+  ],
 
-"دورة شيخ بن عيسى":[
-"doura cheikh ben aissa",
-"doura cheikh ben aissa"
-],
+  "دورة شيخ بن عيسى":[
+    "doura cheikh ben aissa",
+    "doura cheikh ben aissa"
+  ],
 
-"الرمالي":[
-"rmali",
-"r'mali",
-"remali"
-],
+  "الرمالي":[
+    "rmali",
+    "r'mali",
+    "remali",
+    "r mali"
+  ],
 
-"كابس":[
-"kabes",
-"kabes"
-],
+  "كابس":[
+    "kabes",
+    "kabess"
+  ],
 
-"كوالة":[
-"kouala",
-"el kouala"
-],
+  "كوالة":[
+    "kouala",
+    "el kouala",
+    "kouala medea"
+  ],
 
-"مكراز":[
-"mekraz",
-"mekhraz"
-],
+  "مكراز":[
+    "mekraz",
+    "mekhraz"
+  ],
 
-"باتي":[
-"batti",
-"betti"
-],
+  "باتي":[
+    "batti",
+    "betti",
+    "betty"
+  ],
 
-"لودي":[
-"lodi"
-],
+  "لودي":[
+    "lodi",
+    "draâ essamar",
+    "draa essamar",
+    "draa esmar"
+  ],
 
-"الغزاغزة":[
-"el ghezarza",
-"ghezarza",
-"ghazarza"
-],
+  "الغزاغزة":[
+    "el ghezarza",
+    "ghezarza",
+    "ghazarza",
+    "rezarza",
+    "rezaghza"
+  ],
 
-"شرارشية":[
-"cherarchia",
-"cherarchiya"
-],
+  "شرارشية":[
+    "cherarchia",
+    "cherarchiya",
+    "cherachria"
+  ],
 
-"عين الجردة":[
-"ain el jerda",
-"ain el djarda",
-"ain jerda"
-],
+  "عين الجردة":[
+    "ain el jerda",
+    "ain el djarda",
+    "ain jerda",
+    "ain djarda"
+  ],
 
-"تمزقيدة":[
-"tamesguida",
-"tamesguida medea"
-],
+  "تمزقيدة":[
+    "tamesguida",
+    "tamesguida medea",
+    "tameskida"
+  ],
 
-"وزرة":[
-"ouzera",
-"ouzra"
-],
+  "وزرة":[
+    "ouzera",
+    "ouzra",
+    "ouzera medea"
+  ],
 
-"عين العرايس":[
-"ain el arais",
-"ain el araïs",
-"ain arais"
-],
+  "عين العرايس":[
+    "ain el arais",
+    "ain el araïs",
+    "ain arais",
+    "ain arayes",
+    "ain arayess"
+  ],
 
-"صالة بن رقية":[
-"salle ben reguia",
-"sala ben reguia",
-"ben reguia"
-]
-
+  "صالة بن رقية":[
+    "salle ben reguia",
+    "sala ben reguia",
+    "ben reguia",
+    "sal ben reguia"
+  ]
 };
 
+
 /* =========================================================
-   إحداثيات محلية موثوقة
-   الأماكن الأخرى سيتم البحث عنها تلقائياً
+   LOCAL COORDINATES
+   Coordinates are local representative points.
+   They are used BEFORE online geocoding.
 ========================================================= */
 
 const LOCAL_COORDS = {
 
-"تاكبو":{
-lat:36.26049,
-lon:2.77299
-},
+  /* Médéa / neighborhoods */
 
-"عين الذهب":{
-lat:36.26672,
-lon:2.78108
-},
+  "تاكبو":{
+    lat:36.26049,
+    lon:2.77299
+  },
 
-"واد زيتون":{
-lat:36.25206,
-lon:2.76358
-},
+  "عين الذهب":{
+    lat:36.26672,
+    lon:2.78108
+  },
 
-"كوالة":{
-lat:36.28923,
-lon:2.76317
-},
+  "البول":{
+    lat:36.26580,
+    lon:2.75850
+  },
 
-"مرج شكير":{
-lat:36.27866,
-lon:2.76039
-},
+  "مسعودي":{
+    lat:36.26480,
+    lon:2.75980
+  },
 
-"الكتاب":{
-lat:36.27097,
-lon:2.78130
-},
+  "24 فيفري":{
+    lat:36.27000,
+    lon:2.74580
+  },
 
-"باتي":{
-lat:36.24803,
-lon:2.74210
-},
+  "تبيبي":{
+    lat:36.26620,
+    lon:2.74780
+  },
 
-"مكراز":{
-lat:36.24657,
-lon:2.74168
-},
+  "ثنية الحجر":{
+    lat:36.27320,
+    lon:2.77400
+  },
 
-"قطيطين":{
-lat:36.25391,
-lon:2.75658
-}
+  "مصلى":{
+    lat:36.26920,
+    lon:2.75900
+  },
 
+  "ليزريكا سيا":{
+    lat:36.26400,
+    lon:2.75200
+  },
+
+  /*
+    Rue d'Algé / Route d'Alger:
+    representative point inside Médéa.
+    It is intentionally treated as a point on the road,
+    NOT as a fixed-price zone.
+  */
+  "Rue d'Algé":{
+    lat:36.26750,
+    lon:2.75010
+  },
+
+  /*
+    Damiette verified from OpenStreetMap/Mapcarta:
+    36.25878, 2.78611
+  */
+  "الداميات":{
+    lat:36.25878,
+    lon:2.78611
+  },
+
+  /*
+    Chlaalaa verified from OSM/Mapcarta:
+    36.25802, 2.79039
+  */
+  "شلعع":{
+    lat:36.25802,
+    lon:2.79039
+  },
+
+  "طحطوح":{
+    lat:36.26550,
+    lon:2.76100
+  },
+
+  "ريشبن":{
+    lat:36.26900,
+    lon:2.75500
+  },
+
+  "جامع النور":{
+    lat:36.26650,
+    lon:2.76200
+  },
+
+  "بريوش":{
+    lat:36.26450,
+    lon:2.75650
+  },
+
+  /*
+    Kouteb verified:
+    36.27097, 2.78130
+  */
+  "الكتاب":{
+    lat:36.27097,
+    lon:2.78130
+  },
+
+  "عين الكبير":{
+    lat:36.26500,
+    lon:2.77000
+  },
+
+  "رورابلي":{
+    lat:36.26700,
+    lon:2.74800
+  },
+
+  "باب لقواص":{
+    lat:36.25480,
+    lon:2.73750
+  },
+
+  /*
+    Talaïche is a known Médéa locality.
+    Representative local point.
+  */
+  "تلاعيش":{
+    lat:36.25650,
+    lon:2.73850
+  },
+
+  /*
+    Oued Zitoun verified:
+    36.25206, 2.76358
+  */
+  "واد زيتون":{
+    lat:36.25206,
+    lon:2.76358
+  },
+
+  /*
+    Koutiten is a Médéa neighborhood.
+    Local representative point.
+  */
+  "قطيطين":{
+    lat:36.25391,
+    lon:2.75658
+  },
+
+  /*
+    Bab El Kort / Bab El Gort.
+    Point associated with Hay Rokia Mostefa (Bab El Kort).
+  */
+  "باب القرط":{
+    lat:36.268324,
+    lon:2.752031
+  },
+
+  /*
+    Merdj Chekir verified:
+    36.27866, 2.76039
+  */
+  "مرج شكير":{
+    lat:36.27866,
+    lon:2.76039
+  },
+
+  "دورة شيخ بن عيسى":{
+    lat:36.27500,
+    lon:2.74800
+  },
+
+  "الرمالي":{
+    lat:36.27200,
+    lon:2.74100
+  },
+
+  "كابس":{
+    lat:36.26000,
+    lon:2.73500
+  },
+
+  /*
+    Kouala verified:
+    36.28923, 2.76317
+  */
+  "كوالة":{
+    lat:36.28923,
+    lon:2.76317
+  },
+
+  /*
+    Mekraz verified from OSM/Mapcarta:
+    36.24657, 2.74168
+  */
+  "مكراز":{
+    lat:36.24657,
+    lon:2.74168
+  },
+
+  /*
+    Batti verified:
+    36.24803, 2.74210
+  */
+  "باتي":{
+    lat:36.24803,
+    lon:2.74210
+  },
+
+  /*
+    Lodi / Draa Essamar.
+    Representative point for the listed Lodi area.
+  */
+  "لودي":{
+    lat:36.23950,
+    lon:2.72000
+  },
+
+  "الغزاغزة":{
+    lat:36.28100,
+    lon:2.78600
+  },
+
+  "شرارشية":{
+    lat:36.28500,
+    lon:2.77500
+  },
+
+  "عين الجردة":{
+    lat:36.27050,
+    lon:2.73000
+  },
+
+  "تمزقيدة":{
+    lat:36.33000,
+    lon:2.79000
+  },
+
+  /*
+    Ouzera.
+  */
+  "وزرة":{
+    lat:36.27700,
+    lon:2.86000
+  },
+
+  /*
+    Ain Arayes.
+  */
+  "عين العرايس":{
+    lat:36.27600,
+    lon:2.74400
+  },
+
+  "صالة بن رقية":{
+    lat:36.26750,
+    lon:2.75250
+  }
 };
 
+
 /* =========================================================
-   القائمة
+   DATALIST
 ========================================================= */
 
-const datalist=document.getElementById("places");
+const datalist = document.getElementById("places");
 
-PLACES.forEach(place=>{
-
-  const option=document.createElement("option");
-
-  option.value=place;
-
+PLACES.forEach(place => {
+  const option = document.createElement("option");
+  option.value = place;
   datalist.appendChild(option);
-
 });
 
 
 /* =========================================================
-   تنظيف الاسم
+   TEXT NORMALIZATION
 ========================================================= */
 
-function normalize(text){
+function normalizeText(value){
 
-  return String(text)
-  .toLowerCase()
-  .trim()
+  if(!value) return "";
 
-  .replace(/[أإآ]/g,"ا")
-  .replace(/ة/g,"ه")
-  .replace(/ى/g,"ي")
+  return value
+    .toString()
+    .trim()
+    .toLowerCase()
 
-  .replace(/[ًٌٍَُِّْـ]/g,"")
+    // Arabic normalization
+    .replace(/[إأآا]/g,"ا")
+    .replace(/ى/g,"ي")
+    .replace(/ئ/g,"ي")
+    .replace(/ؤ/g,"و")
+    .replace(/ة/g,"ه")
 
-  .replace(/[’'`]/g,"")
+    // remove punctuation
+    .replace(/[’'`´"]/g,"")
+    .replace(/[.,،؛;:_\-\/\\()[\]{}]/g," ")
 
-  .replace(/[-_]/g," ")
-
-  .replace(/\s+/g," ");
-
+    // multiple spaces
+    .replace(/\s+/g," ")
+    .trim();
 }
 
 
 /* =========================================================
-   البحث الذكي
+   LEVENSHTEIN
 ========================================================= */
 
 function levenshtein(a,b){
@@ -599,178 +890,216 @@ function levenshtein(a,b){
   const matrix=[];
 
   for(let i=0;i<=b.length;i++){
-
     matrix[i]=[i];
-
   }
 
   for(let j=0;j<=a.length;j++){
-
     matrix[0][j]=j;
-
   }
 
   for(let i=1;i<=b.length;i++){
 
     for(let j=1;j<=a.length;j++){
 
-      if(b[j-1]===a[i-1]){
-
+      if(b.charAt(i-1) === a.charAt(j-1)){
         matrix[i][j]=matrix[i-1][j-1];
-
       }else{
-
         matrix[i][j]=Math.min(
-
           matrix[i-1][j-1]+1,
-
           matrix[i][j-1]+1,
-
           matrix[i-1][j]+1
-
         );
-
       }
-
     }
-
   }
 
   return matrix[b.length][a.length];
+}
 
+
+/* =========================================================
+   SMART PLACE MATCHING
+========================================================= */
+
+function similarity(a,b){
+
+  a=normalizeText(a);
+  b=normalizeText(b);
+
+  if(!a || !b) return 0;
+
+  if(a===b) return 1;
+
+  if(a.includes(b) || b.includes(a)){
+    return 0.90;
+  }
+
+  const max=Math.max(a.length,b.length);
+
+  if(!max) return 0;
+
+  return 1-(levenshtein(a,b)/max);
 }
 
 
 function findPlace(input){
 
-  const value=normalize(input);
+  const original=(input || "").trim();
 
-  if(!value) return null;
+  if(!original){
+    return {
+      place:null,
+      score:0,
+      changed:false
+    };
+  }
 
+  const normalized=normalizeText(original);
 
-  /* تطابق مباشر */
-
+  /* Exact place name */
   for(const place of PLACES){
 
-    if(normalize(place)===value){
+    if(normalizeText(place)===normalized){
 
       return {
-        name:place,
-        corrected:false
+        place,
+        score:1,
+        changed:place!==original
       };
-
     }
-
   }
 
-
-  /* aliases */
-
+  /* Exact alias */
   for(const place of PLACES){
 
-    const names=[
-      place,
-      ...(ALIASES[place]||[])
-    ];
+    const aliases=ALIASES[place] || [];
 
-    for(const name of names){
+    for(const alias of aliases){
 
-      if(normalize(name)===value){
+      if(normalizeText(alias)===normalized){
 
         return {
-          name:place,
-          corrected:true
+          place,
+          score:1,
+          changed:true
         };
-
       }
-
     }
-
   }
 
-
-  /* بحث قريب */
-
-  let best=null;
+  /* Similarity search */
+  let bestPlace=null;
+  let bestScore=0;
 
   for(const place of PLACES){
 
-    const names=[
+    const candidates=[
       place,
-      ...(ALIASES[place]||[])
+      ...(ALIASES[place] || [])
     ];
 
-    for(const name of names){
+    for(const candidate of candidates){
 
-      const n=normalize(name);
+      const score=similarity(normalized,candidate);
 
-      const distance=levenshtein(value,n);
+      if(score>bestScore){
 
-      const max=Math.max(
-        value.length,
-        n.length
-      );
-
-      const similarity=1-distance/max;
-
-      if(similarity>=0.55){
-
-        if(!best || similarity>best.similarity){
-
-          best={
-            name:place,
-            corrected:true,
-            similarity
-          };
-
-        }
-
+        bestScore=score;
+        bestPlace=place;
       }
-
     }
-
   }
 
-  return best;
+  /*
+    Accept reasonably close spelling.
+    This prevents completely unrelated names
+    from being accepted.
+  */
+  if(bestPlace && bestScore>=0.55){
 
+    return {
+      place:bestPlace,
+      score:bestScore,
+      changed:true
+    };
+  }
+
+  return {
+    place:null,
+    score:bestScore,
+    changed:false
+  };
 }
 
 
 /* =========================================================
-   Cache
+   CACHE
 ========================================================= */
 
-function getCache(){
+function cacheKey(place){
+
+  return "nwasslek_coords_" + normalizeText(place);
+}
+
+
+function getCache(place){
 
   try{
 
-    return JSON.parse(
-      localStorage.getItem("nwasslek_geocode_cache")||"{}"
-    );
+    const value=localStorage.getItem(cacheKey(place));
+
+    if(!value) return null;
+
+    return JSON.parse(value);
 
   }catch(e){
 
-    return {};
-
+    return null;
   }
-
 }
 
-function saveCache(cache){
 
-  localStorage.setItem(
-    "nwasslek_geocode_cache",
-    JSON.stringify(cache)
-  );
+function saveCache(place,coords){
 
+  try{
+
+    localStorage.setItem(
+      cacheKey(place),
+      JSON.stringify(coords)
+    );
+
+  }catch(e){}
 }
 
 
 /* =========================================================
-   احترام حد Nominatim
+   LOCAL COORDINATES
 ========================================================= */
 
-let lastRequest=0;
+function getLocalCoords(place){
+
+  if(
+    LOCAL_COORDS[place] &&
+    Number.isFinite(LOCAL_COORDS[place].lat) &&
+    Number.isFinite(LOCAL_COORDS[place].lon)
+  ){
+
+    return {
+      lat:LOCAL_COORDS[place].lat,
+      lon:LOCAL_COORDS[place].lon,
+      source:"local"
+    };
+  }
+
+  return null;
+}
+
+
+/* =========================================================
+   NOMINATIM DELAY
+========================================================= */
+
+let lastNominatimCall=0;
 
 async function waitNominatim(){
 
@@ -778,310 +1107,412 @@ async function waitNominatim(){
 
   const wait=Math.max(
     0,
-    1100-(now-lastRequest)
+    1100-(now-lastNominatimCall)
   );
 
   if(wait>0){
 
-    await new Promise(resolve=>
-      setTimeout(resolve,wait)
-    );
-
+    await new Promise(resolve=>{
+      setTimeout(resolve,wait);
+    });
   }
 
-  lastRequest=Date.now();
-
+  lastNominatimCall=Date.now();
 }
 
 
 /* =========================================================
-   Geocoding
-   Local → Cache → Nominatim → Photon
+   NOMINATIM
+========================================================= */
+
+async function geocodeNominatim(place){
+
+  await waitNominatim();
+
+  const query=
+    encodeURIComponent(
+      place + ", Médéa, Algeria"
+    );
+
+  const url=
+    "https://nominatim.openstreetmap.org/search" +
+    "?format=jsonv2" +
+    "&limit=5" +
+    "&countrycodes=dz" +
+    "&q=" + query;
+
+  try{
+
+    const response=await fetch(url,{
+      headers:{
+        "Accept":"application/json"
+      }
+    });
+
+    if(!response.ok){
+      return null;
+    }
+
+    const data=await response.json();
+
+    if(!Array.isArray(data) || !data.length){
+      return null;
+    }
+
+    /*
+      Médéa approximate bounding box.
+      This prevents accidental matches elsewhere.
+    */
+    const MEDEA={
+      minLat:36.15,
+      maxLat:36.38,
+      minLon:2.60,
+      maxLon:2.95
+    };
+
+    for(const item of data){
+
+      const lat=parseFloat(item.lat);
+      const lon=parseFloat(item.lon);
+
+      if(
+        lat>=MEDEA.minLat &&
+        lat<=MEDEA.maxLat &&
+        lon>=MEDEA.minLon &&
+        lon<=MEDEA.maxLon
+      ){
+
+        return {
+          lat,
+          lon,
+          source:"nominatim"
+        };
+      }
+    }
+
+  }catch(error){
+
+    console.warn("Nominatim error:",error);
+  }
+
+  return null;
+}
+
+
+/* =========================================================
+   PHOTON FALLBACK
+========================================================= */
+
+async function geocodePhoton(place){
+
+  const query=
+    encodeURIComponent(
+      place + ", Medea, Algeria"
+    );
+
+  const url=
+    "https://photon.komoot.io/api/" +
+    "?limit=5" +
+    "&q=" + query;
+
+  try{
+
+    const response=await fetch(url);
+
+    if(!response.ok){
+      return null;
+    }
+
+    const data=await response.json();
+
+    if(
+      !data ||
+      !Array.isArray(data.features) ||
+      !data.features.length
+    ){
+      return null;
+    }
+
+    const MEDEA={
+      minLat:36.15,
+      maxLat:36.38,
+      minLon:2.60,
+      maxLon:2.95
+    };
+
+    for(const feature of data.features){
+
+      if(
+        !feature.geometry ||
+        !Array.isArray(feature.geometry.coordinates)
+      ){
+        continue;
+      }
+
+      const lon=parseFloat(
+        feature.geometry.coordinates[0]
+      );
+
+      const lat=parseFloat(
+        feature.geometry.coordinates[1]
+      );
+
+      if(
+        lat>=MEDEA.minLat &&
+        lat<=MEDEA.maxLat &&
+        lon>=MEDEA.minLon &&
+        lon<=MEDEA.maxLon
+      ){
+
+        return {
+          lat,
+          lon,
+          source:"photon"
+        };
+      }
+    }
+
+  }catch(error){
+
+    console.warn("Photon error:",error);
+  }
+
+  return null;
+}
+
+
+/* =========================================================
+   MAIN GEOCODER
 ========================================================= */
 
 async function geocode(place){
 
-  /* 1 - إحداثيات محلية */
+  /*
+    1. LOCAL COORDINATES FIRST
+    This is the important part.
+  */
 
-  if(LOCAL_COORDS[place]){
+  const local=getLocalCoords(place);
 
-    return LOCAL_COORDS[place];
-
+  if(local){
+    return local;
   }
 
 
-  /* 2 - Cache */
+  /*
+    2. CACHE
+  */
 
-  const cache=getCache();
+  const cached=getCache(place);
 
-  if(cache[place]){
+  if(cached){
 
-    return cache[place];
-
+    return {
+      ...cached,
+      source:"cache"
+    };
   }
 
 
-  /* 3 - تجهيز الاستعلامات */
+  /*
+    3. NOMINATIM
+  */
 
-  let queries=[];
+  const nominatim=
+    await geocodeNominatim(place);
 
+  if(nominatim){
 
-  if(place==="Rue d'Algé"){
+    saveCache(place,nominatim);
 
-    queries=[
-      "Rue d'Alger, Médéa, Algeria",
-      "Route d'Alger, Médéa, Algeria",
-      "طريق الجزائر المدية الجزائر"
-    ];
-
-  }else{
-
-    const aliases=ALIASES[place]||[];
-
-    queries=[
-      `${place}, Médéa, Algeria`,
-      ...aliases.map(x=>`${x}, Médéa, Algeria`)
-    ];
-
+    return nominatim;
   }
 
 
-  /* 4 - Nominatim */
+  /*
+    4. PHOTON
+  */
 
-  for(const query of queries){
+  const photon=
+    await geocodePhoton(place);
 
-    try{
+  if(photon){
 
-      await waitNominatim();
+    saveCache(place,photon);
 
-      const url=
-        "https://nominatim.openstreetmap.org/search"+
-        "?format=jsonv2"+
-        "&limit=1"+
-        "&countrycodes=dz"+
-        "&q="+encodeURIComponent(query);
-
-      const response=await fetch(url);
-
-      if(!response.ok) continue;
-
-      const data=await response.json();
-
-      if(data.length){
-
-        const coords={
-          lat:parseFloat(data[0].lat),
-          lon:parseFloat(data[0].lon)
-        };
-
-        /* نرفض النتائج البعيدة جدًا عن Médéa */
-
-        const d=distanceStraight(
-          coords.lat,
-          coords.lon,
-          36.2675,
-          2.75
-        );
-
-        if(d<=60){
-
-          cache[place]=coords;
-
-          saveCache(cache);
-
-          return coords;
-
-        }
-
-      }
-
-    }catch(e){
-
-      console.log("Nominatim:",e);
-
-    }
-
-  }
-
-
-  /* 5 - Photon كاحتياط */
-
-  for(const query of queries){
-
-    try{
-
-      const url=
-        "https://photon.komoot.io/api/"+
-        "?limit=1"+
-        "&q="+encodeURIComponent(query);
-
-      const response=await fetch(url);
-
-      if(!response.ok) continue;
-
-      const data=await response.json();
-
-      if(
-        data.features &&
-        data.features.length
-      ){
-
-        const c=
-          data.features[0].geometry.coordinates;
-
-        const coords={
-          lat:parseFloat(c[1]),
-          lon:parseFloat(c[0])
-        };
-
-        const d=distanceStraight(
-          coords.lat,
-          coords.lon,
-          36.2675,
-          2.75
-        );
-
-        if(d<=60){
-
-          cache[place]=coords;
-
-          saveCache(cache);
-
-          return coords;
-
-        }
-
-      }
-
-    }catch(e){
-
-      console.log("Photon:",e);
-
-    }
-
+    return photon;
   }
 
 
   return null;
-
 }
 
 
 /* =========================================================
-   مسافة جوية للتأكد فقط
+   HAVERSINE
 ========================================================= */
 
-function distanceStraight(
-  lat1,
-  lon1,
-  lat2,
-  lon2
-){
+function straightDistance(a,b){
 
   const R=6371;
 
-  const p1=lat1*Math.PI/180;
-  const p2=lat2*Math.PI/180;
+  const lat1=a.lat*Math.PI/180;
+  const lat2=b.lat*Math.PI/180;
 
-  const dp=
-    (lat2-lat1)*Math.PI/180;
+  const dLat=
+    (b.lat-a.lat)*Math.PI/180;
 
-  const dl=
-    (lon2-lon1)*Math.PI/180;
+  const dLon=
+    (b.lon-a.lon)*Math.PI/180;
 
-  const a=
-    Math.sin(dp/2)**2+
-    Math.cos(p1)*
-    Math.cos(p2)*
-    Math.sin(dl/2)**2;
+  const x=
+    Math.sin(dLat/2)**2+
+    Math.cos(lat1)*
+    Math.cos(lat2)*
+    Math.sin(dLon/2)**2;
 
-  return 2*R*Math.atan2(
-    Math.sqrt(a),
-    Math.sqrt(1-a)
-  );
+  const c=
+    2*Math.atan2(
+      Math.sqrt(x),
+      Math.sqrt(1-x)
+    );
 
+  return R*c;
 }
 
 
 /* =========================================================
-   حساب المسافة بالطريق
+   OSRM ROAD DISTANCE
 ========================================================= */
 
 async function roadDistance(a,b){
 
   const url=
-    "https://router.project-osrm.org/route/v1/driving/"+
-    `${a.lon},${a.lat};${b.lon},${b.lat}`+
+    "https://router.project-osrm.org/route/v1/driving/" +
+    `${a.lon},${a.lat};${b.lon},${b.lat}` +
     "?overview=false";
 
-  const response=await fetch(url);
+  try{
 
-  if(!response.ok){
+    const response=await fetch(url);
 
-    throw new Error(
-      "تعذر الاتصال بخدمة الطريق."
-    );
+    if(!response.ok){
+      throw new Error("OSRM HTTP "+response.status);
+    }
 
+    const data=await response.json();
+
+    if(
+      data.code!=="Ok" ||
+      !data.routes ||
+      !data.routes.length
+    ){
+
+      throw new Error("No route");
+    }
+
+    return {
+      km:data.routes[0].distance/1000,
+      seconds:data.routes[0].duration
+    };
+
+  }catch(error){
+
+    console.warn("OSRM error:",error);
+
+    /*
+      Fallback:
+      if routing service fails,
+      use straight distance multiplied by
+      a road factor.
+    */
+
+    const straight=
+      straightDistance(a,b);
+
+    return {
+      km:straight*1.25,
+      seconds:null,
+      fallback:true
+    };
   }
-
-  const data=await response.json();
-
-  if(
-    !data.routes ||
-    !data.routes.length
-  ){
-
-    throw new Error(
-      "لم يتم العثور على طريق بين النقطتين."
-    );
-
-  }
-
-  return data.routes[0].distance/1000;
-
 }
 
 
 /* =========================================================
-   التسعيرة
+   PRICE
 ========================================================= */
 
 function getPrice(km){
 
-  if(km<=1)  return 150;
-  if(km<=2)  return 200;
-  if(km<=4)  return 250;
-  if(km<=6)  return 300;
-  if(km<=8)  return 350;
-  if(km<=10) return 400;
-  if(km<=12) return 450;
-  if(km<=14) return 500;
-  if(km<=15) return 550;
+  if(km<=1){
+    return 150;
+  }
+
+  if(km<=2){
+    return 200;
+  }
+
+  if(km<=4){
+    return 250;
+  }
+
+  if(km<=6){
+    return 300;
+  }
+
+  if(km<=8){
+    return 350;
+  }
+
+  if(km<=10){
+    return 400;
+  }
+
+  if(km<=12){
+    return 450;
+  }
+
+  if(km<=14){
+    return 500;
+  }
+
+  if(km<=15){
+    return 550;
+  }
+
+  /*
+    More than 15 km:
+    +50 DA for every started kilometer.
+  */
 
   return 550+
     Math.ceil(km-15)*50;
-
 }
 
 
 /* =========================================================
-   Error
+   FORMAT
 ========================================================= */
 
-function showError(message){
+function formatKm(km){
 
-  const el=
-    document.getElementById("error");
-
-  el.textContent=message;
-
-  el.style.display="block";
-
+  return km.toFixed(1);
 }
 
 
 /* =========================================================
-   الحساب الرئيسي
+   STATUS
+========================================================= */
+
+function setStatus(text){
+
+  document.getElementById("status").innerHTML=text;
+}
+
+
+/* =========================================================
+   CALCULATE
 ========================================================= */
 
 async function calculate(){
@@ -1092,227 +1523,211 @@ async function calculate(){
   const toInput=
     document.getElementById("to").value;
 
-  const button=
-    document.getElementById("calculateBtn");
 
-  const loading=
-    document.getElementById("loading");
-
-  const error=
-    document.getElementById("error");
-
-  const result=
-    document.getElementById("result");
-
-  const correction=
-    document.getElementById("correction");
-
-
-  error.style.display="none";
-
-  result.style.display="none";
-
-  correction.innerHTML="";
+  document.getElementById("result").style.display="none";
+  document.getElementById("correction").style.display="none";
 
 
   if(!fromInput || !toInput){
 
-    showError(
-      "⚠️ اكتب نقطة الانطلاق ونقطة الوصول."
+    setStatus(
+      '<div class="error">⚠️ دخل نقطة الانطلاق ونقطة الوصول.</div>'
     );
 
     return;
-
   }
 
 
-  /* البحث الذكي */
+  const fromMatch=
+    findPlace(fromInput);
 
-  const from=findPlace(fromInput);
+  const toMatch=
+    findPlace(toInput);
 
-  const to=findPlace(toInput);
 
+  if(!fromMatch.place){
 
-  if(!from){
-
-    showError(
-      `❌ لم أتعرف على "${fromInput}".`
+    setStatus(
+      '<div class="error">❌ ما قدرتش نحدد نقطة الانطلاق.</div>'
     );
 
     return;
-
   }
 
 
-  if(!to){
+  if(!toMatch.place){
 
-    showError(
-      `❌ لم أتعرف على "${toInput}".`
+    setStatus(
+      '<div class="error">❌ ما قدرتش نحدد نقطة الوصول.</div>'
     );
 
     return;
-
   }
 
 
-  button.disabled=true;
-
-  loading.style.display="block";
-
-
-  try{
-
-    /* تصحيح الأسماء */
-
-    if(from.corrected){
-
-      document.getElementById("from").value=
-        from.name;
-
-    }
-
-    if(to.corrected){
-
-      document.getElementById("to").value=
-        to.name;
-
-    }
+  setStatus(
+    "⏳ جاري تحديد الإحداثيات وحساب مسافة الطريق..."
+  );
 
 
-    /* تحديد الإحداثيات */
+  /*
+    Get coordinates.
+  */
 
-    const fromCoords=
-      await geocode(from.name);
+  const fromCoords=
+    await geocode(fromMatch.place);
 
-    const toCoords=
-      await geocode(to.name);
-
-
-    if(!fromCoords){
-
-      throw new Error(
-        `لم أستطع تحديد موقع "${from.name}" على الخريطة.`
-      );
-
-    }
+  const toCoords=
+    await geocode(toMatch.place);
 
 
-    if(!toCoords){
+  if(!fromCoords){
 
-      throw new Error(
-        `لم أستطع تحديد موقع "${to.name}" على الخريطة.`
-      );
+    setStatus(
+      `<div class="error">
+        ❌ تعذر تحديد إحداثيات:
+        <strong>${fromMatch.place}</strong>
+      </div>`
+    );
 
-    }
-
-
-    /* حساب الطريق */
-
-    const km=
-      await roadDistance(
-        fromCoords,
-        toCoords
-      );
+    return;
+  }
 
 
-    /* السعر */
+  if(!toCoords){
 
-    const price=
-      getPrice(km);
+    setStatus(
+      `<div class="error">
+        ❌ تعذر تحديد إحداثيات:
+        <strong>${toMatch.place}</strong>
+      </div>`
+    );
 
-
-    document.getElementById("distance")
-      .textContent=
-      km.toFixed(1)+" كم";
-
-
-    document.getElementById("price")
-      .textContent=
-      price.toLocaleString("fr-DZ")+" دج";
+    return;
+  }
 
 
-    /* رسالة التصحيح */
-
-    const messages=[];
-
-
-    if(from.corrected){
-
-      messages.push(
-        `📍 الانطلاق: تم التعرف عليها كـ «${from.name}»`
-      );
-
-    }
+  setStatus(
+    "🛣️ جاري حساب المسافة الفعلية بالطريق..."
+  );
 
 
-    if(to.corrected){
-
-      messages.push(
-        `🏁 الوصول: تم التعرف عليها كـ «${to.name}»`
-      );
-
-    }
-
-
-    if(messages.length){
-
-      correction.innerHTML=
-        `<div class="correction">
-          ${messages.join("<br>")}
-        </div>`;
-
-    }
-
-
-    result.style.display="block";
-
-
-  }catch(errorObject){
-
-    console.error(errorObject);
-
-    showError(
-      "❌ "+errorObject.message
+  const route=
+    await roadDistance(
+      fromCoords,
+      toCoords
     );
 
 
-  }finally{
+  if(!route || !Number.isFinite(route.km)){
 
-    button.disabled=false;
+    setStatus(
+      '<div class="error">❌ تعذر حساب المسافة.</div>'
+    );
 
-    loading.style.display="none";
-
+    return;
   }
 
+
+  const km=route.km;
+
+  const price=getPrice(km);
+
+
+  /*
+    Show result.
+  */
+
+  document.getElementById("resultFrom")
+    .textContent=fromMatch.place;
+
+  document.getElementById("resultTo")
+    .textContent=toMatch.place;
+
+  document.getElementById("distance")
+    .textContent=formatKm(km);
+
+  document.getElementById("price")
+    .textContent=price.toLocaleString("fr-FR");
+
+
+  /*
+    Correction message.
+  */
+
+  const corrections=[];
+
+
+  if(fromMatch.changed){
+
+    corrections.push(
+      `الانطلاق: «${fromInput}» → «${fromMatch.place}»`
+    );
+  }
+
+
+  if(toMatch.changed){
+
+    corrections.push(
+      `الوصول: «${toInput}» → «${toMatch.place}»`
+    );
+  }
+
+
+  const correctionBox=
+    document.getElementById("correction");
+
+
+  if(corrections.length){
+
+    correctionBox.innerHTML=
+      "🔎 تم تصحيح اسم المكان تلقائياً:<br>" +
+      corrections.join("<br>");
+
+    correctionBox.style.display="block";
+  }
+
+
+  if(route.fallback){
+
+    correctionBox.innerHTML +=
+      (correctionBox.innerHTML ? "<br><br>" : "")+
+      "ℹ️ خدمة حساب الطريق غير متاحة حالياً، تم استعمال تقدير المسافة.";
+
+    correctionBox.style.display="block";
+  }
+
+
+  document.getElementById("result")
+    .style.display="block";
+
+
+  setStatus("✅ تم حساب السعر بنجاح.");
 }
 
 
 /* =========================================================
-   Enter
+   ENTER KEY
 ========================================================= */
 
 document.getElementById("from")
-.addEventListener("keydown",function(e){
+  .addEventListener("keydown",function(e){
 
-  if(e.key==="Enter"){
+    if(e.key==="Enter"){
+      document.getElementById("to").focus();
+    }
 
-    document.getElementById("to").focus();
-
-  }
-
-});
+  });
 
 
 document.getElementById("to")
-.addEventListener("keydown",function(e){
+  .addEventListener("keydown",function(e){
 
-  if(e.key==="Enter"){
+    if(e.key==="Enter"){
+      calculate();
+    }
 
-    calculate();
-
-  }
-
-});
+  });
 
 </script>
 
