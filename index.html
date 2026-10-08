@@ -3,167 +3,513 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>NWASSLEK - حساب التسعيرة</title>
+<title>NWASSLEK - نوصلك</title>
 
 <style>
+:root{
+  --yellow:#ffd21c;
+  --yellow2:#ffbd00;
+  --black:#080a0c;
+  --dark:#15181b;
+  --white:#fff;
+  --muted:#777;
+  --line:#e9e9e9;
+  --soft:#f5f6f7;
+}
+
 *{box-sizing:border-box}
+
 body{
   margin:0;
   font-family:Arial,"Tahoma",sans-serif;
-  background:#f5f5f5;
+  background:
+    radial-gradient(circle at 10% 10%,rgba(255,210,28,.13),transparent 25%),
+    radial-gradient(circle at 90% 25%,rgba(255,210,28,.08),transparent 22%),
+    #f4f5f6;
   color:#111;
 }
+
 .container{
-  width:min(560px,94%);
-  margin:25px auto;
+  width:min(680px,94%);
+  margin:14px auto 30px;
 }
+
+/* HEADER */
+
 .header{
-  background:#111;
+  position:relative;
+  overflow:hidden;
+  background:linear-gradient(135deg,#07090b,#1a1e22);
   color:#fff;
-  border-radius:25px;
-  padding:25px 22px;
+  border-radius:28px;
+  padding:25px 18px 28px;
   text-align:center;
-  margin-bottom:18px;
-  box-shadow:0 10px 30px rgba(0,0,0,.12);
+  margin-bottom:16px;
+  box-shadow:0 16px 38px rgba(0,0,0,.17);
+  border-bottom:5px solid var(--yellow);
 }
+
+.header:before,
+.header:after{
+  content:"";
+  position:absolute;
+  border-radius:50%;
+  background:rgba(255,210,28,.08);
+}
+
+.header:before{
+  width:190px;
+  height:190px;
+  right:-90px;
+  top:-100px;
+}
+
+.header:after{
+  width:140px;
+  height:140px;
+  left:-70px;
+  bottom:-75px;
+}
+
+.brand{
+  position:relative;
+  z-index:1;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:12px;
+}
+
+.logo-mark{
+  width:62px;
+  height:62px;
+  border:5px solid var(--yellow);
+  border-radius:50% 50% 50% 8px;
+  transform:rotate(-45deg);
+  display:grid;
+  place-items:center;
+  box-shadow:0 0 0 7px rgba(255,210,28,.08);
+}
+
+.logo-mark span{
+  transform:rotate(45deg);
+  font-size:27px;
+}
+
 .logo{
-  font-size:30px;
-  font-weight:900;
+  font-size:37px;
+  font-weight:1000;
   letter-spacing:2px;
+  background:linear-gradient(
+    90deg,
+    #fff 0 48%,
+    var(--yellow) 49% 100%
+  );
+  -webkit-background-clip:text;
+  background-clip:text;
+  color:transparent;
 }
+
+.slogan{
+  position:relative;
+  z-index:1;
+  color:var(--yellow);
+  font-weight:900;
+  font-size:16px;
+  margin-top:7px;
+}
+
 .subtitle{
-  margin-top:8px;
-  color:#ccc;
-  font-size:14px;
+  position:relative;
+  z-index:1;
+  margin-top:7px;
+  color:#e5e5e5;
+  font-size:13px;
 }
-.card{
-  background:#fff;
-  border-radius:22px;
-  padding:20px;
-  margin-bottom:15px;
-  box-shadow:0 7px 25px rgba(0,0,0,.07);
+
+.mini-badges{
+  position:relative;
+  z-index:1;
+  display:flex;
+  justify-content:center;
+  gap:8px;
+  flex-wrap:wrap;
+  margin-top:14px;
 }
-label{
-  display:block;
+
+.badge{
+  background:rgba(255,210,28,.12);
+  border:1px solid rgba(255,210,28,.30);
+  color:#fff;
+  border-radius:999px;
+  padding:6px 11px;
+  font-size:11px;
   font-weight:800;
-  margin-bottom:8px;
 }
+
+/* CARD */
+
+.card{
+  background:rgba(255,255,255,.97);
+  border-radius:24px;
+  padding:19px;
+  margin-bottom:15px;
+  box-shadow:0 8px 28px rgba(0,0,0,.07);
+  border:1px solid rgba(0,0,0,.04);
+}
+
+/* SEARCH */
+
+.field-head{
+  display:flex;
+  align-items:center;
+  gap:9px;
+  margin-bottom:8px;
+  font-weight:900;
+  font-size:15px;
+}
+
+.field-icon{
+  width:34px;
+  height:34px;
+  display:grid;
+  place-items:center;
+  border-radius:11px;
+  background:#111;
+  color:var(--yellow);
+  font-size:17px;
+}
+
 .input-wrap{
   position:relative;
   margin-bottom:15px;
 }
+
 input{
   width:100%;
-  padding:16px;
-  border:2px solid #eee;
-  border-radius:15px;
+  padding:16px 17px;
+  border:2px solid var(--line);
+  border-radius:17px;
   font-size:16px;
   outline:none;
   direction:rtl;
+  background:#fff;
+  transition:.2s;
 }
+
 input:focus{
-  border-color:#111;
+  border-color:var(--yellow2);
+  box-shadow:0 0 0 4px rgba(255,210,28,.14);
 }
+
+input::placeholder{
+  color:#aaa;
+}
+
+/* SUGGESTIONS */
+
 .suggestions{
   position:absolute;
-  z-index:20;
-  top:100%;
+  z-index:50;
+  top:calc(100% + 7px);
   right:0;
   left:0;
   background:#fff;
   border:1px solid #ddd;
-  border-radius:14px;
+  border-radius:17px;
   overflow:hidden;
-  box-shadow:0 12px 30px rgba(0,0,0,.15);
+  box-shadow:0 18px 35px rgba(0,0,0,.18);
+  max-height:310px;
+  overflow-y:auto;
 }
+
 .suggestion{
-  padding:13px 15px;
-  border-bottom:1px solid #eee;
+  display:flex;
+  align-items:center;
+  gap:11px;
+  padding:13px 14px;
+  border-bottom:1px solid #f0f0f0;
   cursor:pointer;
-  font-weight:700;
+  font-weight:800;
+  transition:.15s;
+  background:#fff;
 }
-.suggestion:last-child{border-bottom:0}
-.suggestion:hover{background:#f3f3f3}
-button{
+
+.suggestion:last-child{
+  border-bottom:0;
+}
+
+.suggestion:hover,
+.suggestion:active{
+  background:#fff9dc;
+}
+
+.suggestion-icon{
+  flex:0 0 35px;
+  width:35px;
+  height:35px;
+  border-radius:11px;
+  display:grid;
+  place-items:center;
+  background:var(--yellow);
+  color:#111;
+  font-size:15px;
+}
+
+.suggestion-text{
+  display:flex;
+  flex-direction:column;
+  align-items:flex-start;
+  gap:2px;
+}
+
+.suggestion-name{
+  font-size:14px;
+}
+
+.suggestion-sub{
+  font-size:10px;
+  color:#999;
+  font-weight:600;
+}
+
+/* BUTTON */
+
+.calc-btn{
+  position:relative;
+  overflow:hidden;
   width:100%;
   border:0;
-  background:#111;
+  background:linear-gradient(135deg,#080a0c,#191d20);
   color:#fff;
   padding:17px;
-  border-radius:15px;
+  border-radius:18px;
   font-size:17px;
-  font-weight:900;
+  font-weight:1000;
   cursor:pointer;
+  box-shadow:
+    0 8px 0 #d6a900,
+    0 14px 25px rgba(0,0,0,.15);
+  transition:.15s;
 }
-button:active{transform:scale(.99)}
+
+.calc-btn:after{
+  content:"←";
+  position:absolute;
+  left:20px;
+  top:50%;
+  transform:translateY(-53%);
+  color:var(--yellow);
+  font-size:25px;
+}
+
+.calc-btn:active{
+  transform:translateY(3px);
+  box-shadow:
+    0 5px 0 #d6a900,
+    0 9px 18px rgba(0,0,0,.12);
+}
+
+.hint{
+  text-align:center;
+  color:#888;
+  font-size:11px;
+  margin-top:14px;
+}
+
+/* RESULT */
+
 .result{
   display:none;
 }
+
+.result-head{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  font-weight:900;
+  margin-bottom:15px;
+}
+
+.result-head .dot{
+  width:10px;
+  height:10px;
+  background:var(--yellow);
+  border-radius:50%;
+  box-shadow:0 0 0 5px rgba(255,210,28,.15);
+}
+
 .route{
   display:grid;
   grid-template-columns:1fr auto 1fr;
   align-items:center;
-  gap:10px;
-  margin-bottom:20px;
+  gap:8px;
+  margin-bottom:17px;
 }
+
 .place{
-  background:#f5f5f5;
-  border-radius:15px;
-  padding:14px 10px;
+  background:linear-gradient(135deg,#f7f8f9,#eef0f2);
+  border-radius:17px;
+  padding:13px 9px;
   text-align:center;
   font-weight:900;
+  min-height:52px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
 }
+
 .arrow{
-  font-size:22px;
-  font-weight:900;
+  width:38px;
+  height:38px;
+  border-radius:50%;
+  display:grid;
+  place-items:center;
+  background:var(--yellow);
+  font-size:20px;
+  font-weight:1000;
+  color:#111;
 }
+
+.stats{
+  display:grid;
+  grid-template-columns:1fr 1px 1fr;
+  align-items:center;
+  text-align:center;
+  background:#fff;
+  border:1px solid #eee;
+  border-radius:19px;
+  padding:16px 8px;
+}
+
+.divider{
+  height:55px;
+  background:#e5e5e5;
+}
+
 .distance{
-  text-align:center;
   font-size:38px;
-  font-weight:900;
-  margin:5px 0;
+  font-weight:1000;
+  line-height:1;
 }
+
 .distance small{
-  font-size:15px;
-  font-weight:700;
+  font-size:13px;
+  font-weight:800;
 }
-.price{
-  background:#111;
-  color:#fff;
-  border-radius:20px;
-  text-align:center;
-  padding:22px;
-  margin-top:15px;
-}
-.price .number{
+
+.price-box{
   font-size:38px;
-  font-weight:900;
+  font-weight:1000;
+  line-height:1;
 }
-.price .currency{
-  font-size:16px;
+
+.price-box .currency{
+  font-size:13px;
+  color:#d29d00;
+  font-weight:1000;
+  margin-top:4px;
 }
+
+.stat-label{
+  font-size:11px;
+  color:#888;
+  font-weight:800;
+  margin-top:5px;
+}
+
 .note{
   margin-top:13px;
-  background:#f0f0f0;
+  background:#f1f3f5;
   padding:12px;
-  border-radius:13px;
-  font-size:13px;
-  line-height:1.7;
-}
-.warning{
-  margin-top:12px;
-  background:#fff3cd;
-  border:1px solid #ffe08a;
-  padding:12px;
-  border-radius:13px;
-  font-size:13px;
-  line-height:1.7;
-}
-.footer{
-  text-align:center;
-  color:#777;
+  border-radius:14px;
   font-size:12px;
-  margin:20px 0;
+  line-height:1.7;
+}
+
+.warning{
+  margin-top:11px;
+  background:#fff7d8;
+  border:1px solid #f4d96b;
+  padding:12px;
+  border-radius:14px;
+  font-size:12px;
+  line-height:1.7;
+}
+
+.tagline{
+  text-align:center;
+  margin:18px 0 2px;
+  font-weight:1000;
+  font-size:15px;
+}
+
+.tagline span{
+  color:var(--yellow2);
+}
+
+/* FOOTER */
+
+.footer{
+  background:#0b0d0f;
+  color:#fff;
+  border-radius:22px;
+  padding:16px 18px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+  font-size:12px;
+  font-weight:900;
+  box-shadow:0 10px 28px rgba(0,0,0,.12);
+}
+
+.footer strong{
+  color:var(--yellow);
+  font-size:15px;
+}
+
+.footer small{
+  color:#aaa;
+}
+
+/* MOBILE */
+
+@media(max-width:500px){
+
+  .container{
+    width:94%;
+    margin-top:10px;
+  }
+
+  .header{
+    border-radius:24px;
+    padding:21px 14px 23px;
+  }
+
+  .logo{
+    font-size:32px;
+  }
+
+  .logo-mark{
+    width:56px;
+    height:56px;
+  }
+
+  .card{
+    padding:16px;
+    border-radius:21px;
+  }
+
+  .distance,
+  .price-box{
+    font-size:33px;
+  }
+
+  .footer{
+    flex-direction:column;
+    text-align:center;
+  }
 }
 </style>
 </head>
@@ -172,65 +518,213 @@ button:active{transform:scale(.99)}
 
 <div class="container">
 
+  <!-- HEADER -->
+
   <div class="header">
-    <div class="logo">NWASSLEK</div>
-    <div class="subtitle">حساب تسعيرة التوصيل حسب المسافة الفعلية</div>
+
+    <div class="brand">
+
+      <div class="logo-mark">
+        <span>🚗</span>
+      </div>
+
+      <div class="logo">
+        NWASSLEK
+      </div>
+
+    </div>
+
+    <div class="slogan">
+      نوصلك وين ما كنت 💛
+    </div>
+
+    <div class="subtitle">
+      حساب تسعيرة التوصيل حسب المسافة الفعلية
+    </div>
+
+    <div class="mini-badges">
+      <span class="badge">📍 Médéa</span>
+      <span class="badge">⚡ سريع</span>
+      <span class="badge">🛵 توصيل</span>
+    </div>
+
   </div>
+
+
+  <!-- SEARCH CARD -->
 
   <div class="card">
 
-    <label>📍 مكان الانطلاق</label>
-    <div class="input-wrap">
-      <input id="from"
-             autocomplete="off"
-             placeholder="مثال: تاكبو"
-             oninput="showSuggestions('from')"
-             onfocus="showSuggestions('from')">
-      <div id="fromSuggestions" class="suggestions"></div>
+    <div class="field-head">
+      <span class="field-icon">📍</span>
+      <span>مكان الانطلاق</span>
     </div>
 
-    <label>🏁 مكان الوصول</label>
     <div class="input-wrap">
-      <input id="to"
-             autocomplete="off"
-             placeholder="مثال: عين الذهب"
-             oninput="showSuggestions('to')"
-             onfocus="showSuggestions('to')">
-      <div id="toSuggestions" class="suggestions"></div>
+
+      <input
+        id="from"
+        autocomplete="off"
+        placeholder="اكتب اسم المنطقة..."
+        oninput="showSuggestions('from')"
+        onfocus="showSuggestions('from')"
+      >
+
+      <div
+        id="fromSuggestions"
+        class="suggestions"
+      ></div>
+
     </div>
 
-    <button onclick="calculate()">احسب التسعيرة</button>
+
+    <div class="field-head">
+      <span class="field-icon">🏁</span>
+      <span>مكان الوصول</span>
+    </div>
+
+    <div class="input-wrap">
+
+      <input
+        id="to"
+        autocomplete="off"
+        placeholder="اكتب اسم المنطقة..."
+        oninput="showSuggestions('to')"
+        onfocus="showSuggestions('to')"
+      >
+
+      <div
+        id="toSuggestions"
+        class="suggestions"
+      ></div>
+
+    </div>
+
+
+    <button
+      class="calc-btn"
+      onclick="calculate()"
+    >
+      احسب التسعيرة
+    </button>
+
+    <div class="hint">
+      اكتب اسم المنطقة والاختيارات تظهر لك مباشرة ✨
+    </div>
 
   </div>
 
-  <div id="result" class="card result">
+
+  <!-- RESULT -->
+
+  <div
+    id="result"
+    class="card result"
+  >
+
+    <div class="result-head">
+      <span class="dot"></span>
+      <span>تفاصيل التوصيلة</span>
+    </div>
+
 
     <div class="route">
-      <div id="fromPlace" class="place"></div>
-      <div class="arrow">←</div>
-      <div id="toPlace" class="place"></div>
+
+      <div
+        id="fromPlace"
+        class="place"
+      ></div>
+
+      <div class="arrow">
+        ←
+      </div>
+
+      <div
+        id="toPlace"
+        class="place"
+      ></div>
+
     </div>
 
-    <div class="distance">
-      <span id="distance">--</span>
-      <small>كم</small>
+
+    <div class="stats">
+
+      <div>
+
+        <div class="distance">
+          <span id="distance">--</span>
+          <small>كم</small>
+        </div>
+
+        <div class="stat-label">
+          المسافة
+        </div>
+
+      </div>
+
+
+      <div class="divider"></div>
+
+
+      <div>
+
+        <div class="price-box">
+
+          <span id="price">--</span>
+
+          <div class="currency">
+            دج
+          </div>
+
+        </div>
+
+        <div class="stat-label">
+          التسعيرة
+        </div>
+
+      </div>
+
     </div>
 
-    <div class="price">
-      <div class="number" id="price">--</div>
-      <div class="currency">دج</div>
-    </div>
 
-    <div id="note" class="note"></div>
-    <div id="warning" class="warning" style="display:none"></div>
+    <div
+      id="note"
+      class="note"
+    ></div>
+
+
+    <div
+      id="warning"
+      class="warning"
+      style="display:none"
+    ></div>
+
+
+    <div class="tagline">
+      💛 <span>نوصلك</span> ... لأنك تستاهل الأفضل
+    </div>
 
   </div>
 
+
+  <!-- FOOTER -->
+
   <div class="footer">
-    NWASSLEK BY WALID
+
+    <div>
+      <strong>♥ NWASSLEK</strong>
+      &nbsp; | &nbsp;
+      BY WALID
+    </div>
+
+    <small>
+      خدمات التوصيل في المدية وما جاورها 📍
+    </small>
+
   </div>
 
 </div>
+
 
 <script>
 
@@ -243,7 +737,6 @@ const PLACES = [
   {name:"تاكبو",lat:36.26049,lon:2.77299},
   {name:"عين الذهب",lat:36.26672,lon:2.78108},
 
-  /* تصحيح البول */
   {name:"البول",lat:36.2656566,lon:2.7946033},
 
   {name:"مسعودي",lat:36.26480,lon:2.75980},
@@ -269,12 +762,10 @@ const PLACES = [
   {name:"واد زيتون",lat:36.25206,lon:2.76358},
   {name:"قطيطين",lat:36.25391,lon:2.75658},
 
-  /* تصحيح باب القرط */
   {name:"باب القرط",lat:36.268324,lon:2.752031},
 
   {name:"مرج شكير",lat:36.27866,lon:2.76039},
 
-  /* دورة الشيخ بن عيسى موثقة */
   {name:"دورة شيخ بن عيسى",lat:36.266542,lon:2.812205},
 
   {name:"الرمالي",lat:36.27200,lon:2.74100},
@@ -286,11 +777,6 @@ const PLACES = [
   {name:"الغزاغزة",lat:36.28100,lon:2.78600},
   {name:"شرارشية",lat:36.28500,lon:2.77500},
 
-  /*
-     تصحيح عين الجردة:
-     7P87+5M8 - Draa Essamar
-     بدل النقطة القديمة 36.27050, 2.73000
-  */
   {name:"عين الجردة",lat:36.26506,lon:2.71256},
 
   {name:"تمزقيدة",lat:36.33000,lon:2.79000},
@@ -409,11 +895,9 @@ const ALIASES = {
   "bab alghort":"باب القرط",
 
   "مرج شكير":"مرج شكير",
-  "merd jchekir":"مرج شكير",
   "merdj chekir":"مرج شكير",
 
   "دورة شيخ بن عيسى":"دورة شيخ بن عيسى",
-  "دورة الشيخ بن عيسى":"دورة شيخ بن عيسى",
   "دورة الشيخ بن عيسى":"دورة شيخ بن عيسى",
   "doura cheikh ben aissa":"دورة شيخ بن عيسى",
   "doura chikh ben aissa":"دورة شيخ بن عيسى",
@@ -444,7 +928,6 @@ const ALIASES = {
   "الغزاغزة":"الغزاغزة",
   "الغزارقزة":"الغزاغزة",
   "ghezagheza":"الغزاغزة",
-  "el ghezagheza":"الغزاغزة",
 
   "شرارشية":"شرارشية",
   "chararchia":"شرارشية",
@@ -453,11 +936,9 @@ const ALIASES = {
   "عين الجردا":"عين الجردة",
   "ain jerda":"عين الجردة",
   "ain al jerda":"عين الجردة",
-  "ain al-jerda":"عين الجردة",
   "ain el jerda":"عين الجردة",
 
   "تمزقيدة":"تمزقيدة",
-  "tamesguida":"تمزقيدة",
   "tamesguida":"تمزقيدة",
 
   "وزرة":"وزرة",
@@ -485,6 +966,7 @@ const ALIASES = {
 ========================================================= */
 
 function normalize(str){
+
   return String(str || "")
     .toLowerCase()
     .normalize("NFD")
@@ -497,6 +979,7 @@ function normalize(str){
     .replace(/ـ/g,"")
     .replace(/[^a-z0-9\u0600-\u06ff]+/g,"")
     .trim();
+
 }
 
 
@@ -520,22 +1003,29 @@ function levenshtein(a,b){
   }
 
   for(let i=1;i<=b.length;i++){
+
     for(let j=1;j<=a.length;j++){
 
       if(b.charAt(i-1)===a.charAt(j-1)){
-        matrix[i][j]=matrix[i-1][j-1];
+
+        matrix[i][j]=matrix[i-1][j];
+
       }else{
+
         matrix[i][j]=Math.min(
           matrix[i-1][j-1]+1,
           matrix[i][j-1]+1,
           matrix[i-1][j]+1
         );
+
       }
 
     }
+
   }
 
   return matrix[b.length][a.length];
+
 }
 
 
@@ -550,51 +1040,68 @@ function findPlace(input){
 
   if(!n) return null;
 
-  /* aliases */
+
   for(const key in ALIASES){
+
     if(normalize(key)===n){
+
       const name=ALIASES[key];
+
       return {
         place:PLACES.find(p=>p.name===name),
         corrected:name,
         exact:true
       };
+
     }
+
   }
 
-  /* exact place */
+
   for(const p of PLACES){
+
     if(normalize(p.name)===n){
+
       return {
         place:p,
         corrected:p.name,
         exact:true
       };
+
     }
+
   }
 
-  /* contains */
+
   let contains=[];
 
   for(const p of PLACES){
 
     const pn=normalize(p.name);
 
-    if(pn.includes(n) || n.includes(pn)){
+    if(
+      pn.includes(n) ||
+      n.includes(pn)
+    ){
+
       contains.push(p);
+
     }
 
   }
 
+
   if(contains.length){
+
     return {
       place:contains[0],
       corrected:contains[0].name,
       exact:false
     };
+
   }
 
-  /* fuzzy */
+
   let best=null;
   let bestDistance=Infinity;
 
@@ -603,21 +1110,34 @@ function findPlace(input){
     const d=levenshtein(n,p.name);
 
     if(d<bestDistance){
+
       bestDistance=d;
       best=p;
+
     }
 
   }
 
-  if(best && bestDistance<=Math.max(3,Math.floor(n.length*.45))){
+
+  if(
+    best &&
+    bestDistance<=Math.max(
+      3,
+      Math.floor(n.length*.45)
+    )
+  ){
+
     return {
       place:best,
       corrected:best.name,
       exact:false
     };
+
   }
 
+
   return null;
+
 }
 
 
@@ -627,15 +1147,25 @@ function findPlace(input){
 
 function showSuggestions(type){
 
-  const input=document.getElementById(type).value.trim();
-  const box=document.getElementById(type+"Suggestions");
+  const input=document
+    .getElementById(type)
+    .value
+    .trim();
+
+  const box=document
+    .getElementById(type+"Suggestions");
+
 
   if(!input){
+
     box.innerHTML="";
     return;
+
   }
 
+
   const n=normalize(input);
+
 
   let ranked=PLACES.map(p=>{
 
@@ -644,32 +1174,64 @@ function showSuggestions(type){
     let score=levenshtein(n,pn);
 
     if(pn.includes(n)) score-=20;
+
     if(n.includes(pn)) score-=10;
 
-    return {p,score};
+    return {
+      p,
+      score
+    };
 
   });
 
-  ranked.sort((a,b)=>a.score-b.score);
+
+  ranked.sort(
+    (a,b)=>a.score-b.score
+  );
+
 
   box.innerHTML="";
 
-  ranked.slice(0,6).forEach(item=>{
 
-    const div=document.createElement("div");
-    div.className="suggestion";
-    div.textContent=item.p.name;
+  ranked
+    .slice(0,6)
+    .forEach(item=>{
 
-    div.onclick=()=>{
+      const div=document.createElement("div");
 
-      document.getElementById(type).value=item.p.name;
-      box.innerHTML="";
+      div.className="suggestion";
 
-    };
+      div.innerHTML=`
+        <span class="suggestion-icon">📍</span>
 
-    box.appendChild(div);
+        <span class="suggestion-text">
 
-  });
+          <span class="suggestion-name">
+            ${item.p.name}
+          </span>
+
+          <span class="suggestion-sub">
+            المدية • منطقة التوصيل
+          </span>
+
+        </span>
+      `;
+
+
+      div.onclick=()=>{
+
+        document
+          .getElementById(type)
+          .value=item.p.name;
+
+        box.innerHTML="";
+
+      };
+
+
+      box.appendChild(div);
+
+    });
 
 }
 
@@ -678,16 +1240,24 @@ function showSuggestions(type){
    CLOSE SUGGESTIONS
 ========================================================= */
 
-document.addEventListener("click",function(e){
+document.addEventListener(
+  "click",
+  function(e){
 
-  if(!e.target.closest(".input-wrap")){
+    if(!e.target.closest(".input-wrap")){
 
-    document.getElementById("fromSuggestions").innerHTML="";
-    document.getElementById("toSuggestions").innerHTML="";
+      document
+        .getElementById("fromSuggestions")
+        .innerHTML="";
+
+      document
+        .getElementById("toSuggestions")
+        .innerHTML="";
+
+    }
 
   }
-
-});
+);
 
 
 /* =========================================================
@@ -701,8 +1271,11 @@ function haversine(a,b){
   const lat1=a.lat*Math.PI/180;
   const lat2=b.lat*Math.PI/180;
 
-  const dLat=(b.lat-a.lat)*Math.PI/180;
-  const dLon=(b.lon-a.lon)*Math.PI/180;
+  const dLat=
+    (b.lat-a.lat)*Math.PI/180;
+
+  const dLon=
+    (b.lon-a.lon)*Math.PI/180;
 
   const x=
     Math.sin(dLat/2)**2+
@@ -710,13 +1283,18 @@ function haversine(a,b){
     Math.cos(lat2)*
     Math.sin(dLon/2)**2;
 
-  return R*2*Math.atan2(Math.sqrt(x),Math.sqrt(1-x));
+  return R*
+    2*
+    Math.atan2(
+      Math.sqrt(x),
+      Math.sqrt(1-x)
+    );
 
 }
 
 
 /* =========================================================
-   ROAD DISTANCE - OSRM
+   ROAD DISTANCE
 ========================================================= */
 
 async function roadDistance(a,b){
@@ -726,15 +1304,25 @@ async function roadDistance(a,b){
     `${a.lon},${a.lat};${b.lon},${b.lat}`+
     "?overview=false&alternatives=true&steps=false";
 
+
   try{
 
-    const response=await fetch(url);
+    const response=
+      await fetch(url);
+
 
     if(!response.ok){
-      throw new Error("OSRM error");
+
+      throw new Error(
+        "OSRM error"
+      );
+
     }
 
-    const data=await response.json();
+
+    const data=
+      await response.json();
+
 
     if(
       data.code==="Ok" &&
@@ -742,27 +1330,38 @@ async function roadDistance(a,b){
       data.routes.length
     ){
 
-      let routes=data.routes
-        .map(r=>r.distance/1000)
-        .filter(d=>Number.isFinite(d));
+      const routes=
+        data.routes
+          .map(
+            r=>r.distance/1000
+          )
+          .filter(
+            d=>Number.isFinite(d)
+          );
+
 
       if(routes.length){
 
-        /*
-          نستعمل أقصر طريق حقيقي رجعه OSRM.
-        */
-        const distance=Math.min(...routes);
+        const distance=
+          Math.min(...routes);
 
-        const straight=haversine(a,b);
+        const straight=
+          haversine(a,b);
 
-        /*
-          حماية من نتائج routing غير منطقية.
-        */
-        if(distance <= Math.max(12,straight*4)){
+
+        if(
+          distance<=
+          Math.max(
+            12,
+            straight*4
+          )
+        ){
+
           return {
             distance,
             fallback:false
           };
+
         }
 
       }
@@ -775,11 +1374,11 @@ async function roadDistance(a,b){
 
   }
 
-  /*
-    fallback فقط إذا فشل OSRM.
-  */
+
   return {
-    distance:haversine(a,b)*1.35,
+    distance:
+      haversine(a,b)*1.35,
+
     fallback:true
   };
 
@@ -793,16 +1392,25 @@ async function roadDistance(a,b){
 function calculatePrice(km){
 
   if(km<=1) return 150;
+
   if(km<=2) return 200;
+
   if(km<=4) return 250;
+
   if(km<=6) return 300;
+
   if(km<=8) return 350;
+
   if(km<=10) return 400;
+
   if(km<=12) return 450;
+
   if(km<=14) return 500;
+
   if(km<=15) return 550;
 
-  return 550 + Math.ceil(km-15)*50;
+  return 550+
+    Math.ceil(km-15)*50;
 
 }
 
@@ -813,25 +1421,46 @@ function calculatePrice(km){
 
 async function calculate(){
 
-  const fromInput=document.getElementById("from").value;
-  const toInput=document.getElementById("to").value;
+  const fromInput=
+    document.getElementById("from").value;
 
-  const from=findPlace(fromInput);
-  const to=findPlace(toInput);
+  const toInput=
+    document.getElementById("to").value;
 
-  const result=document.getElementById("result");
-  const warning=document.getElementById("warning");
-  const note=document.getElementById("note");
+
+  const from=
+    findPlace(fromInput);
+
+  const to=
+    findPlace(toInput);
+
+
+  const result=
+    document.getElementById("result");
+
+  const warning=
+    document.getElementById("warning");
+
+  const note=
+    document.getElementById("note");
+
 
   warning.style.display="none";
   warning.innerHTML="";
+
 
   if(!from || !to){
 
     result.style.display="block";
 
-    document.getElementById("distance").textContent="!";
-    document.getElementById("price").textContent="";
+    document
+      .getElementById("distance")
+      .textContent="!";
+
+    document
+      .getElementById("price")
+      .textContent="";
+
 
     note.innerHTML=
       "❌ ما قدرتش نحدد إحدى المناطق. حاول تكتب الاسم بطريقة أخرى.";
@@ -840,59 +1469,101 @@ async function calculate(){
 
   }
 
-  document.getElementById("fromPlace").textContent=from.corrected;
-  document.getElementById("toPlace").textContent=to.corrected;
+
+  document
+    .getElementById("fromPlace")
+    .textContent=from.corrected;
+
+
+  document
+    .getElementById("toPlace")
+    .textContent=to.corrected;
+
 
   result.style.display="block";
 
-  document.getElementById("distance").textContent="...";
 
-  document.getElementById("price").textContent="...";
+  document
+    .getElementById("distance")
+    .textContent="...";
 
-  note.innerHTML="جاري حساب أقصر مسار بالسيارة...";
 
-  const route=await roadDistance(from.place,to.place);
+  document
+    .getElementById("price")
+    .textContent="...";
 
-  const km=route.distance;
 
-  const price=calculatePrice(km);
+  note.innerHTML=
+    "⏳ جاري حساب أقصر مسار بالسيارة...";
 
-  document.getElementById("distance").textContent=
+
+  const route=
+    await roadDistance(
+      from.place,
+      to.place
+    );
+
+
+  const km=
+    route.distance;
+
+
+  const price=
+    calculatePrice(km);
+
+
+  document
+    .getElementById("distance")
+    .textContent=
     km.toFixed(1);
 
-  document.getElementById("price").textContent=
+
+  document
+    .getElementById("price")
+    .textContent=
     price.toLocaleString("fr-FR");
+
 
   note.innerHTML=
     "💰 التسعيرة محسوبة حسب المسافة بين نقطتي الانطلاق والوصول.";
 
+
   let messages=[];
 
+
   if(!from.exact){
+
     messages.push(
       `تم تصحيح مكان الانطلاق إلى: <b>${from.corrected}</b>`
     );
+
   }
 
+
   if(!to.exact){
+
     messages.push(
       `تم تصحيح مكان الوصول إلى: <b>${to.corrected}</b>`
     );
+
   }
+
 
   if(route.fallback){
 
     messages.push(
-      "تعذر الوصول إلى خدمة حساب الطرق حالياً، لذلك تم استعمال تقدير احتياطي للمسافة."
+      "⚠️ تعذر الوصول إلى خدمة حساب الطرق حالياً، لذلك تم استعمال تقدير احتياطي للمسافة."
     );
 
   }
+
 
   if(messages.length){
 
     warning.style.display="block";
 
-    warning.innerHTML=messages.join("<br>");
+    warning.innerHTML=
+      messages.join("<br>");
 
   }
 
@@ -900,25 +1571,35 @@ async function calculate(){
 
 
 /* =========================================================
-   ENTER KEY
+   ENTER
 ========================================================= */
 
-document.addEventListener("keydown",function(e){
+document.addEventListener(
+  "keydown",
+  function(e){
 
-  if(e.key==="Enter"){
+    if(e.key==="Enter"){
 
-    const active=document.activeElement;
+      const active=
+        document.activeElement;
 
-    if(
-      active &&
-      (active.id==="from" || active.id==="to")
-    ){
-      calculate();
+
+      if(
+        active &&
+        (
+          active.id==="from" ||
+          active.id==="to"
+        )
+      ){
+
+        calculate();
+
+      }
+
     }
 
   }
-
-});
+);
 
 </script>
 
