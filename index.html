@@ -17,180 +17,200 @@
   --soft:#f5f6f7;
 }
 
-*{box-sizing:border-box}
+*{
+  box-sizing:border-box;
+}
 
 body{
   margin:0;
   font-family:Arial,"Tahoma",sans-serif;
   background:
-    radial-gradient(circle at 10% 10%,rgba(255,210,28,.13),transparent 25%),
-    radial-gradient(circle at 90% 25%,rgba(255,210,28,.08),transparent 22%),
-    #f4f5f6;
+    radial-gradient(circle at 10% 5%,rgba(255,210,28,.10),transparent 25%),
+    radial-gradient(circle at 90% 20%,rgba(0,0,0,.05),transparent 25%),
+    #f5f6f7;
   color:#111;
 }
 
 .container{
-  width:min(680px,94%);
+  width:min(1000px,96%);
   margin:14px auto 30px;
 }
 
-/* HEADER */
+/* =====================================================
+   HEADER
+===================================================== */
 
 .header{
   position:relative;
   overflow:hidden;
-  background:linear-gradient(135deg,#07090b,#1a1e22);
+  background:
+    linear-gradient(135deg,#07090b,#181c20);
   color:#fff;
-  border-radius:28px;
-  padding:25px 18px 28px;
+  border-radius:30px;
+  padding:30px 30px 28px;
   text-align:center;
-  margin-bottom:16px;
-  box-shadow:0 16px 38px rgba(0,0,0,.17);
-  border-bottom:5px solid var(--yellow);
-}
-
-.header:before,
-.header:after{
-  content:"";
-  position:absolute;
-  border-radius:50%;
-  background:rgba(255,210,28,.08);
+  margin-bottom:18px;
+  box-shadow:0 16px 40px rgba(0,0,0,.18);
+  border-bottom:7px solid var(--yellow);
+  min-height:245px;
 }
 
 .header:before{
-  width:190px;
-  height:190px;
-  right:-90px;
-  top:-100px;
+  content:"";
+  position:absolute;
+  width:450px;
+  height:450px;
+  right:-210px;
+  top:-270px;
+  border-radius:50%;
+  border:35px solid rgba(255,210,28,.035);
 }
 
 .header:after{
-  width:140px;
-  height:140px;
-  left:-70px;
-  bottom:-75px;
+  content:"";
+  position:absolute;
+  width:430px;
+  height:160px;
+  left:-130px;
+  bottom:-110px;
+  transform:rotate(-20deg);
+  border-top:2px solid rgba(255,255,255,.04);
+  border-bottom:2px solid rgba(255,255,255,.04);
 }
 
 .brand{
   position:relative;
-  z-index:1;
+  z-index:2;
   display:flex;
   align-items:center;
   justify-content:center;
-  gap:12px;
+  gap:20px;
 }
 
 .logo-mark{
-  width:62px;
-  height:62px;
-  border:5px solid var(--yellow);
-  border-radius:50% 50% 50% 8px;
+  width:94px;
+  height:94px;
+  border:7px solid var(--yellow);
+  border-radius:50% 50% 50% 12px;
   transform:rotate(-45deg);
   display:grid;
   place-items:center;
-  box-shadow:0 0 0 7px rgba(255,210,28,.08);
+  box-shadow:
+    0 0 0 9px rgba(255,210,28,.07),
+    0 8px 30px rgba(0,0,0,.25);
+  flex-shrink:0;
 }
 
 .logo-mark span{
   transform:rotate(45deg);
-  font-size:27px;
+  font-size:40px;
 }
 
 .logo{
-  font-size:37px;
+  font-size:58px;
   font-weight:1000;
   letter-spacing:2px;
-  background:linear-gradient(
-    90deg,
-    #fff 0 48%,
-    var(--yellow) 49% 100%
-  );
+  background:
+    linear-gradient(
+      90deg,
+      #ffd21c 0 20%,
+      #fff 21% 65%,
+      #ffd21c 66% 100%
+    );
   -webkit-background-clip:text;
   background-clip:text;
   color:transparent;
+  white-space:nowrap;
 }
 
 .slogan{
   position:relative;
-  z-index:1;
+  z-index:2;
   color:var(--yellow);
-  font-weight:900;
-  font-size:16px;
+  font-weight:1000;
+  font-size:21px;
   margin-top:7px;
 }
 
 .subtitle{
   position:relative;
-  z-index:1;
-  margin-top:7px;
-  color:#e5e5e5;
-  font-size:13px;
+  z-index:2;
+  margin-top:9px;
+  color:#eee;
+  font-size:17px;
 }
 
-.mini-badges{
-  position:relative;
-  z-index:1;
-  display:flex;
-  justify-content:center;
-  gap:8px;
-  flex-wrap:wrap;
-  margin-top:14px;
-}
-
-.badge{
-  background:rgba(255,210,28,.12);
-  border:1px solid rgba(255,210,28,.30);
+.header-side{
+  position:absolute;
+  z-index:3;
+  right:34px;
+  top:65px;
   color:#fff;
-  border-radius:999px;
-  padding:6px 11px;
-  font-size:11px;
-  font-weight:800;
+  font-size:21px;
+  font-weight:900;
+  line-height:1.65;
+  text-align:right;
 }
 
-/* CARD */
+.header-side span{
+  color:var(--yellow);
+}
+
+/* =====================================================
+   SEARCH CARD
+===================================================== */
 
 .card{
-  background:rgba(255,255,255,.97);
+  background:rgba(255,255,255,.98);
   border-radius:24px;
-  padding:19px;
-  margin-bottom:15px;
-  box-shadow:0 8px 28px rgba(0,0,0,.07);
+  padding:22px;
+  margin-bottom:16px;
+  box-shadow:0 9px 30px rgba(0,0,0,.08);
   border:1px solid rgba(0,0,0,.04);
 }
 
-/* SEARCH */
+.search-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:22px;
+  direction:ltr;
+}
+
+.search-column{
+  direction:rtl;
+}
 
 .field-head{
   display:flex;
   align-items:center;
-  gap:9px;
-  margin-bottom:8px;
-  font-weight:900;
-  font-size:15px;
+  gap:10px;
+  margin-bottom:9px;
+  font-weight:1000;
+  font-size:19px;
 }
 
 .field-icon{
-  width:34px;
-  height:34px;
+  width:39px;
+  height:39px;
   display:grid;
   place-items:center;
-  border-radius:11px;
-  background:#111;
+  border-radius:12px;
+  background:#080a0c;
   color:var(--yellow);
-  font-size:17px;
+  font-size:19px;
+  flex-shrink:0;
 }
 
 .input-wrap{
   position:relative;
-  margin-bottom:15px;
 }
 
 input{
   width:100%;
-  padding:16px 17px;
-  border:2px solid var(--line);
-  border-radius:17px;
-  font-size:16px;
+  padding:17px 18px;
+  border:2px solid var(--yellow);
+  border-radius:16px;
+  font-size:17px;
   outline:none;
   direction:rtl;
   background:#fff;
@@ -198,19 +218,21 @@ input{
 }
 
 input:focus{
-  border-color:var(--yellow2);
-  box-shadow:0 0 0 4px rgba(255,210,28,.14);
+  border-color:#e0a900;
+  box-shadow:0 0 0 4px rgba(255,210,28,.15);
 }
 
 input::placeholder{
-  color:#aaa;
+  color:#999;
 }
 
-/* SUGGESTIONS */
+/* =====================================================
+   SUGGESTIONS
+===================================================== */
 
 .suggestions{
   position:absolute;
-  z-index:50;
+  z-index:100;
   top:calc(100% + 7px);
   right:0;
   left:0;
@@ -245,15 +267,15 @@ input::placeholder{
 }
 
 .suggestion-icon{
-  flex:0 0 35px;
-  width:35px;
-  height:35px;
+  flex:0 0 36px;
+  width:36px;
+  height:36px;
   border-radius:11px;
   display:grid;
   place-items:center;
   background:var(--yellow);
   color:#111;
-  font-size:15px;
+  font-size:16px;
 }
 
 .suggestion-text{
@@ -273,54 +295,74 @@ input::placeholder{
   font-weight:600;
 }
 
-/* BUTTON */
+/* =====================================================
+   BUTTON
+===================================================== */
+
+.calc-wrap{
+  margin-top:22px;
+  text-align:center;
+}
 
 .calc-btn{
   position:relative;
   overflow:hidden;
-  width:100%;
+  width:min(850px,100%);
   border:0;
   background:linear-gradient(135deg,#080a0c,#191d20);
   color:#fff;
-  padding:17px;
-  border-radius:18px;
-  font-size:17px;
+  padding:18px 30px;
+  border-radius:999px;
+  font-size:20px;
   font-weight:1000;
   cursor:pointer;
   box-shadow:
-    0 8px 0 #d6a900,
+    0 7px 0 #d6a900,
     0 14px 25px rgba(0,0,0,.15);
   transition:.15s;
+}
+
+.calc-btn:before{
+  content:"🧮";
+  position:absolute;
+  right:28px;
+  top:50%;
+  transform:translateY(-50%);
+  font-size:24px;
 }
 
 .calc-btn:after{
   content:"←";
   position:absolute;
-  left:20px;
+  left:28px;
   top:50%;
   transform:translateY(-53%);
   color:var(--yellow);
-  font-size:25px;
+  font-size:30px;
 }
 
 .calc-btn:active{
   transform:translateY(3px);
   box-shadow:
-    0 5px 0 #d6a900,
+    0 4px 0 #d6a900,
     0 9px 18px rgba(0,0,0,.12);
 }
 
 .hint{
   text-align:center;
   color:#888;
-  font-size:11px;
+  font-size:12px;
   margin-top:14px;
 }
 
-/* RESULT */
+/* =====================================================
+   RESULT
+===================================================== */
 
 .result{
   display:none;
+  border:1px solid #efd36a;
+  padding:28px;
 }
 
 .result-head{
@@ -328,7 +370,7 @@ input::placeholder{
   align-items:center;
   gap:8px;
   font-weight:900;
-  margin-bottom:15px;
+  margin-bottom:18px;
 }
 
 .result-head .dot{
@@ -341,32 +383,46 @@ input::placeholder{
 
 .route{
   display:grid;
-  grid-template-columns:1fr auto 1fr;
+  grid-template-columns:1fr 100px 1fr;
   align-items:center;
-  gap:8px;
-  margin-bottom:17px;
+  gap:18px;
+  margin-bottom:22px;
 }
 
 .place{
   background:linear-gradient(135deg,#f7f8f9,#eef0f2);
-  border-radius:17px;
-  padding:13px 9px;
+  border-radius:40px;
+  padding:15px 18px;
   text-align:center;
-  font-weight:900;
-  min-height:52px;
+  font-weight:1000;
+  min-height:66px;
   display:flex;
   align-items:center;
   justify-content:center;
+  font-size:20px;
 }
 
 .arrow{
-  width:38px;
-  height:38px;
-  border-radius:50%;
+  width:90px;
+  height:60px;
   display:grid;
   place-items:center;
-  background:var(--yellow);
-  font-size:20px;
+  position:relative;
+  background:transparent;
+}
+
+.arrow:before{
+  content:"🛣️";
+  font-size:43px;
+  filter:grayscale(1) brightness(.25);
+}
+
+.arrow:after{
+  content:"→";
+  position:absolute;
+  right:0;
+  top:17px;
+  font-size:27px;
   font-weight:1000;
   color:#111;
 }
@@ -377,138 +433,236 @@ input::placeholder{
   align-items:center;
   text-align:center;
   background:#fff;
-  border:1px solid #eee;
+  border:0;
   border-radius:19px;
-  padding:16px 8px;
+  padding:18px 8px;
 }
 
 .divider{
-  height:55px;
+  height:65px;
   background:#e5e5e5;
 }
 
 .distance{
-  font-size:38px;
+  font-size:50px;
   font-weight:1000;
   line-height:1;
 }
 
 .distance small{
-  font-size:13px;
+  font-size:14px;
   font-weight:800;
 }
 
 .price-box{
-  font-size:38px;
+  font-size:50px;
   font-weight:1000;
   line-height:1;
 }
 
 .price-box .currency{
-  font-size:13px;
+  font-size:14px;
   color:#d29d00;
   font-weight:1000;
-  margin-top:4px;
-}
-
-.stat-label{
-  font-size:11px;
-  color:#888;
-  font-weight:800;
   margin-top:5px;
 }
 
-.note{
-  margin-top:13px;
-  background:#f1f3f5;
-  padding:12px;
-  border-radius:14px;
+.stat-label{
   font-size:12px;
-  line-height:1.7;
+  color:#888;
+  font-weight:800;
+  margin-top:7px;
+}
+
+.note{
+  margin-top:14px;
+  background:#f1f3f5;
+  padding:14px;
+  border-radius:15px;
+  font-size:13px;
+  line-height:1.8;
+  text-align:center;
 }
 
 .warning{
-  margin-top:11px;
+  margin-top:12px;
   background:#fff7d8;
   border:1px solid #f4d96b;
-  padding:12px;
-  border-radius:14px;
-  font-size:12px;
-  line-height:1.7;
+  padding:13px;
+  border-radius:15px;
+  font-size:13px;
+  line-height:1.8;
 }
 
 .tagline{
   text-align:center;
-  margin:18px 0 2px;
+  margin:23px 0 3px;
   font-weight:1000;
-  font-size:15px;
+  font-size:18px;
 }
 
 .tagline span{
   color:var(--yellow2);
 }
 
-/* FOOTER */
+/* =====================================================
+   FOOTER
+===================================================== */
 
 .footer{
   background:#0b0d0f;
   color:#fff;
-  border-radius:22px;
-  padding:16px 18px;
+  border-radius:30px;
+  padding:18px 25px;
   display:flex;
   align-items:center;
   justify-content:space-between;
   gap:10px;
-  font-size:12px;
+  font-size:13px;
   font-weight:900;
   box-shadow:0 10px 28px rgba(0,0,0,.12);
 }
 
 .footer strong{
   color:var(--yellow);
-  font-size:15px;
+  font-size:16px;
 }
 
 .footer small{
   color:#aaa;
 }
 
-/* MOBILE */
+/* =====================================================
+   MOBILE
+===================================================== */
 
-@media(max-width:500px){
+@media(max-width:700px){
 
   .container{
-    width:94%;
-    margin-top:10px;
+    width:95%;
+    margin-top:9px;
   }
 
   .header{
+    min-height:205px;
     border-radius:24px;
-    padding:21px 14px 23px;
+    padding:20px 12px 23px;
   }
 
-  .logo{
-    font-size:32px;
+  .header-side{
+    display:none;
+  }
+
+  .brand{
+    gap:11px;
   }
 
   .logo-mark{
-    width:56px;
-    height:56px;
+    width:64px;
+    height:64px;
+    border-width:5px;
+  }
+
+  .logo-mark span{
+    font-size:28px;
+  }
+
+  .logo{
+    font-size:34px;
+    letter-spacing:1px;
+  }
+
+  .slogan{
+    font-size:16px;
+    margin-top:8px;
+  }
+
+  .subtitle{
+    font-size:13px;
+    margin-top:8px;
+  }
+
+  .search-grid{
+    grid-template-columns:1fr;
+    gap:15px;
   }
 
   .card{
-    padding:16px;
+    padding:17px;
     border-radius:21px;
+  }
+
+  .field-head{
+    font-size:16px;
+  }
+
+  input{
+    font-size:15px;
+    padding:16px;
+  }
+
+  .calc-wrap{
+    margin-top:18px;
+  }
+
+  .calc-btn{
+    font-size:17px;
+    padding:17px 40px;
+  }
+
+  .calc-btn:before{
+    right:18px;
+    font-size:20px;
+  }
+
+  .calc-btn:after{
+    left:18px;
+    font-size:25px;
+  }
+
+  .result{
+    padding:19px;
+  }
+
+  .route{
+    grid-template-columns:1fr 52px 1fr;
+    gap:6px;
+  }
+
+  .place{
+    min-height:58px;
+    border-radius:30px;
+    padding:10px 6px;
+    font-size:15px;
+  }
+
+  .arrow{
+    width:52px;
+    height:50px;
+  }
+
+  .arrow:before{
+    font-size:28px;
+  }
+
+  .arrow:after{
+    font-size:19px;
+    top:15px;
   }
 
   .distance,
   .price-box{
-    font-size:33px;
+    font-size:35px;
+  }
+
+  .divider{
+    height:55px;
   }
 
   .footer{
     flex-direction:column;
     text-align:center;
+    border-radius:24px;
   }
 }
 </style>
@@ -518,7 +672,9 @@ input::placeholder{
 
 <div class="container">
 
-  <!-- HEADER -->
+  <!-- =================================================
+       HEADER
+  ================================================== -->
 
   <div class="header">
 
@@ -535,78 +691,100 @@ input::placeholder{
     </div>
 
     <div class="slogan">
-      نوصلك وين ما كنت 💛
+      — نوصلك وين ما كنت — 💛
     </div>
 
     <div class="subtitle">
       حساب تسعيرة التوصيل حسب المسافة الفعلية
     </div>
 
-    <div class="mini-badges">
-      <span class="badge">📍 Médéa</span>
-      <span class="badge">⚡ سريع</span>
-      <span class="badge">🛵 توصيل</span>
+    <div class="header-side">
+      بكل أمان<br>
+      وفي الوقت<br>
+      <span>المناسب</span>
     </div>
 
   </div>
 
 
-  <!-- SEARCH CARD -->
+  <!-- =================================================
+       SEARCH
+  ================================================== -->
 
   <div class="card">
 
-    <div class="field-head">
-      <span class="field-icon">📍</span>
-      <span>مكان الانطلاق</span>
+    <div class="search-grid">
+
+      <!-- FROM -->
+
+      <div class="search-column">
+
+        <div class="field-head">
+          <span class="field-icon">📍</span>
+          <span>مكان الانطلاق</span>
+        </div>
+
+        <div class="input-wrap">
+
+          <input
+            id="from"
+            autocomplete="off"
+            placeholder="أدخل مكان الانطلاق ..."
+            oninput="showSuggestions('from')"
+            onfocus="showSuggestions('from')"
+          >
+
+          <div
+            id="fromSuggestions"
+            class="suggestions"
+          ></div>
+
+        </div>
+
+      </div>
+
+
+      <!-- TO -->
+
+      <div class="search-column">
+
+        <div class="field-head">
+          <span class="field-icon">🏁</span>
+          <span>مكان الوصول</span>
+        </div>
+
+        <div class="input-wrap">
+
+          <input
+            id="to"
+            autocomplete="off"
+            placeholder="أدخل مكان الوصول ..."
+            oninput="showSuggestions('to')"
+            onfocus="showSuggestions('to')"
+          >
+
+          <div
+            id="toSuggestions"
+            class="suggestions"
+          ></div>
+
+        </div>
+
+      </div>
+
     </div>
 
-    <div class="input-wrap">
 
-      <input
-        id="from"
-        autocomplete="off"
-        placeholder="اكتب اسم المنطقة..."
-        oninput="showSuggestions('from')"
-        onfocus="showSuggestions('from')"
+    <div class="calc-wrap">
+
+      <button
+        class="calc-btn"
+        onclick="calculate()"
       >
-
-      <div
-        id="fromSuggestions"
-        class="suggestions"
-      ></div>
+        احسب التسعيرة
+      </button>
 
     </div>
-
-
-    <div class="field-head">
-      <span class="field-icon">🏁</span>
-      <span>مكان الوصول</span>
-    </div>
-
-    <div class="input-wrap">
-
-      <input
-        id="to"
-        autocomplete="off"
-        placeholder="اكتب اسم المنطقة..."
-        oninput="showSuggestions('to')"
-        onfocus="showSuggestions('to')"
-      >
-
-      <div
-        id="toSuggestions"
-        class="suggestions"
-      ></div>
-
-    </div>
-
-
-    <button
-      class="calc-btn"
-      onclick="calculate()"
-    >
-      احسب التسعيرة
-    </button>
 
     <div class="hint">
       اكتب اسم المنطقة والاختيارات تظهر لك مباشرة ✨
@@ -615,7 +793,9 @@ input::placeholder{
   </div>
 
 
-  <!-- RESULT -->
+  <!-- =================================================
+       RESULT
+  ================================================== -->
 
   <div
     id="result"
@@ -635,9 +815,7 @@ input::placeholder{
         class="place"
       ></div>
 
-      <div class="arrow">
-        ←
-      </div>
+      <div class="arrow"></div>
 
       <div
         id="toPlace"
@@ -707,7 +885,9 @@ input::placeholder{
   </div>
 
 
-  <!-- FOOTER -->
+  <!-- =================================================
+       FOOTER
+  ================================================== -->
 
   <div class="footer">
 
@@ -728,9 +908,9 @@ input::placeholder{
 
 <script>
 
-/* =========================================================
+/* =====================================================
    PLACES
-========================================================= */
+===================================================== */
 
 const PLACES = [
 
@@ -792,9 +972,9 @@ const PLACES = [
 ];
 
 
-/* =========================================================
+/* =====================================================
    ALIASES
-========================================================= */
+===================================================== */
 
 const ALIASES = {
 
@@ -961,9 +1141,9 @@ const ALIASES = {
 };
 
 
-/* =========================================================
+/* =====================================================
    NORMALIZE
-========================================================= */
+===================================================== */
 
 function normalize(str){
 
@@ -983,9 +1163,9 @@ function normalize(str){
 }
 
 
-/* =========================================================
+/* =====================================================
    LEVENSHTEIN
-========================================================= */
+===================================================== */
 
 function levenshtein(a,b){
 
@@ -1029,9 +1209,9 @@ function levenshtein(a,b){
 }
 
 
-/* =========================================================
+/* =====================================================
    FIND PLACE
-========================================================= */
+===================================================== */
 
 function findPlace(input){
 
@@ -1141,9 +1321,9 @@ function findPlace(input){
 }
 
 
-/* =========================================================
+/* =====================================================
    SUGGESTIONS
-========================================================= */
+===================================================== */
 
 function showSuggestions(type){
 
@@ -1236,9 +1416,9 @@ function showSuggestions(type){
 }
 
 
-/* =========================================================
+/* =====================================================
    CLOSE SUGGESTIONS
-========================================================= */
+===================================================== */
 
 document.addEventListener(
   "click",
@@ -1260,9 +1440,9 @@ document.addEventListener(
 );
 
 
-/* =========================================================
+/* =====================================================
    HAVERSINE
-========================================================= */
+===================================================== */
 
 function haversine(a,b){
 
@@ -1293,9 +1473,9 @@ function haversine(a,b){
 }
 
 
-/* =========================================================
+/* =====================================================
    ROAD DISTANCE
-========================================================= */
+===================================================== */
 
 async function roadDistance(a,b){
 
@@ -1385,9 +1565,9 @@ async function roadDistance(a,b){
 }
 
 
-/* =========================================================
+/* =====================================================
    PRICE
-========================================================= */
+===================================================== */
 
 function calculatePrice(km){
 
@@ -1415,9 +1595,9 @@ function calculatePrice(km){
 }
 
 
-/* =========================================================
+/* =====================================================
    CALCULATE
-========================================================= */
+===================================================== */
 
 async function calculate(){
 
@@ -1570,9 +1750,9 @@ async function calculate(){
 }
 
 
-/* =========================================================
+/* =====================================================
    ENTER
-========================================================= */
+===================================================== */
 
 document.addEventListener(
   "keydown",
