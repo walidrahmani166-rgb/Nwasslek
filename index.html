@@ -619,6 +619,23 @@ input::placeholder{color:#999}
   font-weight:1000;
 }
 
+
+/* NWASSLEK DEVELOPMENT ADDITIONS */
+.manual-distance{margin-top:14px;padding:14px;background:#fff9df;border:1px solid #f0d66a;border-radius:14px}
+.manual-distance label,.order-form label,.admin-panel label{display:block;margin:8px 0 5px;font-size:13px;font-weight:800}
+.manual-distance input,.order-form input,.order-form textarea,.admin-panel input{width:100%;padding:12px;border:1px solid #d5d9dc;border-radius:10px;font:inherit;background:#fff;color:#111}
+.order-form{margin-top:16px;padding:16px;background:#171a1d;border:1px solid #30353a;border-radius:16px;color:#fff}
+.order-form h3,.admin-panel h3{margin:0 0 10px;color:var(--yellow)}
+.order-form .primary-action,.admin-toggle,.admin-panel button{width:100%;margin-top:10px;padding:13px;border:0;border-radius:11px;background:var(--yellow);color:#111;font-weight:900;font-size:14px}
+.weather-line{margin-top:10px;padding:10px;border-radius:10px;background:#20252a;color:#dce2e7;font-size:12px;line-height:1.7}
+.admin-toggle{background:#20252a;color:#fff;border:1px solid #3a4147}
+.admin-panel{display:none;margin:12px 0;padding:17px;background:#fff;border:1px solid #d8dde0;border-radius:16px}
+.admin-panel .admin-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.admin-panel button{background:#111;color:#fff}
+.admin-orders{margin-top:14px;font-size:12px;line-height:1.7;overflow-wrap:anywhere}
+.admin-order{padding:10px;margin-top:8px;border:1px solid #ddd;border-radius:10px}
+@media(max-width:520px){.admin-panel .admin-grid{grid-template-columns:1fr}}
+
 /* FOOTER */
 
 .footer{
@@ -1049,6 +1066,12 @@ input::placeholder{color:#999}
 
   </div>
 
+  <div class="manual-distance">
+    <label for="manualKm">المسافة يدوياً (اختياري عند فشل حساب الطريق)</label>
+    <input id="manualKm" type="number" min="0.1" step="0.1" placeholder="مثلاً 12.5">
+    <div style="font-size:11px;color:#66551b;margin-top:6px">إذا تعذّر تحديد المسار، أدخل المسافة بالكيلومتر ثم اضغط على «احسب التسعيرة» من جديد.</div>
+  </div>
+
 </div>
 
 
@@ -1154,6 +1177,20 @@ input::placeholder{color:#999}
   </div>
 
 
+  <div id="weatherLine" class="weather-line">🌤️ حالة الطقس: سيتم التحقق تلقائياً عند حساب التسعيرة.</div>
+
+  <div class="order-form">
+    <h3>اطلب التوصيل الآن</h3>
+    <label for="customerName">الاسم</label>
+    <input id="customerName" autocomplete="name" placeholder="اسمك">
+    <label for="customerPhone">رقم الهاتف</label>
+    <input id="customerPhone" inputmode="tel" placeholder="05...">
+    <label for="orderDetails">تفاصيل إضافية (اختياري)</label>
+    <textarea id="orderDetails" rows="2" placeholder="نوع الطلب أو ملاحظاتك"></textarea>
+    <button class="primary-action" onclick="submitOrder()">تأكيد الطلب عبر WhatsApp</button>
+    <div style="font-size:10px;color:#aeb4b8;margin-top:8px">سيتم فتح WhatsApp برسالة جاهزة. حفظ الطلبات في لوحة إدارة مشتركة يتطلب ربط قاعدة بيانات آمنة.</div>
+  </div>
+
   <div class="tagline">
 
     💛
@@ -1190,6 +1227,22 @@ input::placeholder{color:#999}
 
 </div>
 
+<button class="admin-toggle" onclick="toggleAdmin()">⚙️ إعدادات الإدارة المحلية</button>
+<section id="adminPanel" class="admin-panel">
+  <h3>إعدادات NWASSLEK</h3>
+  <p style="font-size:11px;color:#666;line-height:1.7">هذه نسخة أولية تحفظ الإعدادات والطلبات على نفس المتصفح فقط، وليست لوحة إدارة محمية أو متزامنة بين الأجهزة.</p>
+  <div class="admin-grid">
+    <div><label for="weatherPercent">زيادة الطقس (%)</label><input id="weatherPercent" type="number" min="0" max="100" step="1"></div>
+    <div><label for="weatherWind">حد الرياح (كم/س)</label><input id="weatherWind" type="number" min="0" step="1"></div>
+    <div><label for="weatherRain">حد المطر (مم)</label><input id="weatherRain" type="number" min="0" step="0.1"></div>
+  </div>
+  <h3 style="margin-top:18px">أسعار ما بعد 10 كم</h3>
+  <p style="font-size:11px;color:#666">أدخل السعر لكل كيلومتر إضافي. السعر يُحسب انطلاقاً من 400 دج عند 10 كم.</p>
+  <label for="after10Rate">السعر لكل كم بعد 10 كم (دج)</label><input id="after10Rate" type="number" min="0" step="10">
+  <button onclick="saveAdminSettings()">حفظ الإعدادات</button>
+  <h3 style="margin-top:18px">الطلبات المسجلة على هذا الجهاز</h3>
+  <div id="adminOrders" class="admin-orders">لا توجد طلبات بعد.</div>
+</section>
 
 <script>
 
@@ -1361,6 +1414,67 @@ async function loadSiteSettings(){
 
 loadSiteSettings();
 
+// Local prototype settings. Production admin/order storage must use protected server-side rules.
+const DEFAULT_NW_CONFIG={weatherPercent:10,windThreshold:35,rainThreshold:0.2,after10Rate:50};
+let nwConfig={...DEFAULT_NW_CONFIG,...JSON.parse(localStorage.getItem('nwasslek_config')||'{}')};
+let lastQuote=null;
+function money(value){return Math.ceil(value/10)*10;}
+function getPriceForDistance(km){
+  if(km<=1)return 150;
+  if(km<=3)return 200;
+  if(km<=5)return 250;
+  if(km<=7)return 300;
+  if(km<=9)return 350;
+  if(km<=10)return 400;
+  return 400+Math.ceil(km-10)*Number(nwConfig.after10Rate||50);
+}
+async function getMedeaWeather(){
+  const url='https://api.open-meteo.com/v1/forecast?latitude=36.2641&longitude=2.7539&current=precipitation,wind_speed_10m,temperature_2m&wind_speed_unit=kmh&timezone=Africa%2FAlgiers';
+  try{
+    const response=await fetch(url);
+    if(!response.ok)throw new Error('Weather unavailable');
+    const data=await response.json();
+    const current=data.current||{};
+    const rain=Number(current.precipitation||0);
+    const wind=Number(current.wind_speed_10m||0);
+    const active=rain>=Number(nwConfig.rainThreshold)||wind>=Number(nwConfig.windThreshold);
+    return {available:true,rain,wind,temp:current.temperature_2m,active};
+  }catch(error){console.warn('Weather lookup failed',error);return {available:false,active:false};}
+}
+function toggleAdmin(){
+  const panel=document.getElementById('adminPanel');
+  panel.style.display=panel.style.display==='block'?'none':'block';
+  if(panel.style.display==='block'){
+    document.getElementById('weatherPercent').value=nwConfig.weatherPercent;
+    document.getElementById('weatherWind').value=nwConfig.windThreshold;
+    document.getElementById('weatherRain').value=nwConfig.rainThreshold;
+    document.getElementById('after10Rate').value=nwConfig.after10Rate;
+    renderAdminOrders();
+  }
+}
+function saveAdminSettings(){
+  nwConfig={weatherPercent:Number(document.getElementById('weatherPercent').value||10),windThreshold:Number(document.getElementById('weatherWind').value||35),rainThreshold:Number(document.getElementById('weatherRain').value||0.2),after10Rate:Number(document.getElementById('after10Rate').value||50)};
+  localStorage.setItem('nwasslek_config',JSON.stringify(nwConfig));
+  alert('تم حفظ الإعدادات على هذا الجهاز.');
+}
+function renderAdminOrders(){
+  const orders=JSON.parse(localStorage.getItem('nwasslek_orders')||'[]');
+  const target=document.getElementById('adminOrders');
+  target.innerHTML=orders.length?orders.slice().reverse().map(o=>`<div class="admin-order"><b>${escapeHtml(o.name)}</b> — ${escapeHtml(o.phone)}<br>${escapeHtml(o.from)} ← ${escapeHtml(o.to)}<br>${o.km} كم | ${o.price} دج | ${escapeHtml(o.date)}</div>`).join(''):'لا توجد طلبات بعد.';
+}
+function escapeHtml(value){return String(value??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
+function submitOrder(){
+  if(!lastQuote){alert('احسب التسعيرة أولاً.');return;}
+  const name=document.getElementById('customerName').value.trim();
+  const phone=document.getElementById('customerPhone').value.trim();
+  const details=document.getElementById('orderDetails').value.trim();
+  if(!name||!phone){alert('أدخل الاسم ورقم الهاتف من فضلك.');return;}
+  const order={name,phone,details,from:lastQuote.from,to:lastQuote.to,km:lastQuote.km,price:lastQuote.price,date:new Date().toLocaleString('fr-DZ')};
+  const orders=JSON.parse(localStorage.getItem('nwasslek_orders')||'[]');orders.push(order);localStorage.setItem('nwasslek_orders',JSON.stringify(orders));
+  renderAdminOrders();
+  const msg=`طلب توصيل NWASSLEK%0Aالاسم: ${encodeURIComponent(name)}%0Aالهاتف: ${encodeURIComponent(phone)}%0Aالانطلاق: ${encodeURIComponent(order.from)}%0Aالوصول: ${encodeURIComponent(order.to)}%0Aالمسافة: ${order.km} كم%0Aالسعر التقديري: ${order.price} دج%0Aتفاصيل: ${encodeURIComponent(details||'لا توجد')}`;
+  window.open('https://wa.me/213564703076?text='+msg,'_blank');
+}
 
 /* =========================
    PLACES
@@ -2165,34 +2279,12 @@ async function roadDistance(a,b){
 }
 
 
-function calculatePrice(km){
-
-  if(km<=1)return 150;
-
-  if(km<=2)return 200;
-
-  if(km<=4)return 250;
-
-  if(km<=6)return 300;
-
-  if(km<=8)return 350;
-
-  if(km<=10)return 400;
-
-  if(km<=12)return 450;
-
-  if(km<=14)return 500;
-
-  if(km<=15)return 550;
-
-  return 550+
-    Math.ceil(km-15)*50;
-
-}
+function calculatePrice(km){return getPriceForDistance(km);}
 
 
 async function calculate(){
 
+  lastQuote=null;
   const fromInput=
     document.getElementById(
       "from"
@@ -2352,18 +2444,20 @@ async function calculate(){
     "⏳ جاري حساب أقرب مسار بالسيارة...";
 
 
-  const route=
-    await roadDistance(
-      from.place,
-      to.place
-    );
+  const manualValue=Number(document.getElementById("manualKm").value);
+  let route=await roadDistance(from.place,to.place);
+  let km=route.distance;
+  if(manualValue>0){km=manualValue;route={...route,manual:true};document.getElementById("manualKm").value="";}
 
-
-  const km=
-    route.distance;
-
-  const price=
-    calculatePrice(km);
+  const weather=await getMedeaWeather();
+  const basePrice=calculatePrice(km);
+  const weatherExtra=weather.available && weather.active ? nwConfig.weatherPercent : 0;
+  const price=money(basePrice*(1+weatherExtra/100));
+  lastQuote={from:from.corrected,to:to.corrected,km:Number(km.toFixed(1)),price};
+  const weatherLine=document.getElementById("weatherLine");
+  if(!weather.available){weatherLine.textContent="⚠️ تعذّر جلب الطقس حالياً؛ لم تُضف أي زيادة.";}
+  else if(weather.active){weatherLine.textContent=`🌧️ حالة جوية مؤثرة في المدية: رياح ${weather.wind} كم/س، أمطار ${weather.rain} مم. طُبقت زيادة ${weatherExtra}%.`;}
+  else{weatherLine.textContent=`🌤️ الطقس مستقر حسب البيانات الحالية: ${weather.temp}°، رياح ${weather.wind} كم/س، أمطار ${weather.rain} مم. دون زيادة.`;}
 
 
   const bothConfirmed=
@@ -2435,7 +2529,7 @@ async function calculate(){
 
 
   note.innerHTML=
-    "💰 التسعيرة محسوبة حسب المسافة بالسيارة بين النقطتين.<br>💡 السعر الظاهر في الموقع تقديري وقد يتغير عند اعتماد المسار النهائي.";
+    `💰 السعر الأساسي حسب المسافة: ${basePrice.toLocaleString("fr-FR")} دج.<br>💡 السعر النهائي المعروض بعد تعديل الطقس: ${price.toLocaleString("fr-FR")} دج. الأسعار بعد 10 كم قابلة للتعديل من إعدادات الإدارة.`;
 
 
   const messages=[];
@@ -2481,13 +2575,8 @@ async function calculate(){
   }
 
 
-  if(route.fallback){
-
-    messages.push(
-      "⚠️ خدمة حساب الطريق لم تستجب، لذلك استُعمل تقدير احتياطي للمسافة."
-    );
-
-  }
+  if(route.manual){messages.push("✍️ تم اعتماد المسافة التي أدخلتها يدوياً.");}
+  else if(route.fallback){messages.push("⚠️ خدمة حساب الطريق لم تستجب؛ السعر مبني على تقدير احتياطي. أدخل المسافة يدوياً للحصول على نتيجة أدق.");}
 
 
   if(messages.length){
